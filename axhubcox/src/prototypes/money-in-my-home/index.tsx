@@ -483,8 +483,9 @@ const Component = function Component() {
 
     const controller = new AbortController();
 
+    const ssqApi = 'https://jc.zhcw.com/port/client_json.php?callback=&transactionType=10001001&lotteryId=1&issueCount=20';
     fetch(
-      'https://jc.zhcw.com/port/client_json.php?callback=&transactionType=10001001&lotteryId=1&issueCount=20',
+      `https://api.allorigins.win/raw?url=${encodeURIComponent(ssqApi)}`,
       { signal: controller.signal },
     )
       .then((res) => res.json())
