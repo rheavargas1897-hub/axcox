@@ -8,6 +8,8 @@ import { afterEach, describe, expect, it } from 'vitest';
 
 import {
   getAdminServerInfoPath,
+  getGlobalAdminServerInfoPath,
+  getGlobalMakeStateDir,
   getConfigPath,
   getMakeClientMarkerPath,
   getProjectMetadataPath,
@@ -87,6 +89,16 @@ function writeMakeClientProjectMarker(root: string, id: string, name: string): v
       'metadata:sync': 'node scripts/sync-project-metadata.mjs',
     },
   });
+}
+
+async function registerExistingMakeProject(origin: string, projectRoot: string, expectedStatus = 201) {
+  const response = await fetch(`${origin}/api/projects/make/register-existing`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ root: projectRoot }),
+  });
+  expect(response.status).toBe(expectedStatus);
+  return response.json();
 }
 
 afterEach(() => {
@@ -182,15 +194,18 @@ describe('make-server HTTP server', () => {
       capabilities: { quickEdit: false, figmaExport: true, axureExport: false, multiDevicePreview: true },
     });
 
+    const registryPath = createRegistryPath();
+    const registryHome = path.dirname(path.dirname(path.dirname(registryPath)));
     const server = await startMakeServer({
       projectRoot,
       host: 'localhost',
       port: 0,
       adminRoot: path.join(projectRoot, 'missing-admin'),
-      registryPath: getProjectRegistryPath(projectRoot),
+      registryPath,
     });
 
     try {
+      await registerExistingMakeProject(server.origin, projectRoot);
       const initialProjects = await fetch(`${server.origin}/api/projects`).then((response) => response.json());
       expect(initialProjects.activeProjectId).toBe('first');
       expect(initialProjects.projects).toEqual([
@@ -201,12 +216,7 @@ describe('make-server HTTP server', () => {
         }),
       ]);
 
-      writeMakeClientProjectMarker(secondProjectRoot, 'second', 'Second Project');
-      const created = await fetch(`${server.origin}/api/projects/make/register-existing`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ root: secondProjectRoot }),
-      }).then((response) => response.json());
+      const created = await registerExistingMakeProject(server.origin, secondProjectRoot);
       expect(created.project).toMatchObject({ id: 'second', root: secondProjectRoot });
 
       const patched = await fetch(`${server.origin}/api/projects/second`, {
@@ -227,6 +237,7 @@ describe('make-server HTTP server', () => {
       expect(context.activeProject).toMatchObject({ id: 'second', name: 'Second Renamed' });
       expect(context.projects).toHaveLength(2);
       expect(context.capabilities.quickEdit).toBe(false);
+      expect(context.admin.infoPath).toBe(getGlobalAdminServerInfoPath(registryHome));
 
       const resources = await fetch(`${server.origin}/api/projects/second/resources`).then((response) => response.json());
       expect(resources.resources.prototypes).toEqual([
@@ -316,6 +327,37 @@ describe('make-server HTTP server', () => {
     }
   });
 
+  it('stores admin server info globally without creating startup-directory state', async () => {
+    const projectRoot = fs.mkdtempSync(path.join(os.tmpdir(), 'axhub-make-server-clean-root-'));
+    const registryHome = fs.mkdtempSync(path.join(os.tmpdir(), 'axhub-make-server-global-home-'));
+    tempRoots.push(projectRoot, registryHome);
+    const server = await startMakeServer({
+      projectRoot,
+      host: 'localhost',
+      port: 0,
+      adminRoot: path.join(projectRoot, 'missing-admin'),
+      registryPath: getProjectRegistryPath(registryHome),
+    });
+
+    try {
+      const globalInfoPath = getGlobalAdminServerInfoPath(registryHome);
+      expect(fs.existsSync(globalInfoPath)).toBe(true);
+      expect(JSON.parse(fs.readFileSync(globalInfoPath, 'utf8'))).toMatchObject({
+        origin: server.origin,
+        projectRoot: getGlobalMakeStateDir(registryHome),
+      });
+      expect(fs.existsSync(path.join(projectRoot, '.axhub'))).toBe(false);
+
+      const health = await fetch(`${server.origin}/api/health`).then((response) => response.json());
+      expect(health.server).toMatchObject({
+        origin: server.origin,
+        projectRoot: getGlobalMakeStateDir(registryHome),
+      });
+    } finally {
+      await server.close();
+    }
+  });
+
   it('serves admin assets locally even when runtime info is stale', async () => {
     const projectRoot = createProjectRoot();
     const adminRoot = path.join(projectRoot, 'admin-dist');
@@ -383,6 +425,178 @@ describe('make-server HTTP server', () => {
       const context = await fetch(`${server.origin}/api/admin/context`);
       expect(context.status).toBe(409);
       await expect(context.json()).resolves.toMatchObject({ code: 'no-active-project' });
+    } finally {
+      await server.close();
+    }
+  });
+
+  it('does not expose startup-root runtime info when no active project exists', async () => {
+    const startupRoot = createProjectRoot();
+    const adminRoot = path.join(startupRoot, 'admin-dist');
+    fs.mkdirSync(adminRoot, { recursive: true });
+    fs.writeFileSync(path.join(adminRoot, 'index.html'), '<html><body>Admin App</body></html>', 'utf8');
+    const runtimeInfo = {
+      pid: process.pid,
+      port: 51999,
+      host: 'localhost',
+      origin: 'http://localhost:51999',
+      projectRoot: startupRoot,
+      startedAt: '2026-05-01T00:00:00.000Z',
+      timestamp: '2026-05-01T00:00:00.000Z',
+    };
+    writeJson(path.join(startupRoot, '.axhub/make/.dev-server-info.json'), runtimeInfo);
+
+    const server = await startMakeServer({
+      projectRoot: startupRoot,
+      host: 'localhost',
+      port: 0,
+      adminRoot,
+      registryPath: createRegistryPath(),
+    });
+
+    try {
+      const projects = await fetch(`${server.origin}/api/projects`).then((response) => response.json());
+      expect(projects).toEqual({ activeProjectId: null, projects: [] });
+
+      const context = await fetch(`${server.origin}/api/admin/context`);
+      expect(context.status).toBe(409);
+      await expect(context.json()).resolves.toMatchObject({ code: 'no-active-project' });
+
+      const health = await fetch(`${server.origin}/api/health`).then((response) => response.json());
+      expect(health.runtimeOrigin).toBeNull();
+    } finally {
+      await server.close();
+    }
+  });
+
+  it('serves the admin app and context when active project metadata is missing', async () => {
+    const projectRoot = createProjectRoot();
+    fs.rmSync(getMakeClientMarkerPath(projectRoot), { force: true });
+    fs.rmSync(path.join(projectRoot, 'package.json'), { force: true });
+    const adminRoot = path.join(projectRoot, 'admin-dist');
+    const registryPath = createRegistryPath();
+    fs.mkdirSync(adminRoot, { recursive: true });
+    fs.writeFileSync(path.join(adminRoot, 'index.html'), '<html><body>Admin App</body></html>', 'utf8');
+    writeJson(registryPath, {
+      schemaVersion: 1,
+      activeProjectId: 'missing-metadata',
+      projects: [
+        {
+          id: 'missing-metadata',
+          name: 'Missing Metadata',
+          root: projectRoot,
+          metadataPath: getProjectMetadataPath(projectRoot),
+          createdAt: '2026-05-01T00:00:00.000Z',
+          updatedAt: '2026-05-01T00:00:00.000Z',
+        },
+      ],
+    });
+    fs.rmSync(getProjectMetadataPath(projectRoot), { force: true });
+
+    const server = await startMakeServer({
+      projectRoot,
+      host: 'localhost',
+      port: 0,
+      adminRoot,
+      registryPath,
+    });
+
+    try {
+      const home = await fetch(`${server.origin}/`);
+      await expect(home.text()).resolves.toContain('Admin App');
+      expect(home.status).toBe(200);
+
+      const context = await fetch(`${server.origin}/api/admin/context`);
+      const body = await context.json();
+
+      expect(context.status).toBe(200);
+      expect(body.activeProject).toMatchObject({
+        id: 'missing-metadata',
+        unavailable: true,
+        error: {
+          code: 'PROJECT_METADATA_MISSING',
+          metadataPath: getProjectMetadataPath(projectRoot),
+        },
+      });
+      expect(body.projects).toEqual([
+        expect.objectContaining({
+          id: 'missing-metadata',
+          unavailable: true,
+        }),
+      ]);
+      expect(body.capabilities).toEqual({});
+    } finally {
+      await server.close();
+    }
+  });
+
+  it('serves context with an unavailable active project when metadata is invalid', async () => {
+    const projectRoot = createProjectRoot();
+    fs.rmSync(getMakeClientMarkerPath(projectRoot), { force: true });
+    fs.rmSync(path.join(projectRoot, 'package.json'), { force: true });
+    const registryPath = createRegistryPath();
+    writeJson(registryPath, {
+      schemaVersion: 1,
+      activeProjectId: 'invalid-metadata',
+      projects: [
+        {
+          id: 'invalid-metadata',
+          name: 'Invalid Metadata',
+          root: projectRoot,
+          metadataPath: getProjectMetadataPath(projectRoot),
+          createdAt: '2026-05-01T00:00:00.000Z',
+          updatedAt: '2026-05-01T00:00:00.000Z',
+        },
+      ],
+    });
+    writeJson(getProjectMetadataPath(projectRoot), {
+      schemaVersion: 1,
+      project: { id: 'invalid-metadata', name: 'Invalid Metadata' },
+      resources: {
+        prototypes: [
+          {
+            id: 'broken',
+            name: 'broken',
+            title: 'Broken',
+            clientUrl: '/prototypes/broken',
+            spec: { path: '../outside.md' },
+          },
+        ],
+        docs: [],
+        themes: [],
+        data: [],
+        templates: [],
+      },
+    });
+
+    const server = await startMakeServer({
+      projectRoot,
+      host: 'localhost',
+      port: 0,
+      adminRoot: path.join(projectRoot, 'missing-admin'),
+      registryPath,
+    });
+
+    try {
+      const context = await fetch(`${server.origin}/api/admin/context`);
+      const body = await context.json();
+
+      expect(context.status).toBe(200);
+      expect(body.activeProject).toMatchObject({
+        id: 'invalid-metadata',
+        unavailable: true,
+        error: {
+          code: 'PROJECT_METADATA_INVALID',
+          metadataPath: getProjectMetadataPath(projectRoot),
+        },
+      });
+
+      const resources = await fetch(`${server.origin}/api/projects/invalid-metadata/resources`);
+      expect(resources.status).toBe(400);
+      await expect(resources.json()).resolves.toMatchObject({
+        code: 'PROJECT_METADATA_INVALID',
+        projectId: 'invalid-metadata',
+      });
     } finally {
       await server.close();
     }
@@ -466,6 +680,7 @@ describe('make-server HTTP server', () => {
     });
 
     try {
+      await registerExistingMakeProject(server.origin, projectRoot);
       const preview = await fetch(`${server.origin}/docs/spec`).then((response) => response.text());
       expect(preview).toContain('<title>Docs: Project Spec</title>');
       expect(preview).toContain('/api/markdown-file?path=');
@@ -487,6 +702,7 @@ describe('make-server HTTP server', () => {
   it('does not fall back to another port when the requested admin port is already in use', async () => {
     const projectRoot = createProjectRoot();
     const registryPath = createRegistryPath();
+    const registryHome = path.dirname(path.dirname(path.dirname(registryPath)));
     const first = await startMakeServer({
       projectRoot,
       host: 'localhost',
@@ -496,6 +712,7 @@ describe('make-server HTTP server', () => {
     });
 
     try {
+      await registerExistingMakeProject(first.origin, projectRoot);
       await expect(startMakeServer({
         projectRoot,
         host: 'localhost',
@@ -509,7 +726,7 @@ describe('make-server HTTP server', () => {
       expect(health).toMatchObject({
         ok: true,
         role: 'admin',
-        projectRoot,
+        projectRoot: getGlobalMakeStateDir(registryHome),
         origin: first.origin,
         server: {
           origin: first.origin,
@@ -521,7 +738,7 @@ describe('make-server HTTP server', () => {
       expect(firstHealth).toMatchObject({
         ok: true,
         role: 'admin',
-        projectRoot,
+        projectRoot: getGlobalMakeStateDir(registryHome),
         origin: first.origin,
         devMode: false,
         server: {
@@ -532,7 +749,7 @@ describe('make-server HTTP server', () => {
 
       const context = await fetch(`${first.origin}/api/admin/context`).then((response) => response.json());
       expect(context).toMatchObject({
-        projectRoot,
+        projectRoot: getGlobalMakeStateDir(registryHome),
         runtime: {
           available: false,
         },
@@ -683,12 +900,14 @@ describe('make-server HTTP server', () => {
 
   it('reports devMode in health when started with Vite middleware', async () => {
     const projectRoot = createProjectRoot();
+    const registryPath = createRegistryPath();
+    const registryHome = path.dirname(path.dirname(path.dirname(registryPath)));
     const server = await startMakeServer({
       projectRoot,
       host: 'localhost',
       port: 0,
       adminRoot: path.join(projectRoot, 'missing-admin'),
-      registryPath: createRegistryPath(),
+      registryPath,
       devMode: true,
     });
 
@@ -697,7 +916,7 @@ describe('make-server HTTP server', () => {
       expect(health).toMatchObject({
         ok: true,
         role: 'admin',
-        projectRoot,
+        projectRoot: getGlobalMakeStateDir(registryHome),
         origin: server.origin,
         devMode: true,
       });
@@ -827,6 +1046,7 @@ describe('make-server HTTP server', () => {
     });
 
     try {
+      await registerExistingMakeProject(server.origin, projectRoot);
       const project = await fetch(`${server.origin}/api/workspace/project`).then((response) => response.json());
       expect(project).toEqual({ title: 'Demo Project' });
 
@@ -956,6 +1176,7 @@ describe('make-server HTTP server', () => {
     });
 
     try {
+      await registerExistingMakeProject(server.origin, projectRoot);
       const order = await fetch(`${server.origin}/api/workspace/resources/order?type=themes`).then((response) => response.json());
       expect(order.order).toEqual(['apple', 'linear', 'notion', 'airbnb', 'kami']);
 
@@ -1047,6 +1268,7 @@ describe('make-server HTTP server', () => {
     });
 
     try {
+      await registerExistingMakeProject(server.origin, projectRoot);
       const navigation = await fetch(`${server.origin}/api/workspace/navigation?tab=themes`).then((response) => response.json());
       expect(navigation.tree.map((node: { title?: string }) => node.title)).toEqual([
         'Figma',
@@ -1069,6 +1291,10 @@ describe('make-server HTTP server', () => {
     const projectRoot = createProjectRoot();
     writeJson(path.join(projectRoot, 'package.json'), {
       name: 'axhub-demo',
+      scripts: {
+        dev: 'vite',
+        'metadata:sync': 'node scripts/sync-project-metadata.mjs',
+      },
     });
     writeJson(getConfigPath(projectRoot), {
       projectInfo: {
@@ -1085,6 +1311,7 @@ describe('make-server HTTP server', () => {
     });
 
     try {
+      await registerExistingMakeProject(server.origin, projectRoot);
       const project = await fetch(`${server.origin}/api/workspace/project`).then((response) => response.json());
       expect(project).toEqual({ title: path.basename(projectRoot) });
     } finally {
@@ -1132,6 +1359,7 @@ describe('make-server HTTP server', () => {
     });
 
     try {
+      await registerExistingMakeProject(server.origin, projectRoot);
       const projects = await fetch(`${server.origin}/api/projects`).then((response) => response.json());
       const resources = await fetch(`${server.origin}/api/projects/${projects.activeProjectId}/resources`)
         .then((response) => response.json());
@@ -1159,6 +1387,7 @@ describe('make-server HTTP server', () => {
     });
 
     try {
+      await registerExistingMakeProject(server.origin, projectRoot);
       const project = await fetch(`${server.origin}/api/workspace/project`).then((response) => response.json());
       expect(project).toEqual({ title: path.basename(projectRoot) });
     } finally {
@@ -1190,6 +1419,7 @@ describe('make-server HTTP server', () => {
     });
 
     try {
+      await registerExistingMakeProject(server.origin, projectRoot);
       const update = await fetch(`${server.origin}/api/workspace/navigation?tab=prototypes`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
@@ -1267,6 +1497,7 @@ describe('make-server HTTP server', () => {
     });
 
     try {
+      await registerExistingMakeProject(server.origin, projectRoot);
       const response = await fetch(`${server.origin}/api/workspace/navigation?tab=docs`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },

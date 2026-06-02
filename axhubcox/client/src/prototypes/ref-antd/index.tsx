@@ -52,7 +52,7 @@ import type {
   AxureHandle
 } from '../../common/axure-types';
 
-import SideMenu from '../../components/side-menu';
+import SideMenu from '../../common/side-menu';
 
 const { Title, Text } = Typography;
 const { RangePicker } = DatePicker;

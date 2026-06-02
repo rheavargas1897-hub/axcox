@@ -1,4 +1,5 @@
 import { execFileSync } from 'node:child_process';
+import crypto from 'node:crypto';
 import fs from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
@@ -19,6 +20,7 @@ import {
   createZipFromDirectory,
   createTempRoot,
   getTestProjectRegistryPath,
+  registerProject,
   startTestServer,
   writeJson,
   writeProjectMetadata,
@@ -77,11 +79,20 @@ import { runLocalCommand } from '../localCommand.ts';
 
 const runLocalCommandMock = vi.mocked(runLocalCommand);
 
-const DEFAULT_TEMPLATE_VERSION = '0.1.1';
+const DEFAULT_TEMPLATE_VERSION = '0.1.3';
 const TEMPLATE_ZIP_URL = `https://github.com/lintendo/Axhub-Make/releases/download/make-client-template-v${DEFAULT_TEMPLATE_VERSION}/axhub-make-client-template.zip`;
 const TEMPLATE_MIRROR_ZIP_URL = `https://gitee.com/axhub/Axhub-Make/releases/download/make-client-template-v${DEFAULT_TEMPLATE_VERSION}/axhub-make-client-template.zip`;
 const TEMPLATE_MIRROR_SOURCE_URL = 'https://gitee.com/axhub/Axhub-Make/tree/main/client';
 const TEMPLATE_CACHE_ROOT = path.join(os.tmpdir(), 'axhub-make', 'make-client-template-cache');
+
+function templateCachePath(url: string) {
+  const key = crypto.createHash('sha256').update(url).digest('hex');
+  return path.join(TEMPLATE_CACHE_ROOT, `${key}.zip`);
+}
+
+function templateCacheManifestPath(url: string) {
+  return `${templateCachePath(url)}.json`;
+}
 
 function localCommandResult(command: string, args: string[]) {
   return {
@@ -172,7 +183,7 @@ function writeMakeClientMetadata(projectRoot: string, id = 'make-client-a', name
     },
     navigation: { prototypes: [], docs: [] },
     orders: { themes: [], data: [], templates: [] },
-  });
+  }, { makeClientMarker: false });
 }
 
 function writeMakeClientTemplate(templateRoot: string) {
@@ -2311,7 +2322,7 @@ describe('make-server make client project APIs', () => {
     }
   });
 
-  it('reuses a cached template zip for the same URL within 24 hours', async () => {
+  it('reuses a cached template zip for the same URL when no template version is configured', async () => {
     const defaultRoot = createTempRoot();
     writeProjectMetadata(defaultRoot);
     const parentRoot = createTempRoot('axhub-make-parent-');
@@ -2368,16 +2379,13 @@ describe('make-server make client project APIs', () => {
     }
   });
 
-  it('downloads a cached template zip again after the 24 hour TTL expires', async () => {
+  it('reuses a cached template zip when the template version is unchanged even if the file is older than 24 hours', async () => {
     const defaultRoot = createTempRoot();
     writeProjectMetadata(defaultRoot);
     const parentRoot = createTempRoot('axhub-make-parent-');
-    const customTemplateUrl = 'https://download.example.test/expired-template.zip';
-    vi.stubEnv('AXHUB_MAKE_CLIENT_TEMPLATE_URL', customTemplateUrl);
     const server = await startTestServer(defaultRoot);
 
     installRemoteTemplateCommandMock({
-      customTemplateUrl,
       metadataId: 'expired-template-demo',
       metadataName: 'Expired Template Demo',
     });
@@ -2428,7 +2436,65 @@ describe('make-server make client project APIs', () => {
 
       expect(first.status).toBe(201);
       expect(second.status).toBe(201);
-      expect((globalThis.fetch as any).mock.calls.filter(([url]: [string]) => url === customTemplateUrl)).toHaveLength(2);
+      expect((globalThis.fetch as any).mock.calls.filter(([url]: [string]) => url === TEMPLATE_ZIP_URL)).toHaveLength(1);
+    } finally {
+      await server.close();
+    }
+  });
+
+  it('downloads the template zip again when the cached version does not match the configured version', async () => {
+    const defaultRoot = createTempRoot();
+    writeProjectMetadata(defaultRoot);
+    const parentRoot = createTempRoot('axhub-make-parent-');
+    const server = await startTestServer(defaultRoot);
+    const cachePath = templateCachePath(TEMPLATE_ZIP_URL);
+
+    fs.mkdirSync(path.dirname(cachePath), { recursive: true });
+    fs.writeFileSync(cachePath, createMakeClientTemplateZip());
+    writeJson(templateCacheManifestPath(TEMPLATE_ZIP_URL), {
+      schemaVersion: 1,
+      templateVersion: '0.1.1',
+      url: TEMPLATE_ZIP_URL,
+      cachedAt: new Date().toISOString(),
+    });
+
+    installRemoteTemplateCommandMock({
+      metadataId: 'version-mismatch-template-demo',
+      metadataName: 'Version Mismatch Template Demo',
+    });
+    childProcessMock.spawn.mockImplementation((_file: string, _args: string[], options: { cwd?: string }) => {
+      const targetRoot = String(options.cwd || '');
+      writeServerInfo(targetRoot, 'runtime', {
+        pid: process.pid,
+        port: 51728,
+        host: 'localhost',
+        origin: 'http://localhost:51728',
+        projectRoot: targetRoot,
+        startedAt: new Date().toISOString(),
+      });
+      return {
+        once: vi.fn(),
+        unref: vi.fn(),
+      } as any;
+    });
+
+    try {
+      const response = await fetch(`${server.origin}/api/projects/make/create`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          parentRoot,
+          folderName: 'Version Mismatch Template',
+          projectName: 'Version Mismatch Template',
+        }),
+      });
+
+      expect(response.status).toBe(201);
+      expect((globalThis.fetch as any).mock.calls.filter(([url]: [string]) => url === TEMPLATE_ZIP_URL)).toHaveLength(1);
+      expect(JSON.parse(fs.readFileSync(templateCacheManifestPath(TEMPLATE_ZIP_URL), 'utf8'))).toMatchObject({
+        templateVersion: DEFAULT_TEMPLATE_VERSION,
+        url: TEMPLATE_ZIP_URL,
+      });
     } finally {
       await server.close();
     }
@@ -2773,11 +2839,34 @@ describe('make-server make client project APIs', () => {
     }
   });
 
-  it('rejects unsafe or non-empty blank project target folders', async () => {
+  it('rejects unsafe or existing blank project target folders', async () => {
     const defaultRoot = createTempRoot();
     writeProjectMetadata(defaultRoot);
     const parentRoot = createTempRoot('axhub-make-parent-');
     const server = await startTestServer(defaultRoot);
+    installRemoteTemplateCommandMock();
+    childProcessMock.spawn.mockImplementation((_file: string, _args: string[], options: { cwd?: string }) => {
+      const targetRoot = String(options.cwd || '');
+      writeMakeClientMetadata(targetRoot, path.basename(targetRoot), path.basename(targetRoot));
+      writeServerInfo(targetRoot, 'runtime', {
+        pid: process.pid,
+        port: 51721,
+        host: 'localhost',
+        origin: 'http://localhost:51721',
+        projectRoot: targetRoot,
+        startedAt: new Date().toISOString(),
+      });
+      const child = {
+        once: vi.fn((event: string, callback: (...args: any[]) => void) => {
+          if (event === 'spawn') {
+            setTimeout(callback, 0);
+          }
+          return child;
+        }),
+        unref: vi.fn(),
+      };
+      return child;
+    });
 
     try {
       const unsafe = await fetch(`${server.origin}/api/projects/make/create`, {
@@ -2788,6 +2877,19 @@ describe('make-server make client project APIs', () => {
 
       expect(unsafe.status).toBe(400);
       expect(unsafe.body).toMatchObject({ code: 'INVALID_MAKE_PROJECT_FOLDER_NAME' });
+
+      const emptyRoot = path.join(parentRoot, 'empty-client');
+      fs.mkdirSync(emptyRoot, { recursive: true });
+
+      const empty = await fetch(`${server.origin}/api/projects/make/create`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ parentRoot, folderName: 'empty-client' }),
+      }).then(async (response) => ({ status: response.status, body: await response.json() }));
+
+      expect(empty.status).toBe(409);
+      expect(empty.body).toMatchObject({ code: 'MAKE_PROJECT_TARGET_NOT_EMPTY' });
+      expect(fs.existsSync(getMakeClientMarkerPath(emptyRoot))).toBe(false);
 
       const existingRoot = path.join(parentRoot, 'existing-client');
       fs.mkdirSync(existingRoot, { recursive: true });
@@ -2812,7 +2914,7 @@ describe('make-server make client project APIs', () => {
     }
   });
 
-  it('keeps the requested project active when dev ensure fails', async () => {
+  it('keeps the previous active project when dev ensure fails after background registration', async () => {
     const defaultRoot = createTempRoot();
     writeProjectMetadata(defaultRoot, {
       project: { id: 'default-client', name: 'Default Client' },
@@ -2838,6 +2940,7 @@ describe('make-server make client project APIs', () => {
     });
 
     try {
+      await registerProject(server.origin, defaultRoot, 'default-client', 'Default Client');
       await fetch(`${server.origin}/api/projects/make/register-existing`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -2855,7 +2958,7 @@ describe('make-server make client project APIs', () => {
       expect(ensureBody).toMatchObject({ code: 'MAKE_CLIENT_DEV_TIMEOUT' });
 
       const active = await fetch(`${server.origin}/api/projects/active`).then((response) => response.json());
-      expect(active.id).toBe('timeout-client');
+      expect(active.id).toBe('default-client');
     } finally {
       await server.close();
     }
@@ -2890,6 +2993,72 @@ describe('make-server make client project APIs', () => {
       expect(activeResponse.status).toBe(200);
       expect(activeBody.activeProject).toMatchObject({ id: 'switch-client' });
       expect(childProcessMock.execFile).not.toHaveBeenCalled();
+      expect(childProcessMock.spawn).not.toHaveBeenCalled();
+    } finally {
+      await server.close();
+    }
+  });
+
+  it('registers an extracted make client project without installed dependencies', async () => {
+    const defaultRoot = createTempRoot();
+    writeProjectMetadata(defaultRoot, {
+      project: { id: 'default-client', name: 'Default Client' },
+    });
+    const projectRoot = createTempRoot('axhub-make-client-extracted-');
+    writeMakeClientMarker(projectRoot, 'extracted-client', 'Extracted Client');
+    writeMakeClientPackage(projectRoot);
+    fs.mkdirSync(path.join(projectRoot, 'src', 'prototypes', 'from-zip'), { recursive: true });
+    fs.writeFileSync(
+      path.join(projectRoot, 'src', 'prototypes', 'from-zip', 'index.tsx'),
+      '/** @name From Zip */\nexport default function FromZip() { return null; }\n',
+      'utf8',
+    );
+    fs.rmSync(path.join(projectRoot, 'node_modules'), { recursive: true, force: true });
+    fs.rmSync(getProjectMetadataPath(projectRoot), { force: true });
+    const server = await startTestServer(defaultRoot);
+
+    try {
+      const registerResponse = await fetch(`${server.origin}/api/projects/make/register-existing`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ root: projectRoot }),
+      });
+      const registerBody = await registerResponse.json();
+
+      expect(registerResponse.status).toBe(201);
+      expect(registerBody.project).toMatchObject({
+        id: 'extracted-client',
+        name: 'Extracted Client',
+        root: projectRoot,
+      });
+      expect(fs.existsSync(path.join(projectRoot, 'node_modules'))).toBe(false);
+
+      const activeResponse = await fetch(`${server.origin}/api/projects/active`, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ projectId: 'extracted-client' }),
+      });
+      expect(activeResponse.status).toBe(200);
+
+      const resourcesResponse = await fetch(`${server.origin}/api/projects/extracted-client/resources`);
+      const resourcesBody = await resourcesResponse.json();
+
+      expect(resourcesResponse.status).toBe(200);
+      expect(resourcesBody.project).toEqual({ id: 'extracted-client', name: 'Extracted Client' });
+      expect(resourcesBody.resources.prototypes).toEqual(expect.arrayContaining([
+        expect.objectContaining({
+          id: 'from-zip',
+          title: 'From Zip',
+          clientUrl: '/prototypes/from-zip',
+        }),
+      ]));
+      expect(fs.existsSync(getProjectMetadataPath(projectRoot))).toBe(true);
+      expect(fs.existsSync(path.join(projectRoot, 'node_modules'))).toBe(false);
+      expect(runLocalCommandMock).not.toHaveBeenCalledWith(
+        expect.stringMatching(/^(?:npm|npm\.cmd|pnpm)$/u),
+        expect.arrayContaining([expect.stringMatching(/^install$/u)]),
+        expect.any(Object),
+      );
       expect(childProcessMock.spawn).not.toHaveBeenCalled();
     } finally {
       await server.close();

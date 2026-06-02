@@ -1,0 +1,20 @@
+{
+  "js": {
+    "elements/ref-button": "/Users/rheavargas/Documents/New project/axhubcox/src/elements/ref-button/index.tsx",
+    "elements/ref-line-chart": "/Users/rheavargas/Documents/New project/axhubcox/src/elements/ref-line-chart/index.tsx",
+    "elements/side-menu": "/Users/rheavargas/Documents/New project/axhubcox/src/elements/side-menu/index.tsx",
+    "pages/b-5tnmw9yquon-1772012777660": "/Users/rheavargas/Documents/New project/axhubcox/src/pages/b-5tnmw9yquon-1772012777660/index.tsx",
+    "pages/ref-antd": "/Users/rheavargas/Documents/New project/axhubcox/src/pages/ref-antd/index.tsx",
+    "pages/ref-app-home": "/Users/rheavargas/Documents/New project/axhubcox/src/pages/ref-app-home/index.tsx",
+    "pages/zip": "/Users/rheavargas/Documents/New project/axhubcox/src/pages/zip/index.tsx"
+  },
+  "html": {
+    "elements/ref-button": "/Users/rheavargas/Documents/New project/axhubcox/src/elements/ref-button/index.html",
+    "elements/ref-line-chart": "/Users/rheavargas/Documents/New project/axhubcox/src/elements/ref-line-chart/index.html",
+    "elements/side-menu": "/Users/rheavargas/Documents/New project/axhubcox/src/elements/side-menu/index.html",
+    "pages/b-5tnmw9yquon-1772012777660": "/Users/rheavargas/Documents/New project/axhubcox/src/pages/b-5tnmw9yquon-1772012777660/index.html",
+    "pages/ref-antd": "/Users/rheavargas/Documents/New project/axhubcox/src/pages/ref-antd/index.html",
+    "pages/ref-app-home": "/Users/rheavargas/Documents/New project/axhubcox/src/pages/ref-app-home/index.html",
+    "pages/zip": "/Users/rheavargas/Documents/New project/axhubcox/src/pages/zip/index.html"
+  }
+}

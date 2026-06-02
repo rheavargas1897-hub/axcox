@@ -6,8 +6,8 @@ import {
   createProjectMetadataStore,
   createProjectRegistry,
   createServerConfigStore,
-  getAdminServerInfoPath,
   getConfigPath,
+  getGlobalAdminServerInfoPath,
   getProjectMetadataPath,
   isPathInside,
   readMakeClientMarker,
@@ -66,6 +66,7 @@ export interface ManagementApiOptions {
   origin: string;
   runtimeOrigin?: string;
   registryPath?: string;
+  serverInfoHomeDir?: string;
   serverInfo?: {
     pid: number;
     port: number;
@@ -85,6 +86,12 @@ interface ProjectRequestContext {
 }
 
 type EffectiveProjectCapabilities = ProjectMetadata['capabilities'] & { lanAccessAllowed: boolean };
+type ProjectMetadataAvailabilityError = {
+  message: string;
+  code: 'PROJECT_METADATA_MISSING' | 'PROJECT_METADATA_INVALID';
+  projectId: string;
+  metadataPath: string;
+};
 
 interface MultipartPart {
   name: string;
@@ -190,7 +197,7 @@ function getMultipartTextFields(parts: MultipartPart[], name: string): string[] 
     .map((part) => part.data.toString('utf8').trim());
 }
 
-function toProjectEntry(project: RegisteredProject) {
+function createProjectEntryBase(project: RegisteredProject) {
   const identity = readProjectIdentity(project.root, {
     metadataPath: project.metadataPath,
     fallback: project,
@@ -199,6 +206,19 @@ function toProjectEntry(project: RegisteredProject) {
     ...project,
     name: identity.name,
   };
+}
+
+function toProjectEntry(project: RegisteredProject) {
+  const entry = createProjectEntryBase(project);
+  const availabilityError = getProjectMetadataAvailabilityError(project);
+  if (availabilityError) {
+    return {
+      ...entry,
+      unavailable: true,
+      error: availabilityError,
+    };
+  }
+  return entry;
 }
 
 function toProjectIdentity(project: RegisteredProject) {
@@ -273,43 +293,7 @@ function updateRegisteredProjectTitle(options: ManagementApiOptions, project: Re
 }
 
 function ensureDefaultRegisteredProject(options: ManagementApiOptions) {
-  const registry = getProjectRegistryForRequest(options);
-  const current = registry.getRegistry();
-  const marker = readMakeClientMarker(options.projectRoot);
-  if (!marker) {
-    return current;
-  }
-  let identity: { id: string; name: string };
-  let metadataPath: string;
-  try {
-    const synced = syncProjectIdentitySource(options.projectRoot);
-    identity = synced.identity;
-    metadataPath = getProjectMetadataPath(options.projectRoot);
-  } catch (error) {
-    if (current.projects.length > 0) {
-      return current;
-    }
-    throw error;
-  }
-  const existingProject = registry.getProject(identity.id);
-  if (existingProject) {
-    registry.updateProject(existingProject.id, {
-      name: identity.name,
-      root: options.projectRoot,
-      metadataPath,
-    });
-    return registry.getRegistry();
-  }
-  if (current.projects.length > 0) {
-    return current;
-  }
-  registry.addProject({
-    id: identity.id,
-    name: identity.name,
-    root: options.projectRoot,
-    metadataPath,
-  });
-  return registry.getRegistry();
+  return getProjectRegistryForRequest(options).getRegistry();
 }
 
 function getActiveProjectContext(options: ManagementApiOptions): ProjectRequestContext | null {
@@ -319,7 +303,10 @@ function getActiveProjectContext(options: ManagementApiOptions): ProjectRequestC
   if (!project) {
     return null;
   }
-  const metadataStore = createProjectMetadataStore(project.root, { metadataPath: project.metadataPath });
+  const metadataStore = getAvailableMetadataStore(project);
+  if (!metadataStore) {
+    return null;
+  }
   return {
     project,
     metadataStore,
@@ -499,28 +486,79 @@ function sendResourceWriteAdapterRequired(
   });
 }
 
-function sendMissingProjectMetadata(res: ServerResponse, project: RegisteredProject): void {
-  sendJson(res, {
-    error: 'Project metadata not found',
+function createProjectMetadataMissingError(project: RegisteredProject): ProjectMetadataAvailabilityError {
+  return {
+    message: 'Project metadata not found',
     code: 'PROJECT_METADATA_MISSING',
     projectId: project.id,
     metadataPath: project.metadataPath,
+  };
+}
+
+function createProjectMetadataInvalidError(project: RegisteredProject, error: unknown): ProjectMetadataAvailabilityError {
+  return {
+    message: error instanceof Error ? error.message : String(error || 'Project metadata is invalid'),
+    code: 'PROJECT_METADATA_INVALID',
+    projectId: project.id,
+    metadataPath: project.metadataPath,
+  };
+}
+
+function sendMissingProjectMetadata(res: ServerResponse, project: RegisteredProject): void {
+  const error = createProjectMetadataMissingError(project);
+  sendJson(res, {
+    error: error.message,
+    code: error.code,
+    projectId: error.projectId,
+    metadataPath: error.metadataPath,
   }, { status: 404 });
 }
 
-function getExistingMetadataStore(res: ServerResponse, project: RegisteredProject) {
+function readRepairableMakeClientMarker(projectRoot: string): ReturnType<typeof readMakeClientMarker> {
+  try {
+    return readMakeClientMarker(projectRoot);
+  } catch {
+    return null;
+  }
+}
+
+function isProjectMetadataUnavailable(project: RegisteredProject): boolean {
+  return !fs.existsSync(project.metadataPath) && !readRepairableMakeClientMarker(project.root);
+}
+
+function getProjectMetadataAvailabilityError(project: RegisteredProject): ProjectMetadataAvailabilityError | null {
+  const metadataStore = getAvailableMetadataStore(project);
+  if (!metadataStore) {
+    return createProjectMetadataMissingError(project);
+  }
+  try {
+    metadataStore.getMetadata();
+  } catch (error) {
+    return createProjectMetadataInvalidError(project, error);
+  }
+  return null;
+}
+
+function getAvailableMetadataStore(project: RegisteredProject): ReturnType<typeof createProjectMetadataStore> | null {
   if (!fs.existsSync(project.metadataPath)) {
-    if (readMakeClientMarker(project.root)) {
-      syncProjectIdentitySource(project.root, {
-        metadataPath: project.metadataPath,
-        fallback: project,
-      });
-      return createProjectMetadataStore(project.root, { metadataPath: project.metadataPath });
+    if (!readRepairableMakeClientMarker(project.root)) {
+      return null;
     }
+    syncProjectIdentitySource(project.root, {
+      metadataPath: project.metadataPath,
+      fallback: project,
+    });
+  }
+  return createProjectMetadataStore(project.root, { metadataPath: project.metadataPath });
+}
+
+function getExistingMetadataStore(res: ServerResponse, project: RegisteredProject) {
+  const metadataStore = getAvailableMetadataStore(project);
+  if (!metadataStore) {
     sendMissingProjectMetadata(res, project);
     return null;
   }
-  return createProjectMetadataStore(project.root, { metadataPath: project.metadataPath });
+  return metadataStore;
 }
 
 function readProjectConfig(projectRoot: string): any {
@@ -541,7 +579,7 @@ function stringValue(value: unknown): string {
 
 function getLocalProjectPickerPrompt(kind: string): string {
   if (kind === 'parent') {
-    return '选择新建 Make 项目的父目录';
+    return '选择新建 Make 项目的所在位置';
   }
   return '选择 Axhub Make 客户端项目目录';
 }
@@ -552,7 +590,6 @@ function selectLocalProjectRootForKind(kind: string): Promise<string | null> {
 
 function handleProjectApi(req: IncomingMessage, res: ServerResponse, options: ManagementApiOptions, pathname: string): boolean {
   return handleProjectRegistryApi(req, res, options, pathname, {
-    ensureDefaultRegisteredProject,
     getProjectRegistryForRequest,
     addOrUpdateRegistryProjectByRoot,
     toProjectEntry,
@@ -800,6 +837,51 @@ function readJsonFile<T>(filePath: string, fallback: T): T {
   }
 }
 
+function createUnavailableProjectEntry(project: RegisteredProject) {
+  const availabilityError = getProjectMetadataAvailabilityError(project) || createProjectMetadataMissingError(project);
+  return {
+    ...createProjectEntryBase(project),
+    unavailable: true,
+    error: availabilityError,
+  };
+}
+
+function createAdminContextPayload(options: ManagementApiOptions) {
+  const registry = getProjectRegistryForRequest(options).getRegistry();
+  const activeRegistryProject = registry.projects.find((project) => project.id === registry.activeProjectId) ?? null;
+  const availabilityErrors = new Map<string, ProjectMetadataAvailabilityError | null>();
+  const getAvailabilityError = (project: RegisteredProject) => {
+    if (!availabilityErrors.has(project.id)) {
+      availabilityErrors.set(project.id, getProjectMetadataAvailabilityError(project));
+    }
+    return availabilityErrors.get(project.id) ?? null;
+  };
+  const activeProjectAvailabilityError = activeRegistryProject ? getAvailabilityError(activeRegistryProject) : null;
+  const activeProjectContext = activeProjectAvailabilityError ? null : getActiveProjectContext(options);
+  const activeProject = activeProjectContext?.project
+    ?? activeRegistryProject
+    ?? null;
+  const runtime = activeProjectContext ? readServerInfo(activeProjectContext.project.root, 'runtime') : null;
+
+  return {
+    projectRoot: options.projectRoot,
+    activeProject: activeProjectAvailabilityError && activeProject
+      ? createUnavailableProjectEntry(activeProject)
+      : activeProjectContext?.project ?? null,
+    projects: registry.projects.map((project) => (
+      getAvailabilityError(project) ? createUnavailableProjectEntry(project) : toProjectEntry(project)
+    )),
+    capabilities: activeProjectContext ? createEffectiveProjectCapabilities(activeProjectContext) : {},
+    admin: {
+      origin: options.origin,
+      infoPath: getGlobalAdminServerInfoPath(options.serverInfoHomeDir),
+    },
+    runtime: runtime
+      ? { available: true, ...runtime }
+      : { available: false },
+  };
+}
+
 export async function handleManagementApi(req: IncomingMessage, res: ServerResponse, options: ManagementApiOptions): Promise<boolean> {
   const url = getRequestUrl(req);
   const pathname = url.pathname;
@@ -813,7 +895,7 @@ export async function handleManagementApi(req: IncomingMessage, res: ServerRespo
       origin: options.origin,
       runtimeOrigin: options.runtimeOrigin || null,
       devMode: options.devMode === true,
-      server: options.serverInfo || readServerInfo(projectRoot, 'admin'),
+      server: options.serverInfo || readServerInfo(projectRoot, 'admin', { homeDir: options.serverInfoHomeDir }),
     });
     return true;
   }
@@ -880,9 +962,30 @@ export async function handleManagementApi(req: IncomingMessage, res: ServerRespo
     return true;
   }
 
-  const registry = getProjectRegistryForRequest(options);
-  const hasRequestProject = Boolean(url.searchParams.get('projectId') || registry.getActiveProject());
-  if (!hasRequestProject && !pathname.startsWith('/api/')) {
+  if (pathname === '/api/admin/context') {
+    try {
+      ensureDefaultRegisteredProject(options);
+    } catch (error: any) {
+      sendJson(res, {
+        error: error?.message || 'Project metadata is invalid',
+        code: 'PROJECT_METADATA_INVALID',
+        projectRoot: options.projectRoot,
+      }, { status: 400 });
+      return true;
+    }
+    const registry = getProjectRegistryForRequest(options).getRegistry();
+    if (!registry.activeProjectId) {
+      sendJson(res, {
+        error: 'No active project selected',
+        code: 'no-active-project',
+      }, { status: 409 });
+      return true;
+    }
+    sendJson(res, createAdminContextPayload(options));
+    return true;
+  }
+
+  if (!pathname.startsWith('/api/')) {
     return false;
   }
 
@@ -899,26 +1002,6 @@ export async function handleManagementApi(req: IncomingMessage, res: ServerRespo
   if (handleLegacyDocsApi(req, res, options, activeProjectRoot, pathname, url, {
     getActiveProjectContext,
   })) return true;
-
-  if (pathname === '/api/admin/context') {
-    const runtime = readServerInfo(projectRoot, 'runtime');
-    const activeProjectContext = getActiveProjectContext(options);
-    const registry = getProjectRegistryForRequest(options).getRegistry();
-    sendJson(res, {
-      projectRoot,
-      activeProject: activeProjectContext?.project ?? null,
-      projects: registry.projects,
-      capabilities: activeProjectContext ? createEffectiveProjectCapabilities(activeProjectContext) : {},
-      admin: {
-        origin: options.origin,
-        infoPath: getAdminServerInfoPath(projectRoot),
-      },
-      runtime: runtime
-        ? { available: true, ...runtime }
-        : { available: false },
-    });
-    return true;
-  }
 
   if (handleEntriesCompatibilityApi(req, res, options, pathname, {
     getActiveProjectContext,

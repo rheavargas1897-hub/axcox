@@ -24,6 +24,11 @@ import {
 } from './projectCore/index.ts';
 
 import { buildLocalCommandEnv, runLocalCommand } from './localCommand.ts';
+import {
+  DEFAULT_MAKE_CLIENT_TEMPLATE_VERSION,
+  makeClientTemplateMirrorDownloadUrl,
+  makeClientTemplatePrimaryDownloadUrl,
+} from '../common/makeClientTemplate.ts';
 
 export type MakeClientPhase =
   | 'template'
@@ -40,6 +45,7 @@ export interface MakeClientCommandRunner {
 export interface MakeClientOrchestrationOptions {
   adminServerInfo?: AxhubServerInfo;
   commandRunner?: MakeClientCommandRunner;
+  serverInfoHomeDir?: string;
   devTimeoutMs?: number;
   healthTimeoutMs?: number;
   pollIntervalMs?: number;
@@ -101,12 +107,7 @@ function defaultCommandRunner(): MakeClientCommandRunner {
 }
 
 export const MAKE_CLIENT_TEMPLATE_PATH = 'client';
-export const MAKE_CLIENT_TEMPLATE_ZIP_NAME = 'axhub-make-client-template.zip';
-export const DEFAULT_MAKE_CLIENT_TEMPLATE_VERSION = '0.1.1';
 export const MAKE_CLIENT_TEMPLATE_URL_ENV = 'AXHUB_MAKE_CLIENT_TEMPLATE_URL';
-export const PRIMARY_MAKE_CLIENT_TEMPLATE_RELEASE_REPOSITORY = 'lintendo/Axhub-Make';
-export const GITEE_MAKE_CLIENT_TEMPLATE_RELEASE_BASE_URL = 'https://gitee.com/axhub/Axhub-Make/releases/download';
-const MAKE_CLIENT_TEMPLATE_CACHE_TTL_MS = 24 * 60 * 60 * 1000;
 const SKIP_AUTO_START_SERVER_ENV = 'AXHUB_MAKE_SKIP_AUTO_START_SERVER';
 const MAKE_CLIENT_RUNTIME_HEARTBEAT_MAX_AGE_MS = 15_000;
 const DEFAULT_MAKE_CLIENT_TEMPLATE_TIMEOUT_MS = 3 * 60_000;
@@ -160,6 +161,15 @@ export interface MakeClientTemplateSource {
   templateVersion?: string;
 }
 
+type MakeClientTemplateCacheStatus = 'hit' | 'miss' | 'version-mismatch';
+
+interface MakeClientTemplateCacheManifest {
+  schemaVersion: 1;
+  url: string;
+  cachedAt: string;
+  templateVersion?: string;
+}
+
 export function makeClientTemplateSources(options: { env?: NodeJS.ProcessEnv; version?: string } = {}): MakeClientTemplateSource[] {
   const env = options.env || process.env;
   const overrideUrl = typeof env[MAKE_CLIENT_TEMPLATE_URL_ENV] === 'string'
@@ -173,17 +183,16 @@ export function makeClientTemplateSources(options: { env?: NodeJS.ProcessEnv; ve
     }];
   }
   const version = options.version || DEFAULT_MAKE_CLIENT_TEMPLATE_VERSION;
-  const tagName = `make-client-template-v${version}`;
   return [
     {
       id: 'github',
-      url: `https://github.com/${PRIMARY_MAKE_CLIENT_TEMPLATE_RELEASE_REPOSITORY}/releases/download/${tagName}/${MAKE_CLIENT_TEMPLATE_ZIP_NAME}`,
+      url: makeClientTemplatePrimaryDownloadUrl(version),
       markerRepository: DEFAULT_MAKE_CLIENT_REPOSITORY,
       templateVersion: version,
     },
     {
       id: 'gitee',
-      url: `${GITEE_MAKE_CLIENT_TEMPLATE_RELEASE_BASE_URL}/${tagName}/${MAKE_CLIENT_TEMPLATE_ZIP_NAME}`,
+      url: makeClientTemplateMirrorDownloadUrl(version),
       markerRepository: 'https://gitee.com/axhub/Axhub-Make/tree/main/client',
       templateVersion: version,
     },
@@ -460,17 +469,77 @@ function makeClientTemplateCachePath(url: string): string {
   return path.join(makeClientTemplateCacheRoot(), `${key}.zip`);
 }
 
-function getTemplateCacheStatus(cachePath: string): 'hit' | 'miss' | 'expired' {
+function makeClientTemplateCacheManifestPath(cachePath: string): string {
+  return `${cachePath}.json`;
+}
+
+function stringValue(value: unknown): string {
+  return typeof value === 'string' ? value.trim() : '';
+}
+
+function readTemplateCacheManifest(cachePath: string): MakeClientTemplateCacheManifest | null {
+  const manifestPath = makeClientTemplateCacheManifestPath(cachePath);
+  if (!fs.existsSync(manifestPath)) {
+    return null;
+  }
+  try {
+    const raw = JSON.parse(fs.readFileSync(manifestPath, 'utf8'));
+    if (!raw || typeof raw !== 'object' || Array.isArray(raw)) {
+      return null;
+    }
+    const record = raw as Record<string, unknown>;
+    if (record.schemaVersion !== 1) {
+      return null;
+    }
+    const url = stringValue(record.url);
+    const cachedAt = stringValue(record.cachedAt);
+    if (!url || !cachedAt) {
+      return null;
+    }
+    const templateVersion = stringValue(record.templateVersion);
+    return {
+      schemaVersion: 1,
+      url,
+      cachedAt,
+      ...(templateVersion ? { templateVersion } : {}),
+    };
+  } catch {
+    return null;
+  }
+}
+
+function writeTemplateCacheManifest(cachePath: string, params: { url: string; templateVersion?: string }): void {
+  const manifest: MakeClientTemplateCacheManifest = {
+    schemaVersion: 1,
+    url: params.url,
+    cachedAt: new Date().toISOString(),
+    ...(params.templateVersion ? { templateVersion: params.templateVersion } : {}),
+  };
+  fs.writeFileSync(makeClientTemplateCacheManifestPath(cachePath), `${JSON.stringify(manifest, null, 2)}\n`, 'utf8');
+}
+
+function getTemplateCacheStatus(
+  cachePath: string,
+  params: { url: string; templateVersion?: string },
+): MakeClientTemplateCacheStatus {
   if (!fs.existsSync(cachePath)) {
     return 'miss';
   }
-  const ageMs = Date.now() - fs.statSync(cachePath).mtimeMs;
-  return ageMs >= 0 && ageMs < MAKE_CLIENT_TEMPLATE_CACHE_TTL_MS ? 'hit' : 'expired';
+  if (!params.templateVersion) {
+    return 'hit';
+  }
+  const manifest = readTemplateCacheManifest(cachePath);
+  return manifest?.url === params.url && manifest.templateVersion === params.templateVersion
+    ? 'hit'
+    : 'version-mismatch';
 }
 
-async function readTemplateZipWithCache(url: string): Promise<{ zipBuffer: Uint8Array; cache: { status: 'hit' | 'miss' | 'expired'; path: string } }> {
+async function readTemplateZipWithCache(
+  source: MakeClientTemplateSource,
+): Promise<{ zipBuffer: Uint8Array; cache: { status: MakeClientTemplateCacheStatus; path: string } }> {
+  const { url, templateVersion } = source;
   const cachePath = makeClientTemplateCachePath(url);
-  const status = getTemplateCacheStatus(cachePath);
+  const status = getTemplateCacheStatus(cachePath, { url, templateVersion });
   if (status === 'hit') {
     return {
       zipBuffer: new Uint8Array(fs.readFileSync(cachePath)),
@@ -484,6 +553,7 @@ async function readTemplateZipWithCache(url: string): Promise<{ zipBuffer: Uint8
   try {
     fs.writeFileSync(tempPath, zipBuffer);
     fs.renameSync(tempPath, cachePath);
+    writeTemplateCacheManifest(cachePath, { url, templateVersion });
   } finally {
     fs.rmSync(tempPath, { force: true });
   }
@@ -610,15 +680,15 @@ async function fetchMakeClientTemplateFromRemote(
   targetRoot: string,
 ): Promise<{ markerRepository: string; templateUrl: string; templateVersion?: string }> {
   void runner;
-  const failures: Array<{ url: string; cache: { status: 'hit' | 'miss' | 'expired'; path: string } | null; error: string }> = [];
+  const failures: Array<{ url: string; cache: { status: MakeClientTemplateCacheStatus; path: string } | null; error: string }> = [];
   const tempParent = fs.mkdtempSync(path.join(os.tmpdir(), 'axhub-make-client-template-'));
 
   try {
     for (const source of makeClientTemplateSources()) {
       const checkoutRoot = path.join(tempParent, failures.length === 0 ? 'primary' : `fallback-${failures.length}`);
-      let cache: { status: 'hit' | 'miss' | 'expired'; path: string } | null = null;
+      let cache: { status: MakeClientTemplateCacheStatus; path: string } | null = null;
       try {
-        const cached = await readTemplateZipWithCache(source.url);
+        const cached = await readTemplateZipWithCache(source);
         cache = cached.cache;
         const zipBuffer = cached.zipBuffer;
         extractTemplateZip(zipBuffer, checkoutRoot);
@@ -713,14 +783,18 @@ async function waitForRuntimeInfo(
   return null;
 }
 
-function ensureAdminServerInfo(projectRoot: string, adminServerInfo?: AxhubServerInfo): void {
+function ensureAdminServerInfo(
+  projectRoot: string,
+  adminServerInfo?: AxhubServerInfo,
+  options: { homeDir?: string } = {},
+): void {
   if (!adminServerInfo) {
     return;
   }
   writeServerInfo(projectRoot, 'admin', {
     ...adminServerInfo,
     projectRoot,
-  });
+  }, options);
 }
 
 function ensureMakeClientScripts(projectRoot: string): void {
@@ -886,7 +960,7 @@ export async function ensureMakeClientDevServer(
 ): Promise<MakeClientDevResult> {
   const root = path.resolve(projectRoot);
   validateExistingMakeClientProject(root);
-  ensureAdminServerInfo(root, options.adminServerInfo);
+  ensureAdminServerInfo(root, options.adminServerInfo, { homeDir: options.serverInfoHomeDir });
 
   const existingRuntime = readServerInfo(root, 'runtime');
   if (isLiveMakeClientRuntime(existingRuntime, root)) {
@@ -968,8 +1042,8 @@ export async function createBlankMakeClientProject(
   }
   const folderName = assertSafeMakeClientFolderName(params.folderName);
   const projectRoot = path.join(parentRoot, folderName);
-  if (fs.existsSync(projectRoot) && fs.readdirSync(projectRoot).length > 0) {
-    throw new MakeClientProjectError('MAKE_PROJECT_TARGET_NOT_EMPTY', 'Target folder is not empty', { status: 409 });
+  if (fs.existsSync(projectRoot)) {
+    throw new MakeClientProjectError('MAKE_PROJECT_TARGET_NOT_EMPTY', 'Target folder already exists', { status: 409 });
   }
 
   const runner = options.commandRunner || defaultCommandRunner();

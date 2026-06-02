@@ -78,7 +78,9 @@ import { CANVAS_DROP_MIME } from '../content/canvasDropTypes';
 import { createSidebarTreeItemLookup, resolveSidebarTreeItem } from '../../utils/sidebarTree';
 import { sidebarApi } from '../../services/sidebar.api';
 import { buildItemUrl, buildLANItemUrl } from '../../utils/url';
+import { makeClientTemplateMirrorDownloadUrl, makeClientTemplatePrimaryDownloadUrl } from '../../../common/makeClientTemplate';
 import { formatProjectRootDisplayPath } from './projectSwitcherPathDisplay';
+import { copyToClipboard } from '../../utils/clipboard';
 
 interface ContentPanelProps {
     activeTab: SidebarTab;
@@ -151,6 +153,7 @@ interface ContentPanelProps {
 type DropPlacement = 'before' | 'inside' | 'after';
 type ProjectSetupMode = 'menu' | 'blank';
 type CanvasDropPreviewKind = 'web' | 'doc' | 'image' | 'none';
+const SIDEBAR_TREE_DRAG_MIME = 'application/x-axhub-sidebar-tree-node';
 const SIDEBAR_TITLE_MAX_LENGTH = 40;
 const UNTITLED_PROJECT_LABEL = '未命名项目';
 
@@ -162,9 +165,46 @@ const MAKE_CLIENT_SETUP_PHASES = [
 const MAKE_CLIENT_SETUP_PENDING_LABEL = '创建并启动项目';
 const MAKE_CLIENT_SETUP_PENDING_DESCRIPTION = '正在下载模板、安装依赖并启动客户端，可能需要几分钟';
 const MAKE_CLIENT_SETUP_FAILED_LABEL = '创建项目失败';
-const MAKE_CLIENT_SETUP_FAILED_DESCRIPTION = '请检查网络、本地 Node 环境或目标目录后重试';
+const MAKE_CLIENT_SETUP_FAILED_DESCRIPTION = '可以复制给 AI 处理';
 const DEFAULT_MAKE_CLIENT_PROJECT_NAME = '新建 Make 项目';
 const MAKE_CLIENT_LAST_PARENT_ROOT_STORAGE_KEY = 'axhub.make.lastProjectParentRoot';
+
+function stringifyDiagnostic(value: unknown): string {
+    try {
+        return JSON.stringify(value, null, 2);
+    } catch {
+        return String(value || '');
+    }
+}
+
+function buildMakeClientSetupAiPrompt(params: {
+    parentRoot: string;
+    folderName: string;
+    projectName: string;
+    errorMessage: string;
+    diagnostic: unknown;
+}): string {
+    const trimmedParentRoot = params.parentRoot.replace(/[\\/]+$/u, '');
+    const separator = trimmedParentRoot.includes('\\') ? '\\' : '/';
+    const projectRoot = `${trimmedParentRoot}${separator}${params.folderName}`;
+    const promptLines = [
+        '请帮我修复 Axhub Make 客户端项目的启动失败问题。',
+        '',
+        `项目目录：${projectRoot}`,
+        `项目名称：${params.projectName || params.folderName}`,
+        '',
+        '请在这个项目目录里按顺序排查：模板文件是否完整、Node.js 版本是否可用、依赖是否安装完成、开发服务是否能启动。需要安装依赖时优先执行 npm install；如果 npm 不可用或失败，再尝试 pnpm install。',
+        '',
+        '修复完成后请告诉我：回到 Axhub Make 页面刷新。如果刷新后仍停留在项目设置页，请使用添加本地已有项目的入口，选择上面的项目目录。',
+        '',
+        '错误摘要：',
+        params.errorMessage || MAKE_CLIENT_SETUP_FAILED_LABEL,
+        '',
+        '诊断信息：',
+        stringifyDiagnostic(params.diagnostic),
+    ];
+    return promptLines.join('\n');
+}
 
 function slugifyProjectFolderName(input: string): string {
     return String(input || '')
@@ -259,6 +299,14 @@ function resolveCanvasDropPreviewKind(fields: unknown[], fallback: CanvasDropPre
         return 'doc';
     }
     return fallback;
+}
+
+function isSidebarTreeDragEvent(event: React.DragEvent<HTMLElement>): boolean {
+    return Array.from(event.dataTransfer?.types || []).includes(SIDEBAR_TREE_DRAG_MIME);
+}
+
+function stopProjectSetupLinkPropagation(event: React.SyntheticEvent) {
+    event.stopPropagation();
 }
 
 interface SidebarRowProps {
@@ -871,6 +919,7 @@ function ProjectSetupDialog({
     const [runningPhase, setRunningPhase] = useState('');
     const [failedPhase, setFailedPhase] = useState('');
     const [failedMessage, setFailedMessage] = useState('');
+    const [failedDiagnostic, setFailedDiagnostic] = useState('');
     const allowCloseRef = useRef(false);
     const suggestionRequestRef = useRef(0);
 
@@ -907,6 +956,7 @@ function ProjectSetupDialog({
         setRunningPhase('');
         setFailedPhase('');
         setFailedMessage('');
+        setFailedDiagnostic('');
         void refreshSuggestedFolderName(DEFAULT_MAKE_CLIENT_PROJECT_NAME, parentRoot, { force: true });
     }
 
@@ -923,6 +973,7 @@ function ProjectSetupDialog({
         setRunningPhase('');
         setFailedPhase('');
         setFailedMessage('');
+        setFailedDiagnostic('');
         setFolderBrowserOpen(false);
     }, [open]);
 
@@ -933,6 +984,8 @@ function ProjectSetupDialog({
     }, [forceBlankProjectCreation]);
 
     const busy = addingProject || creatingBlankProject;
+    const primaryTemplateDownloadUrl = makeClientTemplatePrimaryDownloadUrl();
+    const mirrorTemplateDownloadUrl = makeClientTemplateMirrorDownloadUrl();
 
     const handleSelectExisting = async (selectedPath: string) => {
         try {
@@ -958,7 +1011,7 @@ function ProjectSetupDialog({
         const normalizedFolder = folderName.trim();
         const normalizedProjectName = projectName.trim();
         if (!normalizedParent) {
-            toast.error('请先选择新建项目的父目录');
+            toast.error('请先选择项目所在位置');
             return;
         }
         if (!normalizedFolder) {
@@ -967,6 +1020,7 @@ function ProjectSetupDialog({
         }
         setFailedPhase('');
         setFailedMessage('');
+        setFailedDiagnostic('');
         setRunningPhase('creating');
         try {
             writeStoredMakeClientParentRoot(normalizedParent);
@@ -982,9 +1036,36 @@ function ProjectSetupDialog({
             const errorMessage = error?.message || '新建空白项目失败';
             setFailedPhase(getProjectSetupErrorPhase(error));
             setFailedMessage(errorMessage);
+            setFailedDiagnostic(buildMakeClientSetupAiPrompt({
+                parentRoot: normalizedParent,
+                folderName: normalizedFolder,
+                projectName: normalizedProjectName,
+                errorMessage,
+                diagnostic: error?.diagnostic || error,
+            }));
             toast.error(errorMessage);
         } finally {
             setRunningPhase('');
+        }
+    };
+
+    const handleCopyFailedDiagnostic = async () => {
+        const fallbackDiagnostic = buildMakeClientSetupAiPrompt({
+            parentRoot: parentRoot.trim(),
+            folderName: folderName.trim() || fallbackProjectFolderName(projectName),
+            projectName: projectName.trim(),
+            errorMessage: failedMessage || MAKE_CLIENT_SETUP_FAILED_LABEL,
+            diagnostic: failedMessage || MAKE_CLIENT_SETUP_FAILED_LABEL,
+        });
+        const diagnosticPrompt = failedDiagnostic || fallbackDiagnostic;
+        if (!diagnosticPrompt) {
+            return;
+        }
+        try {
+            await copyToClipboard(diagnosticPrompt);
+            toast.success('已复制给 AI 的处理说明');
+        } catch (error: any) {
+            toast.error(error?.message || '复制失败');
         }
     };
 
@@ -1036,34 +1117,75 @@ function ProjectSetupDialog({
                             >
                                 <FolderPlus className="h-4 w-4 shrink-0 text-primary" />
                                 <span className="flex min-w-0 flex-1 flex-col gap-1">
-                                    <span className="text-[13px] font-medium">新建空白项目</span>
-                                    <span className="text-[12px] leading-5 text-muted-foreground">从官方 Make 客户端仓库创建新项目</span>
+                                    <span className="text-[13px] font-medium">快速新建项目</span>
+                                    <span className="text-[12px] leading-5 text-muted-foreground">从空白一键创建项目，系统会自动准备好基础项目，新手优先使用，不需要自己下载。</span>
                                 </span>
                             </button>
-                            <button
-                                type="button"
-                                className="flex min-h-[88px] w-full items-center gap-3 rounded-md border border-border/70 px-3 py-3 text-left transition-colors hover:bg-muted/70 focus:outline-none focus-visible:outline-none focus-visible:ring-0 focus-visible:ring-offset-0 active:outline-none disabled:opacity-50"
-                                onClick={() => openFolderBrowser('existing')}
-                                disabled={busy}
+                            <div
+                                role="button"
+                                tabIndex={busy ? -1 : 0}
+                                aria-disabled={busy}
+                                data-project-setup-option="existing"
+                                className={cn(
+                                    'flex min-h-[88px] w-full items-center gap-3 rounded-md border border-border/70 px-3 py-3 text-left transition-colors hover:bg-muted/70 focus:outline-none focus-visible:outline-none focus-visible:ring-0 focus-visible:ring-offset-0 active:outline-none',
+                                    busy ? 'opacity-50' : null,
+                                )}
+                                onClick={() => {
+                                    if (busy) return;
+                                    openFolderBrowser('existing');
+                                }}
+                                onKeyDown={(event) => {
+                                    if (busy) return;
+                                    if (event.key === 'Enter' || event.key === ' ') {
+                                        event.preventDefault();
+                                        openFolderBrowser('existing');
+                                    }
+                                }}
                             >
                                 <FolderOpen className="h-4 w-4 shrink-0 text-primary" />
                                 <span className="flex min-w-0 flex-1 flex-col gap-1">
                                     <span className="text-[13px] font-medium">选择已有项目</span>
-                                    <span className="text-[12px] leading-5 text-muted-foreground">选择本地 Make 客户端项目目录并启动开发服务</span>
+                                    <span className="text-[12px] leading-5 text-muted-foreground">
+                                        已有项目可直接选择文件夹导入；没有客户端包可先
+                                        <a
+                                            className="inline-flex items-center gap-0.5 px-0.5 text-primary underline-offset-4 hover:underline"
+                                            href={primaryTemplateDownloadUrl}
+                                            target="_blank"
+                                            rel="noreferrer"
+                                            onClick={stopProjectSetupLinkPropagation}
+                                            onKeyDown={stopProjectSetupLinkPropagation}
+                                        >
+                                            <Download className="h-3.5 w-3.5" />
+                                            下载客户端包
+                                        </a>
+                                        ，打不开可用
+                                        <a
+                                            className="inline-flex items-center gap-0.5 px-0.5 text-primary underline-offset-4 hover:underline"
+                                            href={mirrorTemplateDownloadUrl}
+                                            target="_blank"
+                                            rel="noreferrer"
+                                            onClick={stopProjectSetupLinkPropagation}
+                                            onKeyDown={stopProjectSetupLinkPropagation}
+                                        >
+                                            <Download className="h-3.5 w-3.5" />
+                                            备用下载
+                                        </a>
+                                        。
+                                    </span>
                                 </span>
                                 {addingProject ? <Loader2 className="h-3.5 w-3.5 shrink-0 animate-spin text-muted-foreground" /> : null}
-                            </button>
+                            </div>
                         </div>
                     ) : (
                         <div className="space-y-4 p-4">
                             <div className="space-y-2">
-                                <Label htmlFor="make-project-parent" className="text-[12px]">父目录</Label>
+                                <Label htmlFor="make-project-parent" className="text-[12px]">项目所在位置</Label>
                                 <div className="flex gap-2">
                                     <Input
                                         id="make-project-parent"
                                         value={parentRoot}
                                         readOnly
-                                        placeholder="请选择父目录"
+                                        placeholder="请选择项目所在位置"
                                         className="h-8 min-w-0 flex-1 text-[12px]"
                                     />
                                     <Button
@@ -1102,7 +1224,7 @@ function ProjectSetupDialog({
                                     className="h-8 text-[12px]"
                                 />
                             </div>
-                            {(pendingCreate || failedPhase) ? (
+                            {(pendingCreate || failedMessage) ? (
                                 <div className="rounded-md border border-border/70 bg-muted/30 p-3">
                                     {pendingCreate ? (
                                         <div className="flex items-start gap-2 text-[12px]">
@@ -1115,9 +1237,21 @@ function ProjectSetupDialog({
                                     ) : (
                                         <div className="flex items-start gap-2 text-[12px]">
                                             <span className="mt-0.5 h-3.5 w-3.5 shrink-0 rounded-full border border-destructive" />
-                                            <div className="min-w-0 space-y-1">
+                                            <div className="min-w-0 space-y-2">
                                                 <div className="font-medium text-destructive">{failedTitle}</div>
                                                 <div className="break-words leading-5 text-muted-foreground">{failedMessage || MAKE_CLIENT_SETUP_FAILED_DESCRIPTION}</div>
+                                                {failedMessage ? (
+                                                    <Button
+                                                        type="button"
+                                                        variant="outline"
+                                                        size="sm"
+                                                        className="h-8 gap-1.5"
+                                                        onClick={() => void handleCopyFailedDiagnostic()}
+                                                    >
+                                                        <Copy className="h-3.5 w-3.5" />
+                                                        复制给 AI 处理
+                                                    </Button>
+                                                ) : null}
                                             </div>
                                         </div>
                                     )}
@@ -1148,7 +1282,7 @@ function ProjectSetupDialog({
             </Dialog>
             <FolderBrowserDialog
                 open={folderBrowserOpen}
-                title={folderBrowserPurpose === 'existing' ? '选择已有项目' : '选择父目录'}
+                title={folderBrowserPurpose === 'existing' ? '选择已有项目' : '选择项目所在位置'}
                 confirmLabel={folderBrowserPurpose === 'existing' ? '添加项目' : '使用此目录'}
                 busy={folderBrowserPurpose === 'existing' && addingProject}
                 initialPath={folderBrowserPurpose === 'parent' ? parentRoot : ''}
@@ -2131,6 +2265,7 @@ export default function ContentPanel({
                         }}
                         onDragStart={(e) => {
                             e.dataTransfer.effectAllowed = 'copyMove';
+                            e.dataTransfer.setData(SIDEBAR_TREE_DRAG_MIME, node.id);
                             e.dataTransfer.setData('text/plain', node.id);
                             // Attach canvas-drop payload so the item can be
                             // dropped onto an Excalidraw canvas as an embed.
@@ -2262,12 +2397,14 @@ export default function ContentPanel({
                     if (!draggingNodeId) return;
                     if (e.target !== e.currentTarget) return;
                     e.preventDefault();
+                    e.stopPropagation();
                     setDropTarget(null);
                 }}
                 onDrop={(e) => {
                     if (!draggingNodeId) return;
                     if (e.target !== e.currentTarget) return;
                     e.preventDefault();
+                    e.stopPropagation();
                     setDropTarget(null);
                     void handleDropToRootEnd();
                 }}
@@ -2705,17 +2842,20 @@ export default function ContentPanel({
                     className="relative flex-1 min-h-0"
                     onDragEnter={(event) => {
                         if (activeTab !== 'document') return;
+                        if (isSidebarTreeDragEvent(event)) return;
                         event.preventDefault();
                         fileDropCounterRef.current += 1;
                         setIsFileDropActive(true);
                     }}
                     onDragOver={(event) => {
                         if (activeTab !== 'document') return;
+                        if (isSidebarTreeDragEvent(event)) return;
                         event.preventDefault();
                         event.dataTransfer.dropEffect = 'copy';
                     }}
                     onDragLeave={(event) => {
                         if (activeTab !== 'document') return;
+                        if (isSidebarTreeDragEvent(event)) return;
                         event.preventDefault();
                         fileDropCounterRef.current -= 1;
                         if (fileDropCounterRef.current <= 0) {
@@ -2725,6 +2865,7 @@ export default function ContentPanel({
                     }}
                     onDrop={(event) => {
                         if (activeTab !== 'document') return;
+                        if (isSidebarTreeDragEvent(event)) return;
                         event.preventDefault();
                         fileDropCounterRef.current = 0;
                         setIsFileDropActive(false);
