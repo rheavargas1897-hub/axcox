@@ -1,0 +1,525 @@
+{
+  "summary": {
+    "totalFiles": 64,
+    "filesWithUseClient": 0,
+    "pathAliasCount": 0,
+    "nextjsImportCount": 2,
+    "dependenciesToInstall": 44
+  },
+  "structure": {
+    "hasAppDir": true,
+    "hasPageTsx": true,
+    "hasLayoutTsx": true,
+    "hasGlobalsCss": true,
+    "hasComponentsDir": true,
+    "hasHooksDir": true,
+    "hasLibDir": true,
+    "hasPublicDir": true
+  },
+  "pathAliases": [],
+  "nextjsImports": [
+    {
+      "file": "app/layout.tsx",
+      "import": "next/font/google"
+    },
+    {
+      "file": "app/layout.tsx",
+      "import": "@vercel/analytics/next"
+    }
+  ],
+  "dependencies": {
+    "all": {
+      "@hookform/resolvers": "^3.9.1",
+      "@vercel/analytics": "1.6.1",
+      "@radix-ui/react-accordion": "1.2.12",
+      "@radix-ui/react-alert-dialog": "1.1.15",
+      "@radix-ui/react-aspect-ratio": "1.1.8",
+      "@radix-ui/react-avatar": "1.1.11",
+      "@radix-ui/react-checkbox": "1.3.3",
+      "@radix-ui/react-collapsible": "1.1.12",
+      "@radix-ui/react-context-menu": "2.2.16",
+      "@radix-ui/react-dialog": "1.1.15",
+      "@radix-ui/react-dropdown-menu": "2.1.16",
+      "@radix-ui/react-hover-card": "1.1.15",
+      "@radix-ui/react-label": "2.1.8",
+      "@radix-ui/react-menubar": "1.1.16",
+      "@radix-ui/react-navigation-menu": "1.2.14",
+      "@radix-ui/react-popover": "1.1.15",
+      "@radix-ui/react-progress": "1.1.8",
+      "@radix-ui/react-radio-group": "1.3.8",
+      "@radix-ui/react-scroll-area": "1.2.10",
+      "@radix-ui/react-select": "2.2.6",
+      "@radix-ui/react-separator": "1.1.8",
+      "@radix-ui/react-slider": "1.3.6",
+      "@radix-ui/react-slot": "1.2.4",
+      "@radix-ui/react-switch": "1.2.6",
+      "@radix-ui/react-tabs": "1.1.13",
+      "@radix-ui/react-toast": "1.2.15",
+      "@radix-ui/react-toggle": "1.1.10",
+      "@radix-ui/react-toggle-group": "1.1.11",
+      "@radix-ui/react-tooltip": "1.2.8",
+      "autoprefixer": "^10.4.20",
+      "class-variance-authority": "^0.7.1",
+      "clsx": "^2.1.1",
+      "cmdk": "1.1.1",
+      "date-fns": "4.1.0",
+      "embla-carousel-react": "8.6.0",
+      "input-otp": "1.4.2",
+      "lucide-react": "^0.564.0",
+      "next": "16.2.0",
+      "next-themes": "^0.4.6",
+      "react": "^19",
+      "react-day-picker": "9.13.2",
+      "react-dom": "^19",
+      "react-hook-form": "^7.54.1",
+      "react-resizable-panels": "^2.1.7",
+      "recharts": "2.15.0",
+      "sonner": "^1.7.1",
+      "tailwind-merge": "^3.3.1",
+      "vaul": "^1.1.2",
+      "zod": "^3.24.1"
+    },
+    "toInstall": [
+      "@hookform/resolvers",
+      "@radix-ui/react-accordion",
+      "@radix-ui/react-alert-dialog",
+      "@radix-ui/react-aspect-ratio",
+      "@radix-ui/react-avatar",
+      "@radix-ui/react-checkbox",
+      "@radix-ui/react-collapsible",
+      "@radix-ui/react-context-menu",
+      "@radix-ui/react-dialog",
+      "@radix-ui/react-dropdown-menu",
+      "@radix-ui/react-hover-card",
+      "@radix-ui/react-label",
+      "@radix-ui/react-menubar",
+      "@radix-ui/react-navigation-menu",
+      "@radix-ui/react-popover",
+      "@radix-ui/react-progress",
+      "@radix-ui/react-radio-group",
+      "@radix-ui/react-scroll-area",
+      "@radix-ui/react-select",
+      "@radix-ui/react-separator",
+      "@radix-ui/react-slider",
+      "@radix-ui/react-slot",
+      "@radix-ui/react-switch",
+      "@radix-ui/react-tabs",
+      "@radix-ui/react-toast",
+      "@radix-ui/react-toggle",
+      "@radix-ui/react-toggle-group",
+      "@radix-ui/react-tooltip",
+      "autoprefixer",
+      "class-variance-authority",
+      "clsx",
+      "cmdk",
+      "date-fns",
+      "embla-carousel-react",
+      "input-otp",
+      "lucide-react",
+      "react-day-picker",
+      "react-hook-form",
+      "react-resizable-panels",
+      "recharts",
+      "sonner",
+      "tailwind-merge",
+      "vaul",
+      "zod"
+    ],
+    "excluded": [
+      "@vercel/analytics",
+      "next",
+      "next-themes",
+      "react",
+      "react-dom"
+    ]
+  },
+  "files": [
+    {
+      "path": "app/layout.tsx",
+      "hasUseClient": false,
+      "pathAliases": [],
+      "nextjsImports": [
+        "next/font/google",
+        "@vercel/analytics/next"
+      ]
+    },
+    {
+      "path": "app/page.tsx",
+      "hasUseClient": false,
+      "pathAliases": [],
+      "nextjsImports": []
+    },
+    {
+      "path": "components/theme-provider.tsx",
+      "hasUseClient": false,
+      "pathAliases": [],
+      "nextjsImports": []
+    },
+    {
+      "path": "components/ui/accordion.tsx",
+      "hasUseClient": false,
+      "pathAliases": [],
+      "nextjsImports": []
+    },
+    {
+      "path": "components/ui/alert-dialog.tsx",
+      "hasUseClient": false,
+      "pathAliases": [],
+      "nextjsImports": []
+    },
+    {
+      "path": "components/ui/alert.tsx",
+      "hasUseClient": false,
+      "pathAliases": [],
+      "nextjsImports": []
+    },
+    {
+      "path": "components/ui/aspect-ratio.tsx",
+      "hasUseClient": false,
+      "pathAliases": [],
+      "nextjsImports": []
+    },
+    {
+      "path": "components/ui/avatar.tsx",
+      "hasUseClient": false,
+      "pathAliases": [],
+      "nextjsImports": []
+    },
+    {
+      "path": "components/ui/badge.tsx",
+      "hasUseClient": false,
+      "pathAliases": [],
+      "nextjsImports": []
+    },
+    {
+      "path": "components/ui/breadcrumb.tsx",
+      "hasUseClient": false,
+      "pathAliases": [],
+      "nextjsImports": []
+    },
+    {
+      "path": "components/ui/button-group.tsx",
+      "hasUseClient": false,
+      "pathAliases": [],
+      "nextjsImports": []
+    },
+    {
+      "path": "components/ui/button.tsx",
+      "hasUseClient": false,
+      "pathAliases": [],
+      "nextjsImports": []
+    },
+    {
+      "path": "components/ui/calendar.tsx",
+      "hasUseClient": false,
+      "pathAliases": [],
+      "nextjsImports": []
+    },
+    {
+      "path": "components/ui/card.tsx",
+      "hasUseClient": false,
+      "pathAliases": [],
+      "nextjsImports": []
+    },
+    {
+      "path": "components/ui/carousel.tsx",
+      "hasUseClient": false,
+      "pathAliases": [],
+      "nextjsImports": []
+    },
+    {
+      "path": "components/ui/chart.tsx",
+      "hasUseClient": false,
+      "pathAliases": [],
+      "nextjsImports": []
+    },
+    {
+      "path": "components/ui/checkbox.tsx",
+      "hasUseClient": false,
+      "pathAliases": [],
+      "nextjsImports": []
+    },
+    {
+      "path": "components/ui/collapsible.tsx",
+      "hasUseClient": false,
+      "pathAliases": [],
+      "nextjsImports": []
+    },
+    {
+      "path": "components/ui/command.tsx",
+      "hasUseClient": false,
+      "pathAliases": [],
+      "nextjsImports": []
+    },
+    {
+      "path": "components/ui/context-menu.tsx",
+      "hasUseClient": false,
+      "pathAliases": [],
+      "nextjsImports": []
+    },
+    {
+      "path": "components/ui/dialog.tsx",
+      "hasUseClient": false,
+      "pathAliases": [],
+      "nextjsImports": []
+    },
+    {
+      "path": "components/ui/drawer.tsx",
+      "hasUseClient": false,
+      "pathAliases": [],
+      "nextjsImports": []
+    },
+    {
+      "path": "components/ui/dropdown-menu.tsx",
+      "hasUseClient": false,
+      "pathAliases": [],
+      "nextjsImports": []
+    },
+    {
+      "path": "components/ui/empty.tsx",
+      "hasUseClient": false,
+      "pathAliases": [],
+      "nextjsImports": []
+    },
+    {
+      "path": "components/ui/field.tsx",
+      "hasUseClient": false,
+      "pathAliases": [],
+      "nextjsImports": []
+    },
+    {
+      "path": "components/ui/form.tsx",
+      "hasUseClient": false,
+      "pathAliases": [],
+      "nextjsImports": []
+    },
+    {
+      "path": "components/ui/hover-card.tsx",
+      "hasUseClient": false,
+      "pathAliases": [],
+      "nextjsImports": []
+    },
+    {
+      "path": "components/ui/input-group.tsx",
+      "hasUseClient": false,
+      "pathAliases": [],
+      "nextjsImports": []
+    },
+    {
+      "path": "components/ui/input-otp.tsx",
+      "hasUseClient": false,
+      "pathAliases": [],
+      "nextjsImports": []
+    },
+    {
+      "path": "components/ui/input.tsx",
+      "hasUseClient": false,
+      "pathAliases": [],
+      "nextjsImports": []
+    },
+    {
+      "path": "components/ui/item.tsx",
+      "hasUseClient": false,
+      "pathAliases": [],
+      "nextjsImports": []
+    },
+    {
+      "path": "components/ui/kbd.tsx",
+      "hasUseClient": false,
+      "pathAliases": [],
+      "nextjsImports": []
+    },
+    {
+      "path": "components/ui/label.tsx",
+      "hasUseClient": false,
+      "pathAliases": [],
+      "nextjsImports": []
+    },
+    {
+      "path": "components/ui/menubar.tsx",
+      "hasUseClient": false,
+      "pathAliases": [],
+      "nextjsImports": []
+    },
+    {
+      "path": "components/ui/navigation-menu.tsx",
+      "hasUseClient": false,
+      "pathAliases": [],
+      "nextjsImports": []
+    },
+    {
+      "path": "components/ui/pagination.tsx",
+      "hasUseClient": false,
+      "pathAliases": [],
+      "nextjsImports": []
+    },
+    {
+      "path": "components/ui/popover.tsx",
+      "hasUseClient": false,
+      "pathAliases": [],
+      "nextjsImports": []
+    },
+    {
+      "path": "components/ui/progress.tsx",
+      "hasUseClient": false,
+      "pathAliases": [],
+      "nextjsImports": []
+    },
+    {
+      "path": "components/ui/radio-group.tsx",
+      "hasUseClient": false,
+      "pathAliases": [],
+      "nextjsImports": []
+    },
+    {
+      "path": "components/ui/resizable.tsx",
+      "hasUseClient": false,
+      "pathAliases": [],
+      "nextjsImports": []
+    },
+    {
+      "path": "components/ui/scroll-area.tsx",
+      "hasUseClient": false,
+      "pathAliases": [],
+      "nextjsImports": []
+    },
+    {
+      "path": "components/ui/select.tsx",
+      "hasUseClient": false,
+      "pathAliases": [],
+      "nextjsImports": []
+    },
+    {
+      "path": "components/ui/separator.tsx",
+      "hasUseClient": false,
+      "pathAliases": [],
+      "nextjsImports": []
+    },
+    {
+      "path": "components/ui/sheet.tsx",
+      "hasUseClient": false,
+      "pathAliases": [],
+      "nextjsImports": []
+    },
+    {
+      "path": "components/ui/sidebar.tsx",
+      "hasUseClient": false,
+      "pathAliases": [],
+      "nextjsImports": []
+    },
+    {
+      "path": "components/ui/skeleton.tsx",
+      "hasUseClient": false,
+      "pathAliases": [],
+      "nextjsImports": []
+    },
+    {
+      "path": "components/ui/slider.tsx",
+      "hasUseClient": false,
+      "pathAliases": [],
+      "nextjsImports": []
+    },
+    {
+      "path": "components/ui/sonner.tsx",
+      "hasUseClient": false,
+      "pathAliases": [],
+      "nextjsImports": []
+    },
+    {
+      "path": "components/ui/spinner.tsx",
+      "hasUseClient": false,
+      "pathAliases": [],
+      "nextjsImports": []
+    },
+    {
+      "path": "components/ui/switch.tsx",
+      "hasUseClient": false,
+      "pathAliases": [],
+      "nextjsImports": []
+    },
+    {
+      "path": "components/ui/table.tsx",
+      "hasUseClient": false,
+      "pathAliases": [],
+      "nextjsImports": []
+    },
+    {
+      "path": "components/ui/tabs.tsx",
+      "hasUseClient": false,
+      "pathAliases": [],
+      "nextjsImports": []
+    },
+    {
+      "path": "components/ui/textarea.tsx",
+      "hasUseClient": false,
+      "pathAliases": [],
+      "nextjsImports": []
+    },
+    {
+      "path": "components/ui/toast.tsx",
+      "hasUseClient": false,
+      "pathAliases": [],
+      "nextjsImports": []
+    },
+    {
+      "path": "components/ui/toaster.tsx",
+      "hasUseClient": false,
+      "pathAliases": [],
+      "nextjsImports": []
+    },
+    {
+      "path": "components/ui/toggle-group.tsx",
+      "hasUseClient": false,
+      "pathAliases": [],
+      "nextjsImports": []
+    },
+    {
+      "path": "components/ui/toggle.tsx",
+      "hasUseClient": false,
+      "pathAliases": [],
+      "nextjsImports": []
+    },
+    {
+      "path": "components/ui/tooltip.tsx",
+      "hasUseClient": false,
+      "pathAliases": [],
+      "nextjsImports": []
+    },
+    {
+      "path": "components/ui/use-mobile.tsx",
+      "hasUseClient": false,
+      "pathAliases": [],
+      "nextjsImports": []
+    },
+    {
+      "path": "components/ui/use-toast.ts",
+      "hasUseClient": false,
+      "pathAliases": [],
+      "nextjsImports": []
+    },
+    {
+      "path": "hooks/use-mobile.ts",
+      "hasUseClient": false,
+      "pathAliases": [],
+      "nextjsImports": []
+    },
+    {
+      "path": "hooks/use-toast.ts",
+      "hasUseClient": false,
+      "pathAliases": [],
+      "nextjsImports": []
+    },
+    {
+      "path": "lib/utils.ts",
+      "hasUseClient": false,
+      "pathAliases": [],
+      "nextjsImports": []
+    },
+    {
+      "path": "next-env.d.ts",
+      "hasUseClient": false,
+      "pathAliases": [],
+      "nextjsImports": []
+    }
+  ]
+}

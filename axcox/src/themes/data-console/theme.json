@@ -1,0 +1,228 @@
+{
+  "schemaVersion": 1,
+  "source": {
+    "sourceName": "design-spec",
+    "originalDetailUrl": "",
+    "fallbackRawUrl": "",
+    "mirrorSource": "",
+    "websiteUrl": ""
+  },
+  "identity": {
+    "id": "P0-om01",
+    "slug": "data-console",
+    "brand": "营运通",
+    "titleZh": "营运通 后台管理主题",
+    "titleEn": "Operations Console",
+    "descriptionZh": "面向表格驱动型后台管理系统的视觉规范。绿色主色 + 橙色辅助，直角按钮，54px 表格行高，为车辆监控、下单管理等运营场景提供像素级界面标准。",
+    "descriptionEn": "A table-driven enterprise operations design system. Green primary + orange accent, sharp-cornered buttons, 54px row height. Built for fleet monitoring, order management, and logistics dashboards."
+  },
+  "tags": {
+    "sourceTags": [],
+    "generatedTags": [
+      "enterprise",
+      "table-driven",
+      "operations",
+      "logistics",
+      "fleet-management",
+      "b2b"
+    ],
+    "designTags": [],
+    "distributionTags": [
+      "企业后台",
+      "表格驱动",
+      "物流管理",
+      "车辆监控",
+      "B2B 运营",
+      "中文优化",
+      "绿色品牌",
+      "直角按钮",
+      "浅色界面",
+      "高密度数据"
+    ]
+  },
+  "assets": {
+    "designMd": {
+      "path": "DESIGN.md",
+      "sourcePath": "DESIGN.md"
+    },
+    "tailwind": {
+      "path": "tw.css",
+      "sourcePath": "tw.css"
+    },
+    "tokens": {
+      "path": "assets/tokens.json",
+      "method": "derived_from_design_spec"
+    },
+    "cover": null,
+    "previewHtml": {
+      "type": "inline-preview",
+      "path": "",
+      "publicPath": "",
+      "importPath": "",
+      "sourcePath": ""
+    }
+  },
+  "tokens": {
+    "palette": [
+      "#11a983",
+      "#faa732",
+      "#303133",
+      "#e7eaef",
+      "#7c7d7e",
+      "#a8abb2",
+      "#f0f2f5",
+      "#f0f4fa",
+      "#ffffff",
+      "#e74c3c",
+      "#5b8dee",
+      "#1e2430"
+    ],
+    "typography": {
+      "display": "PingFang SC",
+      "body": "PingFang SC",
+      "mono": "SF Mono",
+      "hints": [
+        "PingFang SC",
+        "Microsoft YaHei",
+        "system-ui",
+        "sans-serif"
+      ]
+    },
+    "radius": {
+      "control": "0px",
+      "card": "4px",
+      "preview": "4px",
+      "pill": "9999px",
+      "source": "design-spec"
+    },
+    "spacing": {
+      "xxs": "4px",
+      "xs": "8px",
+      "sm": "10px",
+      "md": "12px",
+      "lg": "14px",
+      "xl": "20px",
+      "xxl": "32px",
+      "section": "40px",
+      "source": "design-spec"
+    }
+  },
+  "previewImages": [],
+  "display": {
+    "brand": "营运通 后台管理",
+    "brandAlias": "营运通",
+    "description": "面向表格驱动型后台管理系统的视觉规范。绿色主色 + 橙色辅助，直角按钮，54px 表格行高，为车辆监控、下单管理等运营场景提供像素级界面标准。",
+    "descriptionEn": "A table-driven enterprise operations design system. Green primary + orange accent, sharp-cornered buttons, 54px row height.",
+    "variant": "enterprise-operations",
+    "distributionTags": [
+      "企业后台",
+      "表格驱动",
+      "物流管理",
+      "车辆监控",
+      "B2B 运营",
+      "中文优化",
+      "绿色品牌",
+      "直角按钮",
+      "浅色界面",
+      "高密度数据"
+    ],
+    "fontStylesheets": [],
+    "palette": [
+      { "color": "#11a983", "labelZh": "品牌主色", "labelEn": "Primary Green", "textColor": "#ffffff" },
+      { "color": "#0e8f6e", "labelZh": "主色悬停", "labelEn": "Primary Hover", "textColor": "#ffffff" },
+      { "color": "#faa732", "labelZh": "强调辅助色", "labelEn": "Accent Orange", "textColor": "#ffffff" },
+      { "color": "#303133", "labelZh": "正文色", "labelEn": "Body Text", "textColor": "#ffffff" },
+      { "color": "#e7eaef", "labelZh": "分割线", "labelEn": "Divider", "textColor": "#303133" },
+      { "color": "#7c7d7e", "labelZh": "次要文字", "labelEn": "Secondary Text", "textColor": "#ffffff" },
+      { "color": "#a8abb2", "labelZh": "极弱文字/占位", "labelEn": "Muted / Placeholder", "textColor": "#ffffff" },
+      { "color": "#f0f2f5", "labelZh": "软分隔/标签底", "labelEn": "Soft Divider / Tag BG", "textColor": "#303133" },
+      { "color": "#f0f4fa", "labelZh": "页面背景", "labelEn": "Page Canvas", "textColor": "#303133" },
+      { "color": "#ffffff", "labelZh": "表面白", "labelEn": "Surface White", "textColor": "#303133" },
+      { "color": "#1e2430", "labelZh": "侧边栏底色", "labelEn": "Sidebar BG", "textColor": "#ffffff" },
+      { "color": "#e74c3c", "labelZh": "危险/异常", "labelEn": "Danger / Error", "textColor": "#ffffff" }
+    ],
+    "shadows": [
+      {
+        "label": "弹窗阴影 - Modal Shadow",
+        "value": "0 4px 16px rgba(0,0,0,0.08)",
+        "cssValue": "0 4px 16px rgba(0,0,0,0.08)",
+        "description": "弹窗和下拉菜单覆盖层阴影"
+      }
+    ],
+    "borders": [
+      {
+        "label": "默认分割线 - Default Divider",
+        "value": "#e7eaef",
+        "cssValue": "#e7eaef",
+        "description": "表格、输入框、卡片的默认 1px 边框"
+      },
+      {
+        "label": "软分隔 - Soft Divider",
+        "value": "#f0f2f5",
+        "cssValue": "#f0f2f5",
+        "description": "表格内部细分割线、状态标签默认底色"
+      }
+    ],
+    "typography": [
+      "PingFang SC",
+      "Microsoft YaHei",
+      "system-ui"
+    ],
+    "previewImages": [],
+    "panels": [
+      {
+        "eyebrow": "场景",
+        "title": "表格驱动型运营后台",
+        "body": "为车辆监控、下单管理、物流追踪等 B2B 运营场景设计，强调数据密度和操作效率。"
+      },
+      {
+        "eyebrow": "Token",
+        "title": "绿色主色 + 橙色辅助",
+        "body": "品牌绿 #11a983 覆盖主按钮/选中态/正常状态，辅助橙 #faa732 专用于警示和强调，语义分明。"
+      },
+      {
+        "eyebrow": "组件",
+        "title": "像素级间距 + 直角克制",
+        "body": "按钮高 40px 直角，表格行高 54px，侧边栏 200px。所有间距从真实运营界面测量提取。"
+      }
+    ],
+    "usageGuidance": {
+      "do": [
+        "建议：列表按钮一律使用直角（0px 圆角）——后台系统的专业感来源于克制。",
+        "建议：表格行高保持 54px——这是密集数据可读性的底线。",
+        "建议：状态标签使用语义色填充（激活态）或浅灰底+灰字（默认态），两种模式覆盖全部状态。",
+        "建议：正文统一 14px，提示统一 12px——两级字号，清晰层级。",
+        "建议：侧边栏保持 200px 固定宽度，深色底与浅色内容区形成稳定分区。"
+      ],
+      "dont": [
+        "避免：在列表/表格场景给按钮加圆角——直角是后台系统的视觉锚点。",
+        "避免：使用 12px 以下的中文字号——中文笔划复杂，太小无法辨认。",
+        "避免：在静态卡片上使用阴影——阴影只用于弹窗/下拉等覆盖场景。",
+        "避免：混合使用不同圆角值——同类元素圆角必须统一。",
+        "避免：引入第三种品牌色——绿色 + 橙色足够覆盖全部业务语义。"
+      ]
+    },
+    "radius": {
+      "control": "0px",
+      "card": "4px",
+      "preview": "4px",
+      "pill": "9999px",
+      "source": "design-spec"
+    },
+    "spacing": {
+      "xxs": "4px",
+      "xs": "8px",
+      "sm": "10px",
+      "md": "12px",
+      "lg": "14px",
+      "xl": "20px",
+      "xxl": "32px",
+      "section": "40px",
+      "source": "design-spec"
+    }
+  },
+  "status": {
+    "displayPage": "doing",
+    "collectionErrors": []
+  }
+}

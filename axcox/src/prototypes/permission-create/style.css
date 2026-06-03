@@ -1,0 +1,712 @@
+@import "tailwindcss";
+
+/* BMW Theme — 权限分配创建 */
+
+:root {
+  --bmw-primary: #1c69d4;
+  --bmw-primary-active: #0653b6;
+  --bmw-primary-disabled: #d6d6d6;
+  --bmw-primary-bg: #e8f0fb;
+  --bmw-ink: #262626;
+  --bmw-body: #3c3c3c;
+  --bmw-body-strong: #1a1a1a;
+  --bmw-muted: #6b6b6b;
+  --bmw-muted-soft: #9a9a9a;
+  --bmw-hairline: #e6e6e6;
+  --bmw-hairline-strong: #cccccc;
+  --bmw-canvas: #ffffff;
+  --bmw-surface-soft: #f7f7f7;
+  --bmw-surface-card: #fafafa;
+  --bmw-surface-strong: #ebebeb;
+  --bmw-surface-dark: #1a2129;
+  --bmw-on-primary: #ffffff;
+  --bmw-on-dark: #ffffff;
+  --bmw-on-dark-soft: #bbbbbb;
+  --bmw-success: #22c55e;
+  --bmw-warning: #f59e0b;
+  --bmw-error: #dc2626;
+  --bmw-error-bg: #fef2f2;
+  --bmw-radius: 0px;
+  --bmw-radius-sm: 2px;
+  --bmw-radius-card: 0px;
+  --bmw-font-display: "BMW Type Next Latin", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: var(--bmw-font-display);
+  background: var(--bmw-surface-soft);
+  color: var(--bmw-ink);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* === Page Layout === */
+
+.page {
+  min-height: 100vh;
+  background: var(--bmw-surface-soft);
+}
+
+.page-header {
+  background: var(--bmw-canvas);
+  border-bottom: 1px solid var(--bmw-hairline);
+  padding: 20px 32px;
+}
+
+.page-body {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 24px 32px 80px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* === Card === */
+
+.card {
+  background: var(--bmw-canvas);
+  border: 1px solid var(--bmw-hairline);
+  border-radius: var(--bmw-radius-card);
+}
+
+.card-header {
+  padding: 20px 24px 0;
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.card-header-icon {
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--bmw-surface-soft);
+  border-radius: var(--bmw-radius);
+  color: var(--bmw-primary);
+  flex-shrink: 0;
+}
+
+.card-header-text h3 {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--bmw-ink);
+  letter-spacing: 0;
+}
+
+.card-header-text p {
+  margin: 2px 0 0;
+  font-size: 13px;
+  font-weight: 300;
+  color: var(--bmw-muted);
+}
+
+.card-body {
+  padding: 20px 24px 24px;
+}
+
+.card-body-flush {
+  padding: 20px 0 0;
+}
+
+/* === Form Elements === */
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-group:last-child {
+  margin-bottom: 0;
+}
+
+.form-label {
+  display: block;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--bmw-ink);
+  margin-bottom: 6px;
+  letter-spacing: 0.3px;
+}
+
+.form-hint {
+  font-size: 12px;
+  font-weight: 300;
+  color: var(--bmw-muted);
+  margin-top: 4px;
+}
+
+.form-row {
+  display: flex;
+  gap: 16px;
+}
+
+.form-row > * {
+  flex: 1;
+}
+
+/* === Input === */
+
+.input {
+  padding: 12px 14px;
+  height: 44px;
+  font-size: 14px;
+  font-weight: 300;
+  border: 1px solid var(--bmw-hairline);
+  border-radius: var(--bmw-radius);
+  background: var(--bmw-canvas);
+  color: var(--bmw-ink);
+  font-family: inherit;
+  width: 100%;
+  outline: none;
+  transition: border-color 0.15s ease;
+}
+
+.input:focus {
+  border-color: var(--bmw-ink);
+}
+
+.input::placeholder {
+  color: var(--bmw-muted-soft);
+}
+
+.input-with-icon {
+  padding-left: 38px;
+}
+
+select.input {
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg width='12' height='8' viewBox='0 0 12 8' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1.5L6 6.5L11 1.5' stroke='%236b6b6b' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 14px center;
+  padding-right: 36px;
+}
+
+/* === Radio Group === */
+
+.radio-group {
+  display: flex;
+  gap: 8px;
+}
+
+.radio-card {
+  flex: 1;
+  position: relative;
+  cursor: pointer;
+}
+
+.radio-card input {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.radio-card-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  padding: 14px 16px;
+  border: 1px solid var(--bmw-hairline);
+  border-radius: var(--bmw-radius);
+  text-align: center;
+  transition: border-color 0.15s ease, background-color 0.15s ease;
+}
+
+.radio-card input:checked + .radio-card-content {
+  border-color: var(--bmw-primary);
+  background: var(--bmw-primary-bg);
+}
+
+.radio-card input:focus-visible + .radio-card-content {
+  outline: 2px solid var(--bmw-primary);
+  outline-offset: 1px;
+}
+
+.radio-card-content:hover {
+  border-color: var(--bmw-hairline-strong);
+}
+
+.radio-card-label {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--bmw-ink);
+}
+
+.radio-card-desc {
+  font-size: 11px;
+  font-weight: 300;
+  color: var(--bmw-muted);
+  line-height: 1.4;
+}
+
+/* === Checkbox === */
+
+.checkbox-label {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  cursor: pointer;
+  padding: 12px 14px;
+  border: 1px solid var(--bmw-hairline);
+  border-radius: var(--bmw-radius);
+  transition: border-color 0.15s ease, background-color 0.15s ease;
+}
+
+.checkbox-label:hover {
+  border-color: var(--bmw-hairline-strong);
+}
+
+.checkbox-label input {
+  margin-top: 2px;
+  width: 16px;
+  height: 16px;
+  accent-color: var(--bmw-primary);
+  flex-shrink: 0;
+}
+
+.checkbox-title {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--bmw-ink);
+}
+
+.checkbox-desc {
+  font-size: 12px;
+  font-weight: 300;
+  color: var(--bmw-muted);
+  margin-top: 2px;
+}
+
+/* === Toggle Switch === */
+
+.toggle-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 0;
+}
+
+.toggle-row + .toggle-row {
+  border-top: 1px solid var(--bmw-hairline);
+}
+
+.toggle-label {
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--bmw-ink);
+}
+
+.toggle-desc {
+  font-size: 12px;
+  font-weight: 300;
+  color: var(--bmw-muted);
+}
+
+.toggle {
+  position: relative;
+  width: 44px;
+  height: 24px;
+  flex-shrink: 0;
+  cursor: pointer;
+}
+
+.toggle input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.toggle-track {
+  position: absolute;
+  inset: 0;
+  background: var(--bmw-hairline-strong);
+  border-radius: 12px;
+  transition: background-color 0.2s ease;
+}
+
+.toggle input:checked + .toggle-track {
+  background: var(--bmw-primary);
+}
+
+.toggle-thumb {
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 20px;
+  height: 20px;
+  background: var(--bmw-canvas);
+  border-radius: 50%;
+  transition: transform 0.2s ease;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.15);
+}
+
+.toggle input:checked ~ .toggle-thumb {
+  transform: translateX(20px);
+}
+
+/* === Button === */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.15s ease;
+  font-family: inherit;
+  border-radius: var(--bmw-radius);
+  padding: 13px 28px;
+  height: 48px;
+}
+
+.btn-primary {
+  background: var(--bmw-primary);
+  color: var(--bmw-on-primary);
+}
+
+.btn-primary:hover {
+  background: var(--bmw-primary-active);
+}
+
+.btn-primary:disabled {
+  background: var(--bmw-primary-disabled);
+  color: var(--bmw-muted);
+  cursor: not-allowed;
+}
+
+.btn-secondary {
+  background: var(--bmw-canvas);
+  color: var(--bmw-ink);
+  border: 1px solid var(--bmw-hairline-strong);
+}
+
+.btn-secondary:hover {
+  background: var(--bmw-surface-soft);
+}
+
+.btn-ghost {
+  background: transparent;
+  color: var(--bmw-ink);
+  padding: 8px 12px;
+  height: auto;
+  font-weight: 400;
+  font-size: 13px;
+  letter-spacing: 0;
+  border: none;
+}
+
+.btn-ghost:hover {
+  background: var(--bmw-surface-soft);
+}
+
+/* === Tree with Checkboxes === */
+
+.tree-item {
+  user-select: none;
+}
+
+.tree-item-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  cursor: pointer;
+  transition: background-color 0.1s ease;
+  border-radius: var(--bmw-radius-sm);
+}
+
+.tree-item-row:hover {
+  background: var(--bmw-surface-soft);
+}
+
+.tree-item-row input {
+  width: 16px;
+  height: 16px;
+  accent-color: var(--bmw-primary);
+  flex-shrink: 0;
+}
+
+/* === Tags === */
+
+.tag {
+  display: inline-flex;
+  align-items: center;
+  padding: 2px 8px;
+  font-size: 11px;
+  font-weight: 700;
+  border-radius: var(--bmw-radius-sm);
+  letter-spacing: 0.3px;
+}
+
+.tag-blue {
+  background: #e3f2fd;
+  color: #1565c0;
+}
+
+.tag-green {
+  background: #e8f5e9;
+  color: #2e7d32;
+}
+
+.tag-orange {
+  background: #fff3e0;
+  color: #e65100;
+}
+
+.tag-muted {
+  background: var(--bmw-surface-strong);
+  color: var(--bmw-muted);
+}
+
+/* === Summary Row === */
+
+.summary-item {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  padding: 10px 0;
+}
+
+.summary-item + .summary-item {
+  border-top: 1px solid var(--bmw-hairline);
+}
+
+.summary-label {
+  font-size: 13px;
+  font-weight: 300;
+  color: var(--bmw-muted);
+  min-width: 80px;
+  flex-shrink: 0;
+}
+
+.summary-value {
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--bmw-ink);
+}
+
+/* === Step Indicator === */
+
+.steps {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  margin-bottom: 4px;
+}
+
+.step {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--bmw-muted-soft);
+  letter-spacing: 0.3px;
+}
+
+.step.active {
+  color: var(--bmw-ink);
+}
+
+.step.done {
+  color: var(--bmw-success);
+}
+
+.step-num {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: 700;
+  border: 1px solid currentColor;
+  flex-shrink: 0;
+}
+
+.step.active .step-num {
+  background: var(--bmw-ink);
+  border-color: var(--bmw-ink);
+  color: var(--bmw-on-dark);
+}
+
+.step.done .step-num {
+  background: var(--bmw-success);
+  border-color: var(--bmw-success);
+  color: var(--bmw-on-primary);
+}
+
+.step-line {
+  width: 28px;
+  height: 1px;
+  background: var(--bmw-hairline-strong);
+  margin: 0 8px;
+}
+
+/* === Toast === */
+
+.toast {
+  position: fixed;
+  bottom: 32px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--bmw-surface-dark);
+  color: var(--bmw-on-dark);
+  padding: 12px 24px;
+  font-size: 14px;
+  font-weight: 400;
+  border-radius: var(--bmw-radius);
+  z-index: 100;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.2);
+  animation: toastIn 0.25s ease;
+}
+
+.toast-success {
+  background: #1a3a1a;
+  color: #a5d6a7;
+}
+
+@keyframes toastIn {
+  from { opacity: 0; transform: translateX(-50%) translateY(8px); }
+  to { opacity: 1; transform: translateX(-50%) translateY(0); }
+}
+
+/* === Scrollbar === */
+
+::-webkit-scrollbar { width: 5px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--bmw-hairline-strong); border-radius: 3px; }
+
+/* === Back Link === */
+
+.back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--bmw-muted);
+  text-decoration: none;
+  cursor: pointer;
+  background: none;
+  border: none;
+  font-family: inherit;
+  padding: 0;
+  margin-bottom: 8px;
+  transition: color 0.15s ease;
+}
+
+.back-link:hover {
+  color: var(--bmw-ink);
+}
+
+/* === Search Dropdown === */
+
+.search-dropdown {
+  position: relative;
+}
+
+.search-dropdown-menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background: var(--bmw-canvas);
+  border: 1px solid var(--bmw-hairline);
+  border-top: none;
+  max-height: 200px;
+  overflow-y: auto;
+  z-index: 20;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+
+.search-dropdown-item {
+  padding: 10px 14px;
+  font-size: 14px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  transition: background-color 0.1s ease;
+}
+
+.search-dropdown-item:hover {
+  background: var(--bmw-surface-soft);
+}
+
+.search-dropdown-item.selected {
+  background: var(--bmw-primary-bg);
+  color: var(--bmw-primary);
+  font-weight: 700;
+}
+
+.search-dropdown-item-avatar {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: var(--bmw-surface-strong);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--bmw-muted);
+  flex-shrink: 0;
+}
+
+/* === Empty State in Tree === */
+
+.empty-hint {
+  padding: 20px;
+  text-align: center;
+  font-size: 13px;
+  font-weight: 300;
+  color: var(--bmw-muted-soft);
+}
+
+/* === Validation === */
+
+.input-error {
+  border-color: var(--bmw-error);
+}
+
+.input-error:focus {
+  border-color: var(--bmw-error);
+}
+
+.error-text {
+  font-size: 12px;
+  font-weight: 400;
+  color: var(--bmw-error);
+  margin-top: 4px;
+}
+
+/* === Confirm Banner === */
+
+.confirm-banner {
+  background: var(--bmw-primary-bg);
+  border: 1px solid var(--bmw-primary);
+  border-radius: var(--bmw-radius);
+  padding: 14px 18px;
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-size: 13px;
+  font-weight: 400;
+  color: var(--bmw-primary-active);
+}
+
+.confirm-banner-icon {
+  flex-shrink: 0;
+  margin-top: 1px;
+}
