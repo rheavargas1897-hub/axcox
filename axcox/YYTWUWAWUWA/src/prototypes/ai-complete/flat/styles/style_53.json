@@ -1,0 +1,23 @@
+{
+  "custom": {
+    "border": "0px none rgb(90, 94, 102)",
+    "borderColor": "rgb(90, 94, 102)",
+    "bottom": "21.748px",
+    "color": "rgb(90, 94, 102)",
+    "fontFamily": "element-icons",
+    "fontSize": "12px",
+    "insetBlockEnd": "21.748px",
+    "insetBlockStart": "25px",
+    "insetInlineEnd": "-20px",
+    "insetInlineStart": "47.998px",
+    "left": "47.998px",
+    "minHeight": "0px",
+    "minWidth": "0px",
+    "right": "-20px",
+    "textAlign": "start",
+    "textOverflow": "clip",
+    "top": "25px"
+  },
+  "styleId": "style_53",
+  "tw": "block absolute font-normal leading-3 border-0 visible cursor-pointer m-0 p-0 overflow-visible"
+}

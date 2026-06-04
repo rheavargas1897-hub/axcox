@@ -1,0 +1,12 @@
+{
+  "children": [
+    "n386"
+  ],
+  "height": "66.6211px",
+  "nodeId": "n387",
+  "originalClass": "el-table_1_column_1 is-center el-table-column--selection is-leaf el-table__cell",
+  "selector": "ul.el-menu--collapse.el-menu > div:nth-of-type(71) > div > li.el-submenu > div.el-menu--vertical:nth-of-type(2) > ul.el-menu.el-menu--popup > div.nest-menu:nth-of-type(3) > div > a > li.el-menu-item > span",
+  "styleId": "style_119",
+  "tag": "th",
+  "width": "55px"
+}

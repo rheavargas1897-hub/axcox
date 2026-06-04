@@ -1,0 +1,18 @@
+{
+  "bbox": {
+    "height": 25,
+    "left": 1677,
+    "top": 226,
+    "width": 77
+  },
+  "children": [
+    "n846"
+  ],
+  "height": "50.625px",
+  "nodeId": "n847",
+  "originalClass": "el-table_1_column_14 el-table__cell",
+  "selector": "form.el-form.el-form--inline > div.el-row:nth-of-type(2) > div.col-5.el-col:nth-of-type(5) > div.el-form-item.form-margin-r0 > div.el-form-item__content > div.el-date-editor.el-range-editor > input.el-range-input:nth-of-type(2)",
+  "styleId": "style_134",
+  "tag": "td",
+  "width": "120px"
+}

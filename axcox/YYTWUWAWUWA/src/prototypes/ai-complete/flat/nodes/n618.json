@@ -1,0 +1,17 @@
+{
+  "_innerHTML": "<i data-v-166b75c5=\"\" class=\"el-icon-s-custom\"></i>售后微信",
+  "bbox": {
+    "height": 0,
+    "left": 48,
+    "top": 52,
+    "width": 6
+  },
+  "children": [
+    "n617"
+  ],
+  "nodeId": "n618",
+  "selector": "div.el-scrollbar.theme-light > div.el-scrollbar__bar.is-vertical:nth-of-type(3) > div.el-scrollbar__thumb",
+  "styleId": "style_148",
+  "tag": "span",
+  "text": "售后微信"
+}

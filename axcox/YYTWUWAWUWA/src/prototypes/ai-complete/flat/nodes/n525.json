@@ -1,0 +1,13 @@
+{
+  "children": [
+    "n523",
+    "n524"
+  ],
+  "height": "16.123px",
+  "nodeId": "n525",
+  "originalClass": "el-checkbox__input",
+  "selector": "ul.el-menu--collapse.el-menu > div:nth-of-type(74) > div > li.el-submenu > div.el-menu--vertical:nth-of-type(2) > ul.el-menu.el-menu--popup > div.nest-menu:nth-of-type(10) > div > a > li.el-menu-item > span",
+  "styleId": "style_116",
+  "tag": "span",
+  "width": "13.9941px"
+}

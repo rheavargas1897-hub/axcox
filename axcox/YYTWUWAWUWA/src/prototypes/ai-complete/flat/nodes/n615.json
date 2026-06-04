@@ -1,0 +1,12 @@
+{
+  "children": [
+    "n614"
+  ],
+  "height": "22.998px",
+  "nodeId": "n615",
+  "originalClass": "cell el-tooltip",
+  "selector": "div.el-scrollbar.theme-light > div.el-scrollbar__bar.is-horizontal:nth-of-type(2)",
+  "styleId": "style_133",
+  "tag": "div",
+  "width": "150px"
+}

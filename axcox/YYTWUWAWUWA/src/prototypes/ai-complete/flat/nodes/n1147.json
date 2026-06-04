@@ -1,0 +1,12 @@
+{
+  "children": [
+    "n1146"
+  ],
+  "height": "513.75px",
+  "nodeId": "n1147",
+  "originalClass": "el-table__body-wrapper is-scrolling-left",
+  "selector": "ul.el-menu--collapse.el-menu > div:nth-of-type(72) > div > li.el-submenu > div.el-menu--vertical:nth-of-type(2) > ul.el-menu.el-menu--popup > div.nest-menu:nth-of-type(3) > div > a > li.el-menu-item > span",
+  "styleId": "style_152",
+  "tag": "div",
+  "width": "1710.63px"
+}

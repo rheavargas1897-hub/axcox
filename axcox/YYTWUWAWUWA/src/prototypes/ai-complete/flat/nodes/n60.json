@@ -1,0 +1,18 @@
+{
+  "bbox": {
+    "height": 20,
+    "left": 2026,
+    "top": 317,
+    "width": 40
+  },
+  "children": [
+    "n59"
+  ],
+  "height": "50px",
+  "nodeId": "n60",
+  "originalClass": "sidebar-logo-container collapse",
+  "selector": "div.drawer-container > div > div.drawer-item:nth-of-type(4) > div.el-switch.drawer-switch",
+  "styleId": "style_32",
+  "tag": "div",
+  "width": "53.9941px"
+}

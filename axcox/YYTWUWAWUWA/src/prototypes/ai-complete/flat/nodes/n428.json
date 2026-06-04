@@ -1,0 +1,31 @@
+{
+  "children": [
+    "n387",
+    "n389",
+    "n391",
+    "n393",
+    "n395",
+    "n397",
+    "n399",
+    "n401",
+    "n403",
+    "n405",
+    "n407",
+    "n409",
+    "n411",
+    "n413",
+    "n415",
+    "n417",
+    "n419",
+    "n421",
+    "n423",
+    "n425",
+    "n427"
+  ],
+  "height": "66.6211px",
+  "nodeId": "n428",
+  "selector": "ul.el-menu--collapse.el-menu > div:nth-of-type(71) > div > li.el-submenu > div.el-menu--vertical:nth-of-type(2) > ul.el-menu.el-menu--popup > div.nest-menu:nth-of-type(3) > div > a > li.el-menu-item",
+  "styleId": "style_122",
+  "tag": "tr",
+  "width": "2735px"
+}

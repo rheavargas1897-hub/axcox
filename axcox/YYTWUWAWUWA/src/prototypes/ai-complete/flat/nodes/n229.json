@@ -1,0 +1,13 @@
+{
+  "children": [
+    "n227",
+    "n228"
+  ],
+  "height": "30px",
+  "nodeId": "n229",
+  "originalClass": "el-badge el-tooltip item_Message item",
+  "selector": "ul.el-menu--collapse.el-menu > div:nth-of-type(67) > div > li.el-submenu > div.el-submenu__title:nth-of-type(1) > span",
+  "styleId": "style_51",
+  "tag": "div",
+  "width": "17.998px"
+}

@@ -1,0 +1,22 @@
+{
+  "custom": {
+    "background": "rgb(255, 255, 255) none repeat scroll 0% 0% / auto padding-box border-box",
+    "backgroundColor": "rgb(255, 255, 255)",
+    "border": "0.625px solid rgb(220, 223, 230)",
+    "borderColor": "rgb(220, 223, 230)",
+    "borderStyle": "solid",
+    "color": "rgb(96, 98, 102)",
+    "fontFamily": "\"PingFang SC\", \"Helvetica Neue\", Helvetica, \"Hiragino Sans GB\", \"Microsoft YaHei\"",
+    "fontSize": "14px",
+    "minHeight": "0px",
+    "minWidth": "0px",
+    "overflow": "clip",
+    "padding": "0px 3px",
+    "paddingInlineEnd": "3px",
+    "paddingInlineStart": "3px",
+    "textOverflow": "clip",
+    "transition": "border-color 0.2s cubic-bezier(0.645, 0.045, 0.355, 1)"
+  },
+  "styleId": "style_169",
+  "tw": "inline-block static font-normal text-center whitespace-nowrap border visible cursor-text m-0 pt-0 pr-0.5 pb-0 pl-0.5"
+}

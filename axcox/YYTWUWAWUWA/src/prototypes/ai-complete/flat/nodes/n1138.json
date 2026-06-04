@@ -1,0 +1,12 @@
+{
+  "children": [
+    "n1137"
+  ],
+  "height": "50.625px",
+  "nodeId": "n1138",
+  "originalClass": "el-table_1_column_19 el-table__cell",
+  "selector": "form.el-form.el-form--inline > div.el-row:nth-of-type(3) > div.col-5.el-col:nth-of-type(3) > div.el-form-item.form-margin-r0 > div.el-form-item__content > div.el-select.input-width > div.el-select-dropdown.el-popper:nth-of-type(2) > div.el-scrollbar > div.el-select-dropdown__wrap.el-scrollbar__wrap:nth-of-type(1) > ul.el-scrollbar__view.el-select-dropdown__list > li.el-select-dropdown__item:nth-of-type(12) > span",
+  "styleId": "style_134",
+  "tag": "td",
+  "width": "180px"
+}

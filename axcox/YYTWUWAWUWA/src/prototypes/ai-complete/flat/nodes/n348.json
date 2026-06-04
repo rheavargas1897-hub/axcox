@@ -1,0 +1,12 @@
+{
+  "children": [
+    "n347"
+  ],
+  "height": "187.725px",
+  "nodeId": "n348",
+  "originalClass": "el-card app-con-card is-hover-shadow",
+  "selector": "ul.el-menu--collapse.el-menu > div:nth-of-type(67) > div > li.el-submenu > div.el-menu--vertical:nth-of-type(2) > ul.el-menu.el-menu--popup > div.nest-menu:nth-of-type(4) > div > a > li.el-menu-item",
+  "styleId": "style_102",
+  "tag": "div",
+  "width": "1752.51px"
+}

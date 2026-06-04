@@ -1,0 +1,13 @@
+{
+  "bbox": {
+    "height": 62,
+    "left": 1452,
+    "top": 155,
+    "width": 342
+  },
+  "nodeId": "n761",
+  "selector": "form.el-form.el-form--inline > div.el-row:nth-of-type(1) > div.col-5.el-col:nth-of-type(5)",
+  "styleId": "style_148",
+  "tag": "span",
+  "text": "任务待分配"
+}

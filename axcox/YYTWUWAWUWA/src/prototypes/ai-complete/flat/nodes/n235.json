@@ -1,0 +1,22 @@
+{
+  "bbox": {
+    "height": 56,
+    "left": 0,
+    "top": 330,
+    "width": 53
+  },
+  "children": [
+    "n224",
+    "n225",
+    "n226",
+    "n229",
+    "n234"
+  ],
+  "height": "50px",
+  "nodeId": "n235",
+  "originalClass": "navbar",
+  "selector": "ul.el-menu--collapse.el-menu > div:nth-of-type(67) > div > li.el-submenu > div.el-submenu__title:nth-of-type(1)",
+  "styleId": "style_57",
+  "tag": "div",
+  "width": "1776.92px"
+}

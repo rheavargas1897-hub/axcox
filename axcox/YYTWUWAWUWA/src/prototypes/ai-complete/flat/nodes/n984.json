@@ -1,0 +1,12 @@
+{
+  "children": [
+    "n983"
+  ],
+  "height": "50.625px",
+  "nodeId": "n984",
+  "originalClass": "el-table_1_column_14 el-table__cell",
+  "selector": "form.el-form.el-form--inline > div.el-row:nth-of-type(3) > div.col-5.el-col:nth-of-type(2) > div.el-form-item.form-margin-r0 > div.el-form-item__content > div.el-select.input-width > div.el-input.el-input--small:nth-of-type(1) > span.el-input__suffix > span.el-input__suffix-inner > i.el-select__caret.el-input__icon",
+  "styleId": "style_134",
+  "tag": "td",
+  "width": "120px"
+}

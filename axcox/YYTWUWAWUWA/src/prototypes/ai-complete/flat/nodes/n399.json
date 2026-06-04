@@ -1,0 +1,12 @@
+{
+  "children": [
+    "n398"
+  ],
+  "height": "66.6211px",
+  "nodeId": "n399",
+  "originalClass": "el-table_1_column_7 is-leaf el-table__cell",
+  "selector": "ul.el-menu--collapse.el-menu > div:nth-of-type(71) > div > li.el-submenu > div.el-menu--vertical:nth-of-type(2) > ul.el-menu.el-menu--popup > div.nest-menu:nth-of-type(6) > div > a > li.el-menu-item",
+  "styleId": "style_121",
+  "tag": "th",
+  "width": "110px"
+}

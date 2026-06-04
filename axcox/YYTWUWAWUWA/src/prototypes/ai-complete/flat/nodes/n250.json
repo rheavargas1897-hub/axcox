@@ -1,0 +1,7 @@
+{
+  "_innerHTML": "<svg data-v-60e7c24b=\"\" data-v-166b75c5=\"\" aria-hidden=\"true\" class=\"svg-icon\" style=\"margin-left: 5px; font-size: 14px;;width:13.9941px;height:13.9941px;display:inline;fill:rgb(62, 145, 251);stroke-width:1px;color:rgb(62, 145, 251);font-size:14px;font-family:&quot;PingFang SC&quot;, &quot;Helvetica Neue&quot;, Helvetica, &quot;Hiragino Sans GB&quot;, &quot;Microsoft YaHei&quot;, Arial, sans-serif, &quot;Roadgeek 2005 Mittelschrift&quot;;font-weight:400;vertical-align:-2.1px;overflow:hidden;visibility:visible\"><use data-v-60e7c24b=\"\" xlink:href=\"#icon-展开\"></use></svg>",
+  "nodeId": "n250",
+  "originalClass": "[object SVGAnimatedString]",
+  "selector": "ul.el-menu--collapse.el-menu > div:nth-of-type(67) > div > li.el-submenu > div.el-menu--vertical:nth-of-type(2) > ul.el-menu.el-menu--popup > div.nest-menu:nth-of-type(10)",
+  "tag": "svg"
+}

@@ -1,0 +1,13 @@
+{
+  "children": [
+    "n281",
+    "n288"
+  ],
+  "height": "40.625px",
+  "nodeId": "n289",
+  "originalClass": "el-form-item form-margin-r0",
+  "selector": "ul.el-menu--collapse.el-menu > div:nth-of-type(68) > div > li.el-submenu > div.el-menu--vertical:nth-of-type(2) > ul.el-menu.el-menu--popup > div.nest-menu:nth-of-type(7)",
+  "styleId": "style_80",
+  "tag": "div",
+  "width": "342.246px"
+}

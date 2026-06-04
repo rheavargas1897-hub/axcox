@@ -1,0 +1,87 @@
+{
+  "version": "3.0",
+  "generator": "axhub-ai-extension",
+  "exportTime": "2026-06-04T06:31:21.998Z",
+  "sourceUrl": "https://www.uukache.com/task/index",
+  "viewport": {
+    "height": 932,
+    "width": 1837
+  },
+  "mode": "full",
+  "files": {
+    "domlist": "structure/doms.json",
+    "stylePool": "structure/styles.json",
+    "theme": "theme.json",
+    "screenshot": "screenshot.png",
+    "content": "content.md",
+    "pageMap": "page-map.json",
+    "topology": "topology/topology.json",
+    "selectorMap": "topology/selector-map.json",
+    "contentBlocks": "topology/content-blocks.json",
+    "behaviors": null,
+    "responsive": null,
+    "networkSummary": null,
+    "html": "index.html",
+    "css": "style.css"
+  },
+  "flatStructure": {
+    "skeleton": "flat/skeleton.json",
+    "nodesDir": "flat/nodes/",
+    "stylesDir": "flat/styles/",
+    "index": "flat/index.json"
+  },
+  "livePageAccess": {
+    "sourceUrl": "https://www.uukache.com/task/index",
+    "selectorAvailable": true,
+    "note": "每个节点文件包含 selector 字段，可用 Playwright 访问 sourceUrl 进行补充采集"
+  },
+  "screenshots": {
+    "current": "screenshot.png",
+    "responsive": [
+      "screenshots/desktop-1440.png",
+      "screenshots/tablet-768.png",
+      "screenshots/mobile-390.png"
+    ]
+  },
+  "assets": {
+    "imageCount": 0,
+    "fontCount": 8,
+    "imageFiles": [],
+    "fontFiles": [
+      "assets/fonts/element-icons-1.woff",
+      "assets/fonts/element-icons-2.ttf",
+      "assets/fonts/font-3.woff2",
+      "assets/fonts/font-4.woff2",
+      "assets/fonts/vant-icon-5.woff?t=1631948257467",
+      "assets/fonts/vant-icon-6.ttf?t=1631948257467",
+      "assets/fonts/element-icons-7.woff",
+      "assets/fonts/element-icons-8.ttf"
+    ],
+    "viewportScreenshotCount": 0
+  },
+  "stats": {
+    "nodeCount": 1184,
+    "styleCount": 177,
+    "markdownLength": 7961,
+    "sectionCount": 1
+  },
+  "capabilities": {
+    "hasFonts": true,
+    "hasScreenshot": true,
+    "hasResponsiveScreenshots": true,
+    "hasTheme": true,
+    "hasMarkdown": true,
+    "hasPreviewHTML": true,
+    "hasSections": true,
+    "hasTopology": true,
+    "hasSelectorMap": true,
+    "hasBehaviors": false,
+    "hasResponsive": false,
+    "hasNetworkSummary": false,
+    "hasContentBlocks": true,
+    "hasRebuildPrompts": true,
+    "hasFlatStructure": true,
+    "jsonFormat": true,
+    "tailwindClasses": true
+  }
+}

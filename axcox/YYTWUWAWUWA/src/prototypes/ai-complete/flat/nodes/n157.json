@@ -1,0 +1,19 @@
+{
+  "bbox": {
+    "height": 56,
+    "left": 0,
+    "top": 50,
+    "width": 53
+  },
+  "children": [
+    "n155",
+    "n156"
+  ],
+  "height": "55.9961px",
+  "nodeId": "n157",
+  "originalClass": "el-submenu__title",
+  "selector": "ul.el-menu--collapse.el-menu > div:nth-of-type(61) > div > a > li.el-menu-item.submenu-title-noDropdown > div.el-tooltip",
+  "styleId": "style_38",
+  "tag": "div",
+  "width": "53.4863px"
+}

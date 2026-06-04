@@ -1,0 +1,18 @@
+{
+  "bbox": {
+    "height": 12,
+    "left": 21,
+    "top": 631,
+    "width": 12
+  },
+  "children": [
+    "n414"
+  ],
+  "height": "66.6211px",
+  "nodeId": "n415",
+  "originalClass": "el-table_1_column_15 is-leaf el-table__cell",
+  "selector": "ul.el-menu--collapse.el-menu > div:nth-of-type(72) > div > li.el-submenu > div.el-submenu__title:nth-of-type(1) > i.el-submenu__icon-arrow.el-icon-arrow-right",
+  "styleId": "style_121",
+  "tag": "th",
+  "width": "120px"
+}

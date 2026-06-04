@@ -1,0 +1,14 @@
+{
+  "bbox": {
+    "height": 45,
+    "left": 1854,
+    "top": 440,
+    "width": 212
+  },
+  "height": "0px",
+  "nodeId": "n67",
+  "selector": "div.drawer-container > div > div.drawer-item:nth-of-type(7)",
+  "styleId": "style_33",
+  "tag": "div",
+  "width": "53.4863px"
+}

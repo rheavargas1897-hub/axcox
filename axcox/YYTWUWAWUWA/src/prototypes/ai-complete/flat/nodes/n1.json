@@ -1,0 +1,16 @@
+{
+  "bbox": {
+    "height": 22,
+    "left": 1854,
+    "top": 24,
+    "width": 212
+  },
+  "height": "22.002px",
+  "nodeId": "n1",
+  "originalClass": "drawer-title",
+  "selector": "div.setting-drawer-title > h3.drawer-title",
+  "styleId": "style_1",
+  "tag": "h3",
+  "text": "主题风格设置",
+  "width": "212.012px"
+}

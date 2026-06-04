@@ -1,0 +1,12 @@
+{
+  "children": [
+    "n637"
+  ],
+  "height": "50.625px",
+  "nodeId": "n638",
+  "originalClass": "el-table_1_column_13 el-table__cell",
+  "selector": "div.el-breadcrumb.app-breadcrumb > span > span.el-breadcrumb__item:nth-of-type(2) > span.el-breadcrumb__separator:nth-of-type(2)",
+  "styleId": "style_134",
+  "tag": "td",
+  "width": "100px"
+}

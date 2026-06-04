@@ -1,0 +1,16 @@
+{
+  "children": [
+    "n263",
+    "n269",
+    "n280",
+    "n290",
+    "n300"
+  ],
+  "height": "62.6172px",
+  "nodeId": "n301",
+  "originalClass": "el-row",
+  "selector": "ul.el-menu--collapse.el-menu > div:nth-of-type(68) > div > li.el-submenu > div.el-menu--vertical:nth-of-type(2)",
+  "styleId": "style_94",
+  "tag": "div",
+  "width": "1711.26px"
+}

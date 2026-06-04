@@ -1,0 +1,13 @@
+{
+  "children": [
+    "n13",
+    "n14"
+  ],
+  "height": "25.9961px",
+  "nodeId": "n15",
+  "originalClass": "el-color-picker__trigger",
+  "selector": "div.el-color-dropdown.el-color-picker__panel",
+  "styleId": "style_12",
+  "tag": "div",
+  "width": "25.9961px"
+}

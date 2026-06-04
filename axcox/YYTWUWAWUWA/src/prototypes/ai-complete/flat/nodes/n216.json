@@ -1,0 +1,18 @@
+{
+  "bbox": {
+    "height": 20,
+    "left": 2026,
+    "top": 362,
+    "width": 40
+  },
+  "children": [
+    "n215"
+  ],
+  "height": "839.941px",
+  "nodeId": "n216",
+  "originalClass": "el-scrollbar__view",
+  "selector": "div.drawer-container > div > div.drawer-item:nth-of-type(5) > div.el-switch.drawer-switch",
+  "styleId": "style_33",
+  "tag": "div",
+  "width": "53.4863px"
+}

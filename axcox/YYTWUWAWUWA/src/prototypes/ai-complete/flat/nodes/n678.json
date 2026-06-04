@@ -1,0 +1,12 @@
+{
+  "children": [
+    "n677"
+  ],
+  "height": "22.998px",
+  "nodeId": "n678",
+  "originalClass": "cell",
+  "selector": "ul.contextmenu > li:nth-of-type(6) > i.el-icon-circle-close",
+  "styleId": "style_138",
+  "tag": "div",
+  "width": "80px"
+}

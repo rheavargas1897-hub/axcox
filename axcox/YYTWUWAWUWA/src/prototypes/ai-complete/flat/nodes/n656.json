@@ -1,0 +1,18 @@
+{
+  "bbox": {
+    "height": 6,
+    "left": 56,
+    "top": 86,
+    "width": 1773
+  },
+  "children": [
+    "n655"
+  ],
+  "height": "22.998px",
+  "nodeId": "n656",
+  "originalClass": "cell el-tooltip",
+  "selector": "div.scroll-container.tags-view-wrapper > div.el-scrollbar__bar.is-horizontal:nth-of-type(2)",
+  "styleId": "style_133",
+  "tag": "div",
+  "width": "200px"
+}

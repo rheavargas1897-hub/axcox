@@ -1,0 +1,18 @@
+{
+  "bbox": {
+    "height": 0,
+    "left": 0,
+    "top": 50,
+    "width": 53
+  },
+  "children": [
+    "n131"
+  ],
+  "height": "55.9961px",
+  "nodeId": "n132",
+  "originalClass": "el-menu-item submenu-title-noDropdown",
+  "selector": "ul.el-menu--collapse.el-menu > div:nth-of-type(40)",
+  "styleId": "style_35",
+  "tag": "li",
+  "width": "53.4863px"
+}

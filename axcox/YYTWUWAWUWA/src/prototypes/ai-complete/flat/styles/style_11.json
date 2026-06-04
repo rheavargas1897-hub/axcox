@@ -1,0 +1,25 @@
+{
+  "custom": {
+    "border": "0px none rgb(255, 255, 255)",
+    "borderColor": "rgb(255, 255, 255)",
+    "bottom": "0.371094px",
+    "color": "rgb(255, 255, 255)",
+    "fontFamily": "element-icons",
+    "fontSize": "12px",
+    "insetBlockEnd": "0.371094px",
+    "insetBlockStart": "12.373px",
+    "insetInlineEnd": "-12.373px",
+    "insetInlineStart": "12.373px",
+    "left": "12.373px",
+    "minHeight": "0px",
+    "minWidth": "0px",
+    "overflowWrap": "break-word",
+    "right": "-12.373px",
+    "textOverflow": "clip",
+    "top": "12.373px",
+    "transform": "matrix(1, 0, 0, 1, -12.373, -6.00098)",
+    "wordWrap": "break-word"
+  },
+  "styleId": "style_11",
+  "tw": "block absolute font-normal leading-3 text-center border-0 visible cursor-pointer m-0 p-0 overflow-visible"
+}

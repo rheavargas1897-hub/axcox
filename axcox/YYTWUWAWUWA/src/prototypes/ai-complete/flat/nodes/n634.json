@@ -1,0 +1,18 @@
+{
+  "bbox": {
+    "height": 50,
+    "left": 1745,
+    "top": 0,
+    "width": 86
+  },
+  "children": [
+    "n633"
+  ],
+  "height": "22.998px",
+  "nodeId": "n634",
+  "originalClass": "cell",
+  "selector": "div.right-menu",
+  "styleId": "style_129",
+  "tag": "div",
+  "width": "80px"
+}

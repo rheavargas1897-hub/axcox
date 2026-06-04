@@ -1,0 +1,13 @@
+{
+  "bbox": {
+    "height": 40,
+    "left": 1415,
+    "top": 155,
+    "width": 25
+  },
+  "nodeId": "n743",
+  "selector": "form.el-form.el-form--inline > div.el-row:nth-of-type(1) > div.col-5.el-col:nth-of-type(4) > div.el-form-item.form-margin-r0 > div.el-form-item__content > div.el-select.input-width > div.el-input.el-input--small:nth-of-type(1) > span.el-input__suffix",
+  "styleId": "style_146",
+  "tag": "span",
+  "text": "售后"
+}

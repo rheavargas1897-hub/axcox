@@ -1,0 +1,17 @@
+{
+  "bbox": {
+    "height": 186,
+    "left": 63,
+    "top": 94,
+    "width": 1751
+  },
+  "children": [
+    "n676"
+  ],
+  "height": "22.998px",
+  "nodeId": "n677",
+  "selector": "div.app-container > div.el-card.app-con-card:nth-of-type(1) > div.el-card__body",
+  "styleId": "style_137",
+  "tag": "div",
+  "width": "60px"
+}

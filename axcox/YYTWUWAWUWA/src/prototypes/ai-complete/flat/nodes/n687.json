@@ -1,0 +1,17 @@
+{
+  "_innerHTML": "<i data-v-166b75c5=\"\" class=\"el-icon-s-custom\"></i>售后微信",
+  "bbox": {
+    "height": 17,
+    "left": 1754,
+    "top": 111,
+    "width": 24
+  },
+  "children": [
+    "n686"
+  ],
+  "nodeId": "n687",
+  "selector": "div.diplay-justify-spaceBetween > div > button.el-button.el-button--default:nth-of-type(2) > span",
+  "styleId": "style_148",
+  "tag": "span",
+  "text": "售后微信"
+}

@@ -1,0 +1,10 @@
+{
+  "height": "40.625px",
+  "nodeId": "n314",
+  "originalClass": "el-form-item__label",
+  "selector": "ul.el-menu--collapse.el-menu > div:nth-of-type(69) > div > li.el-submenu > div.el-submenu__title:nth-of-type(1) > span",
+  "styleId": "style_76",
+  "tag": "label",
+  "text": "任务类型",
+  "width": "100px"
+}

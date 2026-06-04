@@ -1,0 +1,13 @@
+{
+  "bbox": {
+    "height": 32,
+    "left": 1552,
+    "top": 222,
+    "width": 236
+  },
+  "nodeId": "n839",
+  "selector": "form.el-form.el-form--inline > div.el-row:nth-of-type(2) > div.col-5.el-col:nth-of-type(5) > div.el-form-item.form-margin-r0 > div.el-form-item__content > div.el-date-editor.el-range-editor",
+  "styleId": "style_150",
+  "tag": "span",
+  "text": "未审核"
+}

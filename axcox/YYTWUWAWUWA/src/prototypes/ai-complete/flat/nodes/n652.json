@@ -1,0 +1,13 @@
+{
+  "bbox": {
+    "height": 26,
+    "left": 69,
+    "top": 54,
+    "width": 41
+  },
+  "nodeId": "n652",
+  "selector": "div.scroll-container.tags-view-wrapper > div.el-scrollbar__wrap:nth-of-type(1) > div.el-scrollbar__view > span.tags-view-item:nth-of-type(1)",
+  "styleId": "style_148",
+  "tag": "span",
+  "text": "2026-05-14"
+}

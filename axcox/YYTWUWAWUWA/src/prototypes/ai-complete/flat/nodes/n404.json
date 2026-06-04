@@ -1,0 +1,16 @@
+{
+  "bbox": {
+    "height": 56,
+    "left": 0,
+    "top": 610,
+    "width": 53
+  },
+  "height": "22.998px",
+  "nodeId": "n404",
+  "originalClass": "cell",
+  "selector": "ul.el-menu--collapse.el-menu > div:nth-of-type(72)",
+  "styleId": "style_120",
+  "tag": "div",
+  "text": "处理人部门",
+  "width": "110px"
+}

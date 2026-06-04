@@ -1,0 +1,13 @@
+{
+  "children": [
+    "n354",
+    "n355"
+  ],
+  "height": "31.8652px",
+  "nodeId": "n356",
+  "originalClass": "el-button el-tooltip el-button--info el-button--small is-plain",
+  "selector": "ul.el-menu--collapse.el-menu > div:nth-of-type(70) > div > li.el-submenu > div.el-menu--vertical:nth-of-type(2) > ul.el-menu.el-menu--popup > div.nest-menu:nth-of-type(2) > div",
+  "styleId": "style_109",
+  "tag": "button",
+  "width": "72.2559px"
+}

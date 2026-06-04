@@ -1,0 +1,16 @@
+{
+  "custom": {
+    "border": "0px none rgb(255, 255, 255)",
+    "borderColor": "rgb(255, 255, 255)",
+    "borderRadius": "50%",
+    "color": "rgb(255, 255, 255)",
+    "fontFamily": "element-icons",
+    "fontSize": "12px",
+    "minHeight": "0px",
+    "minWidth": "0px",
+    "textOverflow": "clip",
+    "transition": "0.3s cubic-bezier(0.645, 0.045, 0.355, 1)"
+  },
+  "styleId": "style_59",
+  "tw": "inline-block static font-normal leading-3 text-center whitespace-nowrap border-0 visible cursor-pointer m-0 p-0 overflow-visible"
+}

@@ -1,0 +1,32 @@
+{
+  "children": [
+    "n528",
+    "n531",
+    "n536",
+    "n541",
+    "n544",
+    "n547",
+    "n551",
+    "n554",
+    "n557",
+    "n560",
+    "n563",
+    "n566",
+    "n569",
+    "n572",
+    "n575",
+    "n578",
+    "n580",
+    "n582",
+    "n585",
+    "n588",
+    "n590"
+  ],
+  "height": "50.625px",
+  "nodeId": "n591",
+  "originalClass": "el-table__row",
+  "selector": "ul.el-menu--collapse.el-menu > div:nth-of-type(74) > div > li.el-submenu > div.el-menu--vertical:nth-of-type(2) > ul.el-menu.el-menu--popup > div.nest-menu:nth-of-type(8) > div > a",
+  "styleId": "style_143",
+  "tag": "tr",
+  "width": "2735px"
+}

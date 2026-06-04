@@ -1,0 +1,13 @@
+{
+  "children": [
+    "n246"
+  ],
+  "height": "33.9941px",
+  "id": "tags-view-container",
+  "nodeId": "n247",
+  "originalClass": "tags-view-container",
+  "selector": "ul.el-menu--collapse.el-menu > div:nth-of-type(67) > div > li.el-submenu > div.el-menu--vertical:nth-of-type(2) > ul.el-menu.el-menu--popup > div.nest-menu:nth-of-type(3)",
+  "styleId": "style_67",
+  "tag": "div",
+  "width": "1776.92px"
+}

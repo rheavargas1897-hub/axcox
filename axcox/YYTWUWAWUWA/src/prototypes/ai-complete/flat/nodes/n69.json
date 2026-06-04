@@ -1,0 +1,14 @@
+{
+  "bbox": {
+    "height": 20,
+    "left": 2026,
+    "top": 452,
+    "width": 40
+  },
+  "height": "0px",
+  "nodeId": "n69",
+  "selector": "div.drawer-container > div > div.drawer-item:nth-of-type(7) > div.el-switch.drawer-switch",
+  "styleId": "style_33",
+  "tag": "div",
+  "width": "53.4863px"
+}

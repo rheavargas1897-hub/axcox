@@ -1,0 +1,17 @@
+{
+  "custom": {
+    "border": "0px none rgb(192, 196, 204)",
+    "borderColor": "rgb(192, 196, 204)",
+    "color": "rgb(192, 196, 204)",
+    "fontFamily": "element-icons",
+    "fontSize": "14px",
+    "minHeight": "0px",
+    "minWidth": "0px",
+    "pointerEvents": "all",
+    "textOverflow": "clip",
+    "transform": "matrix(-1, 0, 0, -1, 0, 0)",
+    "transition": "transform 0.3s, -webkit-transform 0.3s"
+  },
+  "styleId": "style_156",
+  "tw": "inline-block static font-normal leading-7 text-center whitespace-nowrap border-0 visible cursor-pointer m-0 p-0 overflow-visible"
+}

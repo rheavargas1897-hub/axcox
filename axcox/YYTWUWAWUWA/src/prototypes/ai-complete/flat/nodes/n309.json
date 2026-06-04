@@ -1,0 +1,15 @@
+{
+  "bbox": {
+    "height": 56,
+    "left": 0,
+    "top": 442,
+    "width": 53
+  },
+  "height": "31.9922px",
+  "nodeId": "n309",
+  "originalClass": "el-input__inner",
+  "selector": "ul.el-menu--collapse.el-menu > div:nth-of-type(69) > div > li.el-submenu",
+  "styleId": "style_77",
+  "tag": "input",
+  "width": "236.143px"
+}

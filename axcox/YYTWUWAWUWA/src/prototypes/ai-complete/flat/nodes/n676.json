@@ -1,0 +1,17 @@
+{
+  "bbox": {
+    "height": 933,
+    "left": 54,
+    "top": 0,
+    "width": 1776
+  },
+  "children": [
+    "n675"
+  ],
+  "height": "22.998px",
+  "nodeId": "n676",
+  "selector": "section.app-main",
+  "styleId": "style_147",
+  "tag": "div",
+  "width": "28.0078px"
+}

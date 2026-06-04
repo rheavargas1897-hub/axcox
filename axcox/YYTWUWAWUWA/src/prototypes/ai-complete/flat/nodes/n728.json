@@ -1,0 +1,38 @@
+{
+  "bbox": {
+    "height": 40,
+    "left": 1823,
+    "top": 52,
+    "width": 6
+  },
+  "children": [
+    "n666",
+    "n669",
+    "n674",
+    "n679",
+    "n682",
+    "n685",
+    "n689",
+    "n692",
+    "n695",
+    "n698",
+    "n701",
+    "n704",
+    "n706",
+    "n709",
+    "n712",
+    "n715",
+    "n717",
+    "n719",
+    "n722",
+    "n725",
+    "n727"
+  ],
+  "height": "50.625px",
+  "nodeId": "n728",
+  "originalClass": "el-table__row",
+  "selector": "div.scroll-container.tags-view-wrapper > div.el-scrollbar__bar.is-vertical:nth-of-type(3)",
+  "styleId": "style_143",
+  "tag": "tr",
+  "width": "2735px"
+}

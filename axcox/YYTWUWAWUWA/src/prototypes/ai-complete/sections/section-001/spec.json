@@ -1,0 +1,25 @@
+{
+  "bbox": {
+    "height": 933,
+    "left": 0,
+    "top": 0,
+    "width": 1830
+  },
+  "contentSummary": "首页/ 任务管理 0 首页 任务管理 搜索条件 展开搜索重置 车牌号 任务单号 单据状态 售后审核状态 完成处理时间 - 车架号 关联单据号 任务类型 所属公司 创建时间 - 任务单管理 报单导出筛选 序号 单据状态 任务类型 任务单号 关联单据单号 跟单员 创建人 处理人 处理人部门 所属公司 售后问题审核状态 联系人 手机号 车牌号 车架号 预计安装时间 实际安装时间 创建时间 单据备注 报单",
+  "dominantStyle": {
+    "backgroundImage": false
+  },
+  "hasMedia": true,
+  "hasText": true,
+  "id": "section-001",
+  "interactionHints": [
+    "cta",
+    "nav-link",
+    "form",
+    "toggle"
+  ],
+  "name": "signup",
+  "nodeCount": 996,
+  "selector": "#app",
+  "tagHint": "div"
+}

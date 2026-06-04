@@ -1,0 +1,12 @@
+{
+  "children": [
+    "n756"
+  ],
+  "height": "50.625px",
+  "nodeId": "n757",
+  "originalClass": "el-table_1_column_7 el-table__cell",
+  "selector": "form.el-form.el-form--inline > div.el-row:nth-of-type(1) > div.col-5.el-col:nth-of-type(4) > div.el-form-item.form-margin-r0 > div.el-form-item__content > div.el-select.input-width > div.el-select-dropdown.el-popper:nth-of-type(2) > div.el-scrollbar > div.el-select-dropdown__wrap.el-scrollbar__wrap:nth-of-type(1)",
+  "styleId": "style_134",
+  "tag": "td",
+  "width": "110px"
+}

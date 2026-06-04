@@ -1,0 +1,7 @@
+{
+  "_innerHTML": "<svg data-v-60e7c24b=\"\" data-v-166b75c5=\"\" aria-hidden=\"true\" class=\"svg-icon\" style=\"font-size: 18px; margin-right: 5px;;width:17.998px;height:17.998px;display:block;fill:rgb(96, 98, 102);stroke-width:1px;color:rgb(96, 98, 102);font-size:18px;font-family:&quot;PingFang SC&quot;, &quot;Helvetica Neue&quot;, Helvetica, &quot;Hiragino Sans GB&quot;, &quot;Microsoft YaHei&quot;, Arial, sans-serif, &quot;Roadgeek 2005 Mittelschrift&quot;;font-weight:400;vertical-align:-2.7px;overflow:hidden;visibility:visible\"><use data-v-60e7c24b=\"\" xlink:href=\"#icon-部门log\"></use></svg>",
+  "nodeId": "n1018",
+  "originalClass": "[object SVGAnimatedString]",
+  "selector": "form.el-form.el-form--inline > div.el-row:nth-of-type(3) > div.col-5.el-col:nth-of-type(2) > div.el-form-item.form-margin-r0 > div.el-form-item__content > div.el-select.input-width > div.el-select-dropdown.el-popper:nth-of-type(2) > div.el-scrollbar > div.el-select-dropdown__wrap.el-scrollbar__wrap:nth-of-type(1) > ul.el-scrollbar__view.el-select-dropdown__list > li.el-select-dropdown__item:nth-of-type(18)",
+  "tag": "svg"
+}

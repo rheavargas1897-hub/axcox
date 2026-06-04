@@ -1,0 +1,12 @@
+{
+  "children": [
+    "n351"
+  ],
+  "height": "31.8652px",
+  "nodeId": "n352",
+  "originalClass": "el-button el-button--primary el-button--small is-plain el-dropdown-selfdefine",
+  "selector": "ul.el-menu--collapse.el-menu > div:nth-of-type(70) > div > li.el-submenu > div.el-menu--vertical:nth-of-type(2) > ul.el-menu.el-menu--popup > div.nest-menu:nth-of-type(1) > div > a",
+  "styleId": "style_105",
+  "tag": "button",
+  "width": "96.2598px"
+}

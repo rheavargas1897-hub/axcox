@@ -1,0 +1,18 @@
+{
+  "bbox": {
+    "height": 56,
+    "left": 0,
+    "top": 274,
+    "width": 53
+  },
+  "children": [
+    "n218"
+  ],
+  "height": "878.516px",
+  "nodeId": "n219",
+  "originalClass": "el-scrollbar__bar is-vertical",
+  "selector": "ul.el-menu--collapse.el-menu > div:nth-of-type(66) > div > a > li.el-menu-item.submenu-title-noDropdown > div.el-tooltip",
+  "styleId": "style_43",
+  "tag": "div",
+  "width": "5.99609px"
+}

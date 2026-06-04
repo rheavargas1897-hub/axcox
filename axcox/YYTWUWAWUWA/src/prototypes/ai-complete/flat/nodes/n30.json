@@ -1,0 +1,13 @@
+{
+  "children": [
+    "n26",
+    "n29"
+  ],
+  "height": "44.9902px",
+  "nodeId": "n30",
+  "originalClass": "drawer-item",
+  "selector": "div.el-color-svpanel__cursor > div",
+  "styleId": "style_14",
+  "tag": "div",
+  "width": "212.012px"
+}

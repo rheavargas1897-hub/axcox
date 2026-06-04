@@ -1,0 +1,14 @@
+{
+  "_innerHTML": " 任务管理 <span data-v-097aeff2=\"\" class=\"el-icon-close\"></span>",
+  "children": [
+    "n238"
+  ],
+  "height": "25.9961px",
+  "nodeId": "n239",
+  "originalClass": "tags-view-item router-link-exact-active router-link-active",
+  "selector": "ul.el-menu--collapse.el-menu > div:nth-of-type(67) > div > li.el-submenu > div.el-menu--vertical:nth-of-type(2) > ul.el-menu.el-menu--popup > div.nest-menu:nth-of-type(3) > div > a > li.el-menu-item > span",
+  "styleId": "style_60",
+  "tag": "span",
+  "text": "任务管理",
+  "width": "99.2285px"
+}

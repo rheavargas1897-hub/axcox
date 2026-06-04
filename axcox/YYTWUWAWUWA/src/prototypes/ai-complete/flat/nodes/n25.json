@@ -1,0 +1,13 @@
+{
+  "children": [
+    "n21",
+    "n24"
+  ],
+  "height": "44.9902px",
+  "nodeId": "n25",
+  "originalClass": "drawer-item",
+  "selector": "div.el-color-hue-slider__thumb",
+  "styleId": "style_14",
+  "tag": "div",
+  "width": "212.012px"
+}

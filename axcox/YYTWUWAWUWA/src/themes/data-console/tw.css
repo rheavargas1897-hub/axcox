@@ -1,0 +1,139 @@
+@import "tailwindcss";
+
+@theme inline {
+  /* ── Brand Colors ── */
+  --color-primary: #11a983;
+  --color-primary-hover: #0e8f6e;
+  --color-primary-active: #0b7a5c;
+  --color-primary-light: #e7f8f3;
+  --color-accent: #faa732;
+  --color-accent-hover: #e89620;
+  --color-accent-light: #fff6e8;
+
+  /* ── Text Colors ── */
+  --color-ink: #303133;
+  --color-body: #303133;
+  --color-body-secondary: #7c7d7e;
+  --color-muted: #7c7d7e;
+  --color-muted-soft: #a8abb2;
+
+  /* ── Surface Colors ── */
+  --color-canvas: #f0f4fa;
+  --color-surface: #ffffff;
+  --color-surface-raised: #fafbfd;
+  --color-surface-overlay: #ffffff;
+  --color-sidebar-bg: #1e2430;
+
+  /* ── Border Colors ── */
+  --color-hairline: #e7eaef;
+  --color-hairline-soft: #f0f2f5;
+
+  /* ── Semantic Colors ── */
+  --color-success: #11a983;
+  --color-success-light: #e7f8f3;
+  --color-warning: #faa732;
+  --color-warning-light: #fff6e8;
+  --color-danger: #e74c3c;
+  --color-danger-light: #fdedec;
+  --color-info: #5b8dee;
+  --color-info-light: #edf2fd;
+
+  /* ── Status Tag Colors ── */
+  --color-status-green: #11a983;
+  --color-status-blue: #5b8dee;
+  --color-status-dark: #303133;
+  --color-status-orange: #faa732;
+  --color-status-red: #e74c3c;
+
+  /* ── Component Dimensions ── */
+  --spacing-sidebar-w: 200px;
+  --spacing-search-h: 70px;
+  --spacing-table-row: 54px;
+  --spacing-btn-h: 40px;
+  --spacing-pagination-h: 72px;
+  --spacing-modal-footer-h: 56px;
+  --spacing-topbar-padding: 12px;
+
+  /* ── Radius ── */
+  --radius-none: 0px;
+  --radius-xs: 2px;
+  --radius-sm: 4px;
+  --radius-md: 6px;
+  --radius-lg: 8px;
+  --radius-pill: 9999px;
+
+  /* ── Spacing ── */
+  --spacing-xxs: 4px;
+  --spacing-xs: 8px;
+  --spacing-sm: 10px;
+  --spacing-md: 12px;
+  --spacing-lg: 14px;
+  --spacing-xl: 20px;
+  --spacing-xxl: 32px;
+  --spacing-section: 40px;
+}
+
+/* ── Semantic Utility Classes ── */
+.text-success { color: var(--color-success); }
+.text-warning { color: var(--color-warning); }
+.text-danger { color: var(--color-danger); }
+.text-info { color: var(--color-info); }
+
+.bg-success-light { background-color: var(--color-success-light); }
+.bg-warning-light { background-color: var(--color-warning-light); }
+.bg-danger-light { background-color: var(--color-danger-light); }
+.bg-info-light { background-color: var(--color-info-light); }
+
+/* ── Status Tag Base ── */
+.status-tag {
+  display: inline-flex;
+  align-items: center;
+  padding: 2px 10px;
+  border-radius: var(--radius-sm);
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 1.5;
+}
+
+.status-tag-default {
+  background-color: var(--color-hairline-soft);
+  color: var(--color-body-secondary);
+  font-weight: 400;
+}
+
+.status-tag-active { background-color: var(--color-status-green); color: #ffffff; }
+.status-tag-blue { background-color: var(--color-status-blue); color: #ffffff; }
+.status-tag-dark { background-color: var(--color-status-dark); color: #ffffff; }
+.status-tag-orange { background-color: var(--color-status-orange); color: #ffffff; }
+.status-tag-red { background-color: var(--color-status-red); color: #ffffff; }
+
+/* ── Table Utilities ── */
+.table-row { height: var(--spacing-table-row); }
+.table-row-hover:hover { background-color: var(--color-surface-raised); }
+.table-header-cell {
+  background-color: var(--color-canvas);
+  color: var(--color-ink);
+  font-weight: 600;
+  font-size: 14px;
+  padding: 20px 12px;
+}
+
+/* ── Button Base ── */
+.btn-console {
+  height: var(--spacing-btn-h);
+  border-radius: var(--radius-none);
+  font-size: 14px;
+  font-weight: 400;
+  padding: 0 20px;
+  cursor: pointer;
+  border: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn-primary-console { background-color: var(--color-primary); color: #ffffff; }
+.btn-primary-console:hover { background-color: var(--color-primary-hover); }
+.btn-default-console { background-color: #ffffff; color: var(--color-body); border: 1px solid var(--color-hairline); }
+.btn-accent-console { background-color: var(--color-accent); color: #ffffff; }
+.btn-danger-console { background-color: var(--color-danger); color: #ffffff; }

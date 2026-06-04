@@ -1,0 +1,12 @@
+{
+  "children": [
+    "n978"
+  ],
+  "height": "50.625px",
+  "nodeId": "n979",
+  "originalClass": "el-table_1_column_12 is-center el-table__cell",
+  "selector": "form.el-form.el-form--inline > div.el-row:nth-of-type(3) > div.col-5.el-col:nth-of-type(2) > div.el-form-item.form-margin-r0 > label.el-form-item__label",
+  "styleId": "style_127",
+  "tag": "td",
+  "width": "80px"
+}

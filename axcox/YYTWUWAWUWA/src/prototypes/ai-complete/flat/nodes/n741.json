@@ -1,0 +1,12 @@
+{
+  "children": [
+    "n740"
+  ],
+  "height": "30px",
+  "nodeId": "n741",
+  "originalClass": "cell el-tooltip",
+  "selector": "form.el-form.el-form--inline > div.el-row:nth-of-type(1) > div.col-5.el-col:nth-of-type(3) > div.el-form-item.form-margin-r0 > div.el-form-item__content > div.el-select.input-width > div.el-select-dropdown.el-popper:nth-of-type(3) > div.el-scrollbar > div.el-scrollbar__bar.is-vertical:nth-of-type(3)",
+  "styleId": "style_133",
+  "tag": "div",
+  "width": "100px"
+}

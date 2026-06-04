@@ -1,0 +1,18 @@
+{
+  "bbox": {
+    "height": 45,
+    "left": 1854,
+    "top": 260,
+    "width": 212
+  },
+  "children": [
+    "n1180"
+  ],
+  "height": "932.5px",
+  "nodeId": "n1181",
+  "originalClass": "app-wrapper hideSidebar withoutAnimation",
+  "selector": "div.drawer-container > div > div.drawer-item:nth-of-type(3)",
+  "styleId": "style_177",
+  "tag": "div",
+  "width": "1830px"
+}

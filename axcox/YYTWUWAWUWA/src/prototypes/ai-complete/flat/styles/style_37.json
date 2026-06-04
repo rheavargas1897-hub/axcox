@@ -1,0 +1,26 @@
+{
+  "custom": {
+    "border": "0px none rgb(144, 147, 153)",
+    "borderColor": "rgb(144, 147, 153)",
+    "bottom": "22.9883px",
+    "color": "rgb(144, 147, 153)",
+    "fontFamily": "element-icons",
+    "fontSize": "12px",
+    "insetBlockEnd": "22.9883px",
+    "insetBlockStart": "27.998px",
+    "insetInlineEnd": "20px",
+    "insetInlineStart": "21.4844px",
+    "left": "21.4844px",
+    "margin": "-7px 0px 0px",
+    "marginBlockStart": "-7px",
+    "minHeight": "0px",
+    "minWidth": "0px",
+    "right": "20px",
+    "textAlign": "start",
+    "textOverflow": "clip",
+    "top": "27.998px",
+    "transition": "transform 0.3s, -webkit-transform 0.3s"
+  },
+  "styleId": "style_37",
+  "tw": "block absolute font-normal leading-3 whitespace-nowrap border-0 visible cursor-pointer -mt-1.5 mr-0 mb-0 ml-0 p-0 overflow-visible"
+}

@@ -1,0 +1,12 @@
+{
+  "children": [
+    "n232"
+  ],
+  "height": "50px",
+  "nodeId": "n233",
+  "originalClass": "avatar-container right-menu-item hover-effect el-dropdown",
+  "selector": "ul.el-menu--collapse.el-menu > div:nth-of-type(67) > div > li.el-submenu > div.el-menu--vertical:nth-of-type(2) > ul.el-menu.el-menu--popup > div.nest-menu:nth-of-type(2) > div",
+  "styleId": "style_55",
+  "tag": "div",
+  "width": "55.9961px"
+}

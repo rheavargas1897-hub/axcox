@@ -1,0 +1,13 @@
+{
+  "children": [
+    "n50",
+    "n51"
+  ],
+  "height": "31.8652px",
+  "nodeId": "n52",
+  "originalClass": "el-button el-button--default el-button--small is-plain",
+  "selector": "button.el-button.el-color-dropdown__btn",
+  "styleId": "style_26",
+  "tag": "button",
+  "width": "96.2598px"
+}

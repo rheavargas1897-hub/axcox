@@ -1,0 +1,15 @@
+{
+  "bbox": {
+    "height": 40,
+    "left": 1415,
+    "top": 218,
+    "width": 25
+  },
+  "height": "14.0039px",
+  "nodeId": "n823",
+  "originalClass": "el-icon-s-custom",
+  "selector": "div.el-input.el-input--medium > span.el-input__suffix > span.el-input__suffix-inner > i.el-select__caret.el-input__icon",
+  "styleId": "style_149",
+  "tag": "i",
+  "width": "14.0039px"
+}

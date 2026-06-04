@@ -1,0 +1,13 @@
+{
+  "children": [
+    "n335",
+    "n342"
+  ],
+  "height": "40px",
+  "nodeId": "n343",
+  "originalClass": "el-form-item form-margin-r0",
+  "selector": "ul.el-menu--collapse.el-menu > div:nth-of-type(69) > div > li.el-submenu > div.el-menu--vertical:nth-of-type(2) > ul.el-menu.el-menu--popup > div.nest-menu:nth-of-type(3) > div > a > li.el-menu-item > span > span.badge > span.badge_number",
+  "styleId": "style_80",
+  "tag": "div",
+  "width": "342.246px"
+}

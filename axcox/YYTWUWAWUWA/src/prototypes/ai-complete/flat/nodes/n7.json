@@ -1,0 +1,16 @@
+{
+  "bbox": {
+    "height": 20,
+    "left": 1942,
+    "top": 73,
+    "width": 14
+  },
+  "children": [
+    "n6"
+  ],
+  "nodeId": "n7",
+  "originalClass": "anticon anticon-check",
+  "selector": "i.anticon.anticon-check",
+  "styleId": "style_5",
+  "tag": "i"
+}

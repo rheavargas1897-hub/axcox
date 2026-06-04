@@ -1,0 +1,12 @@
+{
+  "children": [
+    "n240"
+  ],
+  "height": "48.9941px",
+  "nodeId": "n241",
+  "originalClass": "el-scrollbar__wrap",
+  "selector": "ul.el-menu--collapse.el-menu > div:nth-of-type(67) > div > li.el-submenu > div.el-menu--vertical:nth-of-type(2) > ul.el-menu.el-menu--popup > div.nest-menu:nth-of-type(2) > div > a",
+  "styleId": "style_62",
+  "tag": "div",
+  "width": "1783.92px"
+}

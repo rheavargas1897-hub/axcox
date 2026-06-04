@@ -1,0 +1,310 @@
+{
+  "schemaVersion": 1,
+  "source": {
+    "sourceName": "getdesign.md",
+    "originalDetailUrl": "https://getdesign.md/meta/design-md",
+    "fallbackRawUrl": "https://raw.githubusercontent.com/VoltAgent/awesome-design-md/main/design-md/meta/DESIGN.md",
+    "mirrorSource": "github:VoltAgent/awesome-design-md",
+    "websiteUrl": "https://meta.com/"
+  },
+  "identity": {
+    "id": "P0-85",
+    "slug": "meta",
+    "brand": "Meta",
+    "titleZh": "Meta 主题",
+    "titleEn": "Meta",
+    "descriptionZh": "Meta 的 Design.md 主题展示，围绕浅色界面、暗色界面、SaaS 产品、开发工具组织页面。",
+    "descriptionEn": "Tech retail store. Photography-first, binary light/dark surfaces, Meta Blue CTAs."
+  },
+  "tags": {
+    "sourceTags": [],
+    "generatedTags": [
+      "request-flow",
+      "light",
+      "dark"
+    ],
+    "designTags": [],
+    "distributionTags": [
+      "浅色界面",
+      "暗色界面",
+      "SaaS 产品",
+      "开发工具"
+    ]
+  },
+  "assets": {
+    "designMd": {
+      "path": "DESIGN.md",
+      "sourcePath": "DESIGN.md"
+    },
+    "tailwind": {
+      "path": "tw.css",
+      "sourcePath": "tw.css"
+    },
+    "tokens": {
+      "path": "assets/tokens.json",
+      "method": "derived_from_design_md_and_metadata",
+      "sourcePath": "designToken.json"
+    },
+    "cover": null,
+    "previewHtml": {
+      "type": "local-preview",
+      "path": "assets/official-homepage.webp",
+      "publicPath": "assets/official-homepage.webp",
+      "importPath": "./assets/official-homepage.webp?url",
+      "sourcePath": "assets/official-homepage.webp"
+    }
+  },
+  "tokens": {
+    "palette": [
+      "#0064e0",
+      "#0457cb",
+      "#000000",
+      "#0091ff",
+      "#ffffff",
+      "#1876f2",
+      "#385898",
+      "#a121ce",
+      "#31a24c",
+      "#24e400",
+      "#f2a918",
+      "#f7b928"
+    ],
+    "typography": {
+      "display": "Optimistic VF",
+      "body": "Optimistic VF",
+      "mono": "ui-monospace",
+      "hints": [
+        "Optimistic VF",
+        "ui-monospace",
+        "Inter"
+      ]
+    },
+    "radius": {
+      "control": "8px",
+      "card": "32px",
+      "preview": "32px",
+      "pill": "100px",
+      "source": "design-md"
+    },
+    "spacing": {
+      "xxs": "4px",
+      "xs": "8px",
+      "sm": "10px",
+      "md": "12px",
+      "base": "16px",
+      "lg": "20px",
+      "xl": "24px",
+      "xxl": "32px",
+      "xxxl": "40px",
+      "section-sm": "48px",
+      "section": "64px",
+      "section-lg": "80px",
+      "hero": "120px",
+      "source": "design-md"
+    }
+  },
+  "previewImages": [
+    {
+      "type": "local-preview",
+      "path": "assets/official-homepage.webp"
+    }
+  ],
+  "display": {
+    "brand": "Meta 主题",
+    "brandAlias": "Meta",
+    "description": "Meta 的 Design.md 主题展示，围绕浅色界面、暗色界面、SaaS 产品、开发工具组织页面。",
+    "descriptionEn": "Tech retail store. Photography-first, binary light/dark surfaces, Meta Blue CTAs.",
+    "variant": "saas-devtool",
+    "distributionTags": [
+      "浅色界面",
+      "暗色界面",
+      "SaaS 产品",
+      "开发工具"
+    ],
+    "fontStylesheets": [],
+    "palette": [
+      {
+        "color": "#0064e0",
+        "labelZh": "主色",
+        "labelEn": "Primary",
+        "textColor": "#ffffff"
+      },
+      {
+        "color": "#0457cb",
+        "labelZh": "主色悬停",
+        "labelEn": "Primary Hover",
+        "textColor": "#ffffff"
+      },
+      {
+        "color": "#000000",
+        "labelZh": "辅助色",
+        "labelEn": "Secondary",
+        "textColor": "#ffffff"
+      },
+      {
+        "color": "#0091ff",
+        "labelZh": "强调色",
+        "labelEn": "Accent",
+        "textColor": "#ffffff"
+      },
+      {
+        "color": "#ffffff",
+        "labelZh": "背景色",
+        "labelEn": "Background",
+        "textColor": "#171717"
+      },
+      {
+        "color": "#1876f2",
+        "labelZh": "表面色",
+        "labelEn": "Surface",
+        "textColor": "#ffffff"
+      },
+      {
+        "color": "#385898",
+        "labelZh": "文本色",
+        "labelEn": "Text",
+        "textColor": "#ffffff"
+      },
+      {
+        "color": "#a121ce",
+        "labelZh": "边框色",
+        "labelEn": "Border",
+        "textColor": "#ffffff"
+      },
+      {
+        "color": "#31a24c",
+        "labelZh": "颜色 9",
+        "labelEn": "Color 9",
+        "textColor": "#ffffff"
+      },
+      {
+        "color": "#24e400",
+        "labelZh": "颜色 10",
+        "labelEn": "Color 10",
+        "textColor": "#ffffff"
+      },
+      {
+        "color": "#f2a918",
+        "labelZh": "颜色 11",
+        "labelEn": "Color 11",
+        "textColor": "#171717"
+      },
+      {
+        "color": "#f7b928",
+        "labelZh": "颜色 12",
+        "labelEn": "Color 12",
+        "textColor": "#171717"
+      }
+    ],
+    "shadows": [],
+    "borders": [
+      {
+        "label": "边框 1 - Border 1",
+        "value": "#ced0d4",
+        "cssValue": "#ced0d4",
+        "description": "hairline: \"#ced0d4\""
+      },
+      {
+        "label": "边框 2 - Border 2",
+        "value": "none",
+        "cssValue": "none",
+        "description": "border: \"none\""
+      },
+      {
+        "label": "边框 3 - Border 3",
+        "value": "#dee3e9",
+        "cssValue": "#dee3e9",
+        "description": "hairline-soft: \"#dee3e9\""
+      },
+      {
+        "label": "边框 4 - Border 4",
+        "value": "rgba(10, 19, 23, 0.12)",
+        "cssValue": "rgba(10, 19, 23, 0.12)",
+        "description": "border: \"2px solid rgba(10, 19, 23, 0.12)\""
+      },
+      {
+        "label": "边框 5 - Border 5",
+        "value": "#0143b5",
+        "cssValue": "#0143b5",
+        "description": "border: \"2px solid #0143b5\""
+      },
+      {
+        "label": "边框 6 - Border 6",
+        "value": "rgba(20, 22, 26, 0.3)",
+        "cssValue": "rgba(20, 22, 26, 0.3)",
+        "description": "shadow: \"rgba(20, 22, 26, 0.3) 0px 1px 4px 0px\""
+      }
+    ],
+    "typography": [
+      "Optimistic VF",
+      "ui-monospace",
+      "Inter"
+    ],
+    "previewImages": [
+      {
+        "type": "local-preview",
+        "path": "assets/official-homepage.webp"
+      }
+    ],
+    "usageGuidance": {
+      "do": [
+        "建议：Reserve {colors.primary} (cobalt) for buy-now CTAs only — its visual weight is meaningful precisely because it doesn't appear on marketing pages。",
+        "建议：Use {colors.ink-button} (black) for marketing-surface primary CTAs. Pair with {colors.button-secondary} ghost outline for the secondary action。",
+        "建议：Apply {rounded.full} to every button, every category pill, every badge, every chip — buttons are NEVER squared in Meta's system。",
+        "建议：Apply {rounded.xxxl} to photographic product cards and {rounded.xl} to icon-feature tiles to maintain the visible card-hierarchy contrast。",
+        "建议：Switch on {ss01, ss02} together for any Optimistic VF heading. Never one stylistic set without the other。"
+      ],
+      "dont": [
+        "避免：use {colors.primary} (cobalt) for marketing-surface primary buttons — it conflicts with Meta's brand-history positioning of black-CTA-on-white-canvas marketing。",
+        "避免：introduce additional accent colors beyond cobalt + Oculus purple. The hardware brand is deliberately monochromatic outside its product photography。",
+        "避免：soften the corners of pill buttons below {rounded.full}. The pill is a brand signature。",
+        "避免：run feature cards without rounding — {rounded.xxxl} is the minimum for any photographic surface。",
+        "避免：reduce {typography.body-md} line-height below 1.50 — the negative letter-spacing already tightens the metric and any further compression breaks legibility。"
+      ]
+    },
+    "panels": [
+      {
+        "eyebrow": "产品",
+        "title": "开发工具界面",
+        "body": "适合工作台、文档、控制台和开发者产品。"
+      },
+      {
+        "eyebrow": "Token",
+        "title": "颜色与字体可复用",
+        "body": "页面从本地 metadata 与 Design.md 提取 palette、typography 和标签，用于快速预览主题质感。"
+      },
+      {
+        "eyebrow": "组件",
+        "title": "面向真实界面片段",
+        "body": "按钮、输入、卡片和间距样例保持克制，便于比较不同主题的系统性差异。"
+      }
+    ],
+    "radius": {
+      "control": "8px",
+      "card": "32px",
+      "preview": "32px",
+      "pill": "100px",
+      "source": "design-md"
+    },
+    "spacing": {
+      "xxs": "4px",
+      "xs": "8px",
+      "sm": "10px",
+      "md": "12px",
+      "base": "16px",
+      "lg": "20px",
+      "xl": "24px",
+      "xxl": "32px",
+      "xxxl": "40px",
+      "section-sm": "48px",
+      "section": "64px",
+      "section-lg": "80px",
+      "hero": "120px",
+      "source": "design-md"
+    }
+  },
+  "status": {
+    "displayPage": "todo",
+    "collectionErrors": []
+  }
+}

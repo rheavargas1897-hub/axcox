@@ -1,0 +1,14 @@
+{
+  "custom": {
+    "border": "0px none rgb(96, 98, 102)",
+    "borderColor": "rgb(96, 98, 102)",
+    "color": "rgb(96, 98, 102)",
+    "fontFamily": "element-icons",
+    "fontSize": "12px",
+    "minHeight": "0px",
+    "minWidth": "0px",
+    "textOverflow": "clip"
+  },
+  "styleId": "style_167",
+  "tw": "block static font-bold leading-3 text-center whitespace-nowrap border-0 visible cursor-pointer m-0 p-0 overflow-visible"
+}

@@ -1,0 +1,11 @@
+{
+  "_innerHTML": "<i data-v-166b75c5=\"\" class=\"el-icon-s-custom\"></i>售后微信",
+  "children": [
+    "n754"
+  ],
+  "nodeId": "n755",
+  "selector": "form.el-form.el-form--inline > div.el-row:nth-of-type(1) > div.col-5.el-col:nth-of-type(4) > div.el-form-item.form-margin-r0 > div.el-form-item__content > div.el-select.input-width > div.el-select-dropdown.el-popper:nth-of-type(2) > div.el-scrollbar > div.el-select-dropdown__wrap.el-scrollbar__wrap:nth-of-type(1) > ul.el-scrollbar__view.el-select-dropdown__list",
+  "styleId": "style_148",
+  "tag": "span",
+  "text": "售后微信"
+}

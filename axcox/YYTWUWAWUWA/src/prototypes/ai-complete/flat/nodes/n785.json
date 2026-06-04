@@ -1,0 +1,15 @@
+{
+  "bbox": {
+    "height": 63,
+    "left": 767,
+    "top": 217,
+    "width": 342
+  },
+  "height": "0px",
+  "nodeId": "n785",
+  "originalClass": "cell el-tooltip",
+  "selector": "form.el-form.el-form--inline > div.el-row:nth-of-type(2) > div.col-5.el-col:nth-of-type(3)",
+  "styleId": "style_133",
+  "tag": "div",
+  "width": "180px"
+}

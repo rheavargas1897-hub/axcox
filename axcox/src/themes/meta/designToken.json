@@ -1,0 +1,49 @@
+{
+  "palette": [
+    "#0064e0",
+    "#0457cb",
+    "#000000",
+    "#0091ff",
+    "#ffffff",
+    "#1876f2",
+    "#385898",
+    "#a121ce",
+    "#31a24c",
+    "#24e400",
+    "#f2a918",
+    "#f7b928"
+  ],
+  "typography": {
+    "display": "Optimistic VF",
+    "body": "Optimistic VF",
+    "mono": "ui-monospace",
+    "hints": [
+      "Optimistic VF",
+      "ui-monospace",
+      "Inter"
+    ]
+  },
+  "radius": {
+    "control": "8px",
+    "card": "32px",
+    "preview": "32px",
+    "pill": "100px",
+    "source": "design-md"
+  },
+  "spacing": {
+    "xxs": "4px",
+    "xs": "8px",
+    "sm": "10px",
+    "md": "12px",
+    "base": "16px",
+    "lg": "20px",
+    "xl": "24px",
+    "xxl": "32px",
+    "xxxl": "40px",
+    "section-sm": "48px",
+    "section": "64px",
+    "section-lg": "80px",
+    "hero": "120px",
+    "source": "design-md"
+  }
+}

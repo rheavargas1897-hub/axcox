@@ -1,0 +1,15 @@
+{
+  "bbox": {
+    "height": 42,
+    "left": 54,
+    "top": 50,
+    "width": 1777
+  },
+  "height": "0px",
+  "nodeId": "n650",
+  "originalClass": "cell el-tooltip",
+  "selector": "div.scroll-container.tags-view-wrapper",
+  "styleId": "style_133",
+  "tag": "div",
+  "width": "180px"
+}

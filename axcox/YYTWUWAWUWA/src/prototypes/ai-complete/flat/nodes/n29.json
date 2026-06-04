@@ -1,0 +1,13 @@
+{
+  "children": [
+    "n27",
+    "n28"
+  ],
+  "height": "20px",
+  "nodeId": "n29",
+  "originalClass": "el-switch drawer-switch is-checked",
+  "selector": "div.el-color-predefine__colors",
+  "styleId": "style_19",
+  "tag": "div",
+  "width": "40px"
+}

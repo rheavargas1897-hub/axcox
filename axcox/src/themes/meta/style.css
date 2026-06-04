@@ -1,0 +1,36 @@
+@import "tailwindcss";
+
+/* TODO: Generate Tailwind v4 theme for Meta. */
+
+
+.dmb-page {
+  --dmb-accent: #0064e0;
+  --dmb-accent-contrast: #ffffff;
+  --dmb-link: #0457cb;
+  --dmb-muted: #000000;
+  --dmb-bg: #ffffff;
+  --dmb-radius-xs: 8px;
+  --dmb-radius-control: 8px;
+  --dmb-radius-card: 32px;
+  --dmb-radius-preview: 32px;
+  --dmb-radius-pill: 100px;
+  --dmb-border: #ced0d4;
+  --dmb-border-sample-bg: #f1f4f7;
+  --dmb-spacing-xxs: 4px;
+  --dmb-spacing-xs: 8px;
+  --dmb-spacing-sm: 10px;
+  --dmb-spacing-md: 12px;
+  --dmb-spacing-base: 16px;
+  --dmb-spacing-lg: 20px;
+  --dmb-spacing-xl: 24px;
+  --dmb-spacing-xxl: 32px;
+  --dmb-spacing-xxxl: 40px;
+  --dmb-spacing-section-sm: 48px;
+  --dmb-spacing-section: 64px;
+  --dmb-spacing-section-lg: 80px;
+  --dmb-spacing-hero: 120px;
+
+  --dmb-font-display: "Optimistic VF", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --dmb-font-body: "Optimistic VF", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --dmb-font-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+}

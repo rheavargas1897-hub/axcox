@@ -1,0 +1,13 @@
+{
+  "children": [
+    "n22",
+    "n23"
+  ],
+  "height": "20px",
+  "nodeId": "n24",
+  "originalClass": "el-switch drawer-switch",
+  "selector": "div.el-color-svpanel__white",
+  "styleId": "style_19",
+  "tag": "div",
+  "width": "40px"
+}

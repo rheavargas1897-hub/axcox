@@ -1,0 +1,12 @@
+{
+  "children": [
+    "n1177"
+  ],
+  "height": "933.496px",
+  "nodeId": "n1178",
+  "originalClass": "app-main",
+  "selector": "ul.el-menu--collapse.el-menu > div:nth-of-type(67) > div > li.el-submenu > div.el-menu--vertical:nth-of-type(2) > ul.el-menu.el-menu--popup > div.nest-menu:nth-of-type(4) > div > a",
+  "styleId": "style_175",
+  "tag": "section",
+  "width": "1776.01px"
+}

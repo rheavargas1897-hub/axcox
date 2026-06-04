@@ -1,0 +1,14 @@
+{
+  "bbox": {
+    "height": 1,
+    "left": 1854,
+    "top": 509,
+    "width": 212
+  },
+  "height": "0px",
+  "nodeId": "n72",
+  "selector": "div.drawer-container > div > div.el-divider.el-divider--horizontal:nth-of-type(8)",
+  "styleId": "style_33",
+  "tag": "div",
+  "width": "53.4863px"
+}

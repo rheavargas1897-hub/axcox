@@ -1,0 +1,12 @@
+{
+  "children": [
+    "n216"
+  ],
+  "height": "882.5px",
+  "nodeId": "n217",
+  "originalClass": "scrollbar-wrapper el-scrollbar__wrap",
+  "selector": "div.drawer-container > div > div.drawer-item:nth-of-type(4) > div.el-switch.drawer-switch > input.el-switch__input",
+  "styleId": "style_41",
+  "tag": "div",
+  "width": "60.9863px"
+}

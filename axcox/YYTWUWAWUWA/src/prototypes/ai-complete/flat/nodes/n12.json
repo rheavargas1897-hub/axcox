@@ -1,0 +1,15 @@
+{
+  "bbox": {
+    "height": 20,
+    "left": 2035,
+    "top": 144,
+    "width": 20
+  },
+  "height": "19.5117px",
+  "nodeId": "n12",
+  "originalClass": "el-color-picker__color-inner",
+  "selector": "span.el-color-picker__color-inner",
+  "styleId": "style_9",
+  "tag": "span",
+  "width": "19.5117px"
+}

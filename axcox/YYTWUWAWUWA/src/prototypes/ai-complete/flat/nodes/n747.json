@@ -1,0 +1,18 @@
+{
+  "bbox": {
+    "height": 41,
+    "left": 1109,
+    "top": 155,
+    "width": 100
+  },
+  "children": [
+    "n746"
+  ],
+  "height": "50.625px",
+  "nodeId": "n747",
+  "originalClass": "el-table_1_column_4 el-table__cell",
+  "selector": "form.el-form.el-form--inline > div.el-row:nth-of-type(1) > div.col-5.el-col:nth-of-type(4) > div.el-form-item.form-margin-r0 > label.el-form-item__label",
+  "styleId": "style_134",
+  "tag": "td",
+  "width": "80px"
+}

@@ -1,0 +1,13 @@
+{
+  "children": [
+    "n230",
+    "n231"
+  ],
+  "height": "58.75px",
+  "nodeId": "n232",
+  "originalClass": "avatar-wrapper el-dropdown-selfdefine",
+  "selector": "ul.el-menu--collapse.el-menu > div:nth-of-type(67) > div > li.el-submenu > div.el-menu--vertical:nth-of-type(2) > ul.el-menu.el-menu--popup > div.nest-menu:nth-of-type(1) > div > a",
+  "styleId": "style_54",
+  "tag": "div",
+  "width": "40px"
+}

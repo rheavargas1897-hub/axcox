@@ -1,0 +1,12 @@
+{
+  "children": [
+    "n648"
+  ],
+  "height": "50.625px",
+  "nodeId": "n649",
+  "originalClass": "el-table_1_column_17 el-table__cell",
+  "selector": "div.avatar-container.right-menu-item > ul.el-dropdown-menu.el-popper > a > li.el-dropdown-menu__item",
+  "styleId": "style_134",
+  "tag": "td",
+  "width": "180px"
+}

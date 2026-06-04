@@ -1,0 +1,18 @@
+{
+  "bbox": {
+    "height": 56,
+    "left": 0,
+    "top": 386,
+    "width": 53
+  },
+  "children": [
+    "n252"
+  ],
+  "height": "31.2402px",
+  "nodeId": "n253",
+  "originalClass": "el-button el-button--primary el-button--small",
+  "selector": "ul.el-menu--collapse.el-menu > div:nth-of-type(68)",
+  "styleId": "style_72",
+  "tag": "button",
+  "width": "55.2539px"
+}

@@ -1,0 +1,13 @@
+{
+  "children": [
+    "n257",
+    "n346"
+  ],
+  "height": "186.475px",
+  "nodeId": "n347",
+  "originalClass": "el-card__body",
+  "selector": "ul.el-menu--collapse.el-menu > div:nth-of-type(67) > div > li.el-submenu > div.el-menu--vertical:nth-of-type(2) > ul.el-menu.el-menu--popup > div.nest-menu:nth-of-type(7)",
+  "styleId": "style_101",
+  "tag": "div",
+  "width": "1751.26px"
+}

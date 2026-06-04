@@ -1,0 +1,18 @@
+{
+  "bbox": {
+    "height": 0,
+    "left": 1823,
+    "top": 52,
+    "width": 6
+  },
+  "children": [
+    "n665"
+  ],
+  "height": "50.625px",
+  "nodeId": "n666",
+  "originalClass": "el-table_1_column_1 is-center el-table-column--selection el-table__cell",
+  "selector": "div.scroll-container.tags-view-wrapper > div.el-scrollbar__bar.is-vertical:nth-of-type(3) > div.el-scrollbar__thumb",
+  "styleId": "style_127",
+  "tag": "td",
+  "width": "55px"
+}

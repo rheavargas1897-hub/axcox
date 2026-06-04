@@ -1,0 +1,13 @@
+{
+  "bbox": {
+    "height": 56,
+    "left": 0,
+    "top": 386,
+    "width": 53
+  },
+  "nodeId": "n252",
+  "selector": "ul.el-menu--collapse.el-menu > div:nth-of-type(68) > div",
+  "styleId": "style_71",
+  "tag": "span",
+  "text": "搜索"
+}

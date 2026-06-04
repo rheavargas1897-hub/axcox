@@ -1,0 +1,13 @@
+{
+  "bbox": {
+    "height": 20,
+    "left": 1854,
+    "top": 272,
+    "width": 82
+  },
+  "nodeId": "n51",
+  "selector": "div.drawer-container > div > div.drawer-item:nth-of-type(3) > span",
+  "styleId": "style_25",
+  "tag": "span",
+  "text": "重置配置"
+}

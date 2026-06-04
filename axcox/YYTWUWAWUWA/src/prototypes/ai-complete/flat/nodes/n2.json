@@ -1,0 +1,17 @@
+{
+  "bbox": {
+    "height": 54,
+    "left": 1854,
+    "top": 58,
+    "width": 212
+  },
+  "children": [
+    "n1"
+  ],
+  "nodeId": "n2",
+  "originalClass": "setting-drawer-title",
+  "selector": "div.setting-drawer-block-checbox",
+  "styleId": "style_2",
+  "tag": "div",
+  "width": "212.012px"
+}

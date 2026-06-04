@@ -1,0 +1,7 @@
+{
+  "nodeId": "n812",
+  "selector": "form.el-form.el-form--inline > div.el-row:nth-of-type(2) > div.col-5.el-col:nth-of-type(3) > div.el-form-item.form-margin-r0 > div.el-form-item__content > div.el-select.input-width > div.el-select-dropdown.el-popper:nth-of-type(3) > div.el-scrollbar > div.el-select-dropdown__wrap.el-scrollbar__wrap:nth-of-type(1) > ul.el-scrollbar__view.el-select-dropdown__list > li.el-select-dropdown__item:nth-of-type(6) > span",
+  "styleId": "style_146",
+  "tag": "span",
+  "text": "售后"
+}

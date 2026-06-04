@@ -1,0 +1,18 @@
+{
+  "bbox": {
+    "height": 63,
+    "left": 83,
+    "top": 217,
+    "width": 1711
+  },
+  "children": [
+    "n770"
+  ],
+  "height": "22.998px",
+  "nodeId": "n771",
+  "originalClass": "cell",
+  "selector": "form.el-form.el-form--inline > div.el-row:nth-of-type(2)",
+  "styleId": "style_129",
+  "tag": "div",
+  "width": "80px"
+}

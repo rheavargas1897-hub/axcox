@@ -1,0 +1,32 @@
+{
+  "children": [
+    "n941",
+    "n944",
+    "n949",
+    "n954",
+    "n957",
+    "n960",
+    "n964",
+    "n967",
+    "n970",
+    "n973",
+    "n976",
+    "n979",
+    "n981",
+    "n984",
+    "n987",
+    "n990",
+    "n992",
+    "n994",
+    "n997",
+    "n1000",
+    "n1002"
+  ],
+  "height": "50.625px",
+  "nodeId": "n1003",
+  "originalClass": "el-table__row",
+  "selector": "form.el-form.el-form--inline > div.el-row:nth-of-type(3) > div.col-5.el-col:nth-of-type(1) > div.el-form-item.form-margin-r0 > div.el-form-item__content > div.el-select.input-width > div.el-select-dropdown.el-popper:nth-of-type(2) > div.el-scrollbar > div.el-select-dropdown__wrap.el-scrollbar__wrap:nth-of-type(1) > ul.el-scrollbar__view.el-select-dropdown__list > li.el-select-dropdown__item:nth-of-type(38)",
+  "styleId": "style_143",
+  "tag": "tr",
+  "width": "2735px"
+}

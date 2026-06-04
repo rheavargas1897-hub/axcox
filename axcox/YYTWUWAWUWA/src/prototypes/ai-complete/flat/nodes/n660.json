@@ -1,0 +1,38 @@
+{
+  "bbox": {
+    "height": 56,
+    "left": 0,
+    "top": 834,
+    "width": 53
+  },
+  "children": [
+    "n597",
+    "n600",
+    "n605",
+    "n610",
+    "n613",
+    "n616",
+    "n620",
+    "n623",
+    "n626",
+    "n629",
+    "n632",
+    "n635",
+    "n638",
+    "n641",
+    "n644",
+    "n647",
+    "n649",
+    "n651",
+    "n654",
+    "n657",
+    "n659"
+  ],
+  "height": "50.625px",
+  "nodeId": "n660",
+  "originalClass": "el-table__row",
+  "selector": "ul.el-menu--collapse.el-menu > div:nth-of-type(76) > div > li.el-submenu",
+  "styleId": "style_143",
+  "tag": "tr",
+  "width": "2735px"
+}

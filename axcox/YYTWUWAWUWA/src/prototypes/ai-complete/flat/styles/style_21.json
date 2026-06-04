@@ -1,0 +1,16 @@
+{
+  "custom": {
+    "border": "0px none rgb(17, 169, 131)",
+    "borderColor": "rgb(17, 169, 131)",
+    "color": "rgb(17, 169, 131)",
+    "fontFamily": "element-icons",
+    "fontSize": "12px",
+    "minHeight": "0px",
+    "minWidth": "0px",
+    "overflowWrap": "break-word",
+    "textOverflow": "clip",
+    "wordWrap": "break-word"
+  },
+  "styleId": "style_21",
+  "tw": "inline-block static font-normal leading-3 text-center whitespace-nowrap border-0 visible cursor-pointer m-0 p-0 overflow-visible"
+}

@@ -32,6 +32,7 @@ vite.config.*.timestamp-*
 !.axhub/make/client.json
 !.axhub/make/README.md
 !.axhub/make/sidebar-tree.json
+.protorec/
 components.json
 .dev-server-info.json
 entries.json

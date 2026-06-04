@@ -1,0 +1,14 @@
+{
+  "bbox": {
+    "height": 56,
+    "left": 0,
+    "top": 666,
+    "width": 53
+  },
+  "height": "506.25px",
+  "nodeId": "n450",
+  "selector": "ul.el-menu--collapse.el-menu > div:nth-of-type(73) > div > li.el-submenu",
+  "styleId": "style_112",
+  "tag": "col",
+  "width": "180px"
+}

@@ -1,0 +1,14 @@
+{
+  "bbox": {
+    "height": 32,
+    "left": 1960,
+    "top": 534,
+    "width": 96
+  },
+  "height": "0px",
+  "nodeId": "n79",
+  "selector": "div.drawer-container > div > button.el-button.el-button--default:nth-of-type(2)",
+  "styleId": "style_33",
+  "tag": "div",
+  "width": "53.4863px"
+}

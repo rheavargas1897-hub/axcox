@@ -1,0 +1,11 @@
+{
+  "_innerHTML": "展开<svg data-v-60e7c24b=\"\" data-v-166b75c5=\"\" aria-hidden=\"true\" class=\"svg-icon\" style=\"margin-left: 5px; font-size: 14px;\"><use data-v-60e7c24b=\"\" xlink:href=\"#icon-展开\"></use></svg>",
+  "children": [
+    "n250"
+  ],
+  "nodeId": "n251",
+  "selector": "ul.el-menu--collapse.el-menu > div:nth-of-type(68) > div > li.el-submenu > div.el-submenu__title:nth-of-type(1) > span",
+  "styleId": "style_70",
+  "tag": "span",
+  "text": "展开"
+}

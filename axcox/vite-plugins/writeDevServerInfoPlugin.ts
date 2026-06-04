@@ -21,6 +21,7 @@ type DevServerInfo = {
 };
 
 const SERVER_INFO_HEARTBEAT_INTERVAL_MS = 5_000;
+const RUNTIME_SERVER_INFO_RELATIVE_PATH = path.join('.axhub', 'make', '.dev-server-info.json');
 
 function resolveDevServerInfo(server: any, startedAt: string): DevServerInfo {
   const localIP = getLocalIP();
@@ -57,8 +58,39 @@ function sendHealth(res: any, payload: unknown, status = 200) {
   res.end(JSON.stringify(payload));
 }
 
-function writeCurrentDevServerInfo(server: any, startedAt: string): DevServerInfo {
+function readExistingDevServerInfo(projectRoot: string): DevServerInfo | null {
+  const infoPath = path.join(projectRoot, RUNTIME_SERVER_INFO_RELATIVE_PATH);
+  if (!fs.existsSync(infoPath)) {
+    return null;
+  }
+  try {
+    return JSON.parse(fs.readFileSync(infoPath, 'utf8')) as DevServerInfo;
+  } catch {
+    return null;
+  }
+}
+
+function shouldWriteDevServerInfo(projectRoot: string, nextInfo: DevServerInfo): boolean {
+  const existing = readExistingDevServerInfo(projectRoot);
+  if (!existing || existing.projectRoot !== nextInfo.projectRoot) {
+    return true;
+  }
+  if (existing.pid === nextInfo.pid && existing.startedAt === nextInfo.startedAt) {
+    return true;
+  }
+  const existingStartedAt = Date.parse(existing.startedAt);
+  const nextStartedAt = Date.parse(nextInfo.startedAt);
+  if (!Number.isFinite(existingStartedAt) || !Number.isFinite(nextStartedAt)) {
+    return true;
+  }
+  return existingStartedAt <= nextStartedAt;
+}
+
+function writeCurrentDevServerInfo(server: any, startedAt: string): DevServerInfo | null {
   const devServerInfo = resolveDevServerInfo(server, startedAt);
+  if (!shouldWriteDevServerInfo(process.cwd(), devServerInfo)) {
+    return null;
+  }
   writeServerInfo(process.cwd(), 'runtime', devServerInfo);
   return devServerInfo;
 }
@@ -85,6 +117,9 @@ export function writeDevServerInfoPlugin(): Plugin {
       server.httpServer?.once('listening', () => {
         try {
           const devServerInfo = writeCurrentDevServerInfo(server, startedAt);
+          if (!devServerInfo) {
+            return;
+          }
 
           syncMakeProjectMetadata(process.cwd());
           const heartbeat = setInterval(() => {

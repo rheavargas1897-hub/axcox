@@ -1,0 +1,12 @@
+{
+  "children": [
+    "n678"
+  ],
+  "height": "50.625px",
+  "nodeId": "n679",
+  "originalClass": "el-table_1_column_4 el-table__cell",
+  "selector": "ul.contextmenu > li:nth-of-type(6)",
+  "styleId": "style_134",
+  "tag": "td",
+  "width": "80px"
+}

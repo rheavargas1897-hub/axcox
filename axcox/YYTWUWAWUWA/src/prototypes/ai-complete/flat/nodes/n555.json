@@ -1,0 +1,7 @@
+{
+  "nodeId": "n555",
+  "selector": "ul.el-menu--collapse.el-menu > div:nth-of-type(75) > div > li.el-submenu > div.el-submenu__title:nth-of-type(1) > span",
+  "styleId": "style_148",
+  "tag": "span",
+  "text": "任务待分配"
+}

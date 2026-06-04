@@ -1,0 +1,22 @@
+{
+  "bbox": {
+    "height": 56,
+    "left": 0,
+    "top": 498,
+    "width": 53
+  },
+  "children": [
+    "n336",
+    "n337",
+    "n338",
+    "n339",
+    "n340"
+  ],
+  "height": "31.9922px",
+  "nodeId": "n341",
+  "originalClass": "el-date-editor el-range-editor el-input__inner input-width el-date-editor--daterange",
+  "selector": "ul.el-menu--collapse.el-menu > div:nth-of-type(70) > div",
+  "styleId": "style_93",
+  "tag": "div",
+  "width": "236.143px"
+}

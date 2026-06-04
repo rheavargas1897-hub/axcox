@@ -1,0 +1,13 @@
+{
+  "children": [
+    "n32",
+    "n33"
+  ],
+  "height": "20px",
+  "nodeId": "n34",
+  "originalClass": "el-switch drawer-switch",
+  "selector": "div.el-color-predefine__colors > div.el-color-predefine__color-selector:nth-of-type(3)",
+  "styleId": "style_19",
+  "tag": "div",
+  "width": "40px"
+}

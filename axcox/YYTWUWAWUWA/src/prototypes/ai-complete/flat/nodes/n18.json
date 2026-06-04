@@ -1,0 +1,20 @@
+{
+  "bbox": {
+    "height": 22,
+    "left": 1854,
+    "top": 24,
+    "width": 212
+  },
+  "children": [
+    "n2",
+    "n10",
+    "n17"
+  ],
+  "height": "152.988px",
+  "nodeId": "n18",
+  "originalClass": "setting-drawer-content",
+  "selector": "div.setting-drawer-title",
+  "styleId": "style_15",
+  "tag": "div",
+  "width": "212.012px"
+}

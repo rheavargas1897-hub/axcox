@@ -1,0 +1,19 @@
+{
+  "bbox": {
+    "height": 26,
+    "left": 2032,
+    "top": 141,
+    "width": 26
+  },
+  "children": [
+    "n11",
+    "n16"
+  ],
+  "height": "44.9902px",
+  "nodeId": "n17",
+  "originalClass": "drawer-item",
+  "selector": "div.theme-picker.el-color-picker",
+  "styleId": "style_14",
+  "tag": "div",
+  "width": "212.012px"
+}

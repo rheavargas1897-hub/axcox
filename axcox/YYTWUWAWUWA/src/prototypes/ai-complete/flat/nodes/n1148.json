@@ -1,0 +1,13 @@
+{
+  "children": [
+    "n431",
+    "n1147"
+  ],
+  "height": "580.996px",
+  "nodeId": "n1148",
+  "originalClass": "el-table el-table--fit el-table--scrollable-x el-table--enable-row-hover el-table--enable-row-transition",
+  "selector": "ul.el-menu--collapse.el-menu > div:nth-of-type(70) > div > li.el-submenu > div.el-menu--vertical:nth-of-type(2) > ul.el-menu.el-menu--popup > div.nest-menu:nth-of-type(3)",
+  "styleId": "style_153",
+  "tag": "div",
+  "width": "1711.26px"
+}

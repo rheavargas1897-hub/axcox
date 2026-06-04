@@ -1,0 +1,13 @@
+{
+  "children": [
+    "n271",
+    "n276"
+  ],
+  "height": "40px",
+  "nodeId": "n277",
+  "originalClass": "el-select input-width el-select--small",
+  "selector": "ul.el-menu--collapse.el-menu > div:nth-of-type(68) > div > li.el-submenu > div.el-menu--vertical:nth-of-type(2) > ul.el-menu.el-menu--popup > div.nest-menu:nth-of-type(3) > div > a > li.el-menu-item",
+  "styleId": "style_88",
+  "tag": "div",
+  "width": "236.143px"
+}

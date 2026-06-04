@@ -1,0 +1,12 @@
+{
+  "children": [
+    "n348",
+    "n1176"
+  ],
+  "nodeId": "n1177",
+  "originalClass": "app-container",
+  "selector": "ul.el-menu--collapse.el-menu > div:nth-of-type(67) > div > li.el-submenu > div.el-menu--vertical:nth-of-type(2) > ul.el-menu.el-menu--popup > div.nest-menu:nth-of-type(6)",
+  "styleId": "style_174",
+  "tag": "div",
+  "width": "1776.01px"
+}

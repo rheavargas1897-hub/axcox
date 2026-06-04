@@ -1,0 +1,13 @@
+{
+  "bbox": {
+    "height": 20,
+    "left": 149,
+    "top": 15,
+    "width": 7
+  },
+  "nodeId": "n627",
+  "selector": "div.el-breadcrumb.app-breadcrumb > span > span.el-breadcrumb__item:nth-of-type(1) > span.el-breadcrumb__separator:nth-of-type(2)",
+  "styleId": "style_146",
+  "tag": "span",
+  "text": "--"
+}

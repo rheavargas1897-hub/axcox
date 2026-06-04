@@ -1,0 +1,13 @@
+{
+  "bbox": {
+    "height": 50,
+    "left": 165,
+    "top": 0,
+    "width": 56
+  },
+  "nodeId": "n630",
+  "selector": "div.el-breadcrumb.app-breadcrumb > span > span.el-breadcrumb__item:nth-of-type(2)",
+  "styleId": "style_148",
+  "tag": "span",
+  "text": "广州市铜城物流有限公司"
+}

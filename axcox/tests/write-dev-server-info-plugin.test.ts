@@ -192,4 +192,73 @@ describe('write dev server info plugin', () => {
     expect(firstInfo.startedAt).toBe(secondInfo.startedAt);
     expect(firstInfo.timestamp).not.toBe(secondInfo.timestamp);
   });
+
+  it('does not let an older heartbeat overwrite newer runtime server info', async () => {
+    const projectRoot = createTempProjectRoot();
+    process.chdir(projectRoot);
+    vi.useFakeTimers();
+    fs.mkdirSync(path.join(projectRoot, 'src/prototypes/home'), { recursive: true });
+    fs.writeFileSync(
+      path.join(projectRoot, 'src/prototypes/home/index.tsx'),
+      'export default function Home() { return null; }\n',
+      'utf8',
+    );
+    fs.mkdirSync(path.join(projectRoot, '.axhub/make'), { recursive: true });
+    fs.writeFileSync(
+      path.join(projectRoot, '.axhub/make/client.json'),
+      JSON.stringify({
+        schemaVersion: 1,
+        kind: 'axhub-make-client',
+        project: { id: 'runtime-heartbeat-owner-client', name: 'Runtime Heartbeat Owner Client' },
+      }),
+      'utf8',
+    );
+    const plugin = writeDevServerInfoPlugin();
+    let listeningHandler: (() => void) | undefined;
+    const server = {
+      config: {
+        server: { port: 51720 },
+      },
+      httpServer: {
+        address: () => ({ port: 51722 }),
+        once: vi.fn((event: string, handler: () => void) => {
+          if (event === 'listening') {
+            listeningHandler = handler;
+          }
+        }),
+      },
+      middlewares: {
+        use: vi.fn(),
+      },
+    };
+
+    const configureServer = plugin.configureServer;
+    if (typeof configureServer === 'function') {
+      await configureServer(server as any);
+    } else {
+      await configureServer?.handler(server as any);
+    }
+    listeningHandler?.();
+
+    const infoPath = path.join(projectRoot, '.axhub/make/.dev-server-info.json');
+    const firstInfo = JSON.parse(fs.readFileSync(infoPath, 'utf8'));
+    const newerInfo = {
+      ...firstInfo,
+      pid: firstInfo.pid + 1,
+      port: 51725,
+      origin: 'http://localhost:51725',
+      startedAt: new Date(Date.parse(firstInfo.startedAt) + 1_000).toISOString(),
+      timestamp: new Date(Date.parse(firstInfo.timestamp) + 1_000).toISOString(),
+    };
+    fs.writeFileSync(infoPath, `${JSON.stringify(newerInfo, null, 2)}\n`, 'utf8');
+
+    await vi.advanceTimersByTimeAsync(5_000);
+    const finalInfo = JSON.parse(fs.readFileSync(infoPath, 'utf8'));
+
+    expect(finalInfo).toMatchObject({
+      pid: newerInfo.pid,
+      port: 51725,
+      startedAt: newerInfo.startedAt,
+    });
+  });
 });

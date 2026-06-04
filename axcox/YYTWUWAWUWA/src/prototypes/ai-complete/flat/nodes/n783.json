@@ -1,0 +1,18 @@
+{
+  "bbox": {
+    "height": 41,
+    "left": 525,
+    "top": 217,
+    "width": 236
+  },
+  "children": [
+    "n782"
+  ],
+  "height": "22.998px",
+  "nodeId": "n783",
+  "originalClass": "cell el-tooltip",
+  "selector": "form.el-form.el-form--inline > div.el-row:nth-of-type(2) > div.col-5.el-col:nth-of-type(2) > div.el-form-item.form-margin-r0 > div.el-form-item__content",
+  "styleId": "style_133",
+  "tag": "div",
+  "width": "170px"
+}

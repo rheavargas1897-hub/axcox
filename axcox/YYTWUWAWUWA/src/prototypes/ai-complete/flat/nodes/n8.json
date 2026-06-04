@@ -1,0 +1,18 @@
+{
+  "bbox": {
+    "height": 45,
+    "left": 1854,
+    "top": 132,
+    "width": 212
+  },
+  "children": [
+    "n7"
+  ],
+  "height": "54.0039px",
+  "nodeId": "n8",
+  "originalClass": "setting-drawer-block-checbox-selectIcon",
+  "selector": "div.setting-drawer-content > div.drawer-item:nth-of-type(3)",
+  "styleId": "style_6",
+  "tag": "div",
+  "width": "47.998px"
+}

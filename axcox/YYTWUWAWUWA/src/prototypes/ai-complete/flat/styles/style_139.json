@@ -1,0 +1,14 @@
+{
+  "custom": {
+    "border": "0px none rgb(51, 122, 183)",
+    "borderColor": "rgb(51, 122, 183)",
+    "color": "rgb(51, 122, 183)",
+    "fontFamily": "\"PingFang SC\", \"Helvetica Neue\", Helvetica, \"Hiragino Sans GB\", \"Microsoft YaHei\"",
+    "fontSize": "14px",
+    "minHeight": "0px",
+    "minWidth": "0px",
+    "textOverflow": "clip"
+  },
+  "styleId": "style_139",
+  "tw": "inline static font-normal leading-snug text-left whitespace-nowrap break-all border-0 visible cursor-pointer m-0 p-0 overflow-visible"
+}

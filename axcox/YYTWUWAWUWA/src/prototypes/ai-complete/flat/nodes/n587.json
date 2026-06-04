@@ -1,0 +1,18 @@
+{
+  "bbox": {
+    "height": 56,
+    "left": 0,
+    "top": 834,
+    "width": 53
+  },
+  "children": [
+    "n586"
+  ],
+  "height": "22.998px",
+  "nodeId": "n587",
+  "originalClass": "cell el-tooltip",
+  "selector": "ul.el-menu--collapse.el-menu > div:nth-of-type(76)",
+  "styleId": "style_133",
+  "tag": "div",
+  "width": "200px"
+}

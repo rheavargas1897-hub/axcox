@@ -1,0 +1,21 @@
+{
+  "fixedLayers": [
+    "div.rightPanel",
+    "div.sidebar-container.has-logo",
+    "div.positioning"
+  ],
+  "pageHeight": 934,
+  "pageWidth": 1837,
+  "scrollContainer": "div.app-container",
+  "sections": [
+    {
+      "id": "section-001",
+      "interactionModel": "click-driven",
+      "isFixed": false,
+      "isSticky": false,
+      "name": "signup",
+      "order": 0,
+      "zIndex": 0
+    }
+  ]
+}

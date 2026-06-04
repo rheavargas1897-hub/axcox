@@ -1,0 +1,13 @@
+{
+  "children": [
+    "n36",
+    "n39"
+  ],
+  "height": "44.9902px",
+  "nodeId": "n40",
+  "originalClass": "drawer-item",
+  "selector": "div.el-color-predefine__colors > div.el-color-predefine__color-selector:nth-of-type(4) > div",
+  "styleId": "style_14",
+  "tag": "div",
+  "width": "212.012px"
+}

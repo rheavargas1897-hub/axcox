@@ -1,0 +1,18 @@
+{
+  "bbox": {
+    "height": 45,
+    "left": 1854,
+    "top": 305,
+    "width": 212
+  },
+  "children": [
+    "n221"
+  ],
+  "height": "932.5px",
+  "nodeId": "n222",
+  "originalClass": "sidebar-container has-logo",
+  "selector": "div.drawer-container > div > div.drawer-item:nth-of-type(4)",
+  "styleId": "style_45",
+  "tag": "div",
+  "width": "53.9941px"
+}

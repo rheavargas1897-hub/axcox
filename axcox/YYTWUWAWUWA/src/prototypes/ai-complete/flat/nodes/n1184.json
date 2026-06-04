@@ -1,0 +1,14 @@
+{
+  "bbox": {
+    "height": 0,
+    "left": 0,
+    "top": 0,
+    "width": 1830
+  },
+  "children": [
+    "n1183"
+  ],
+  "nodeId": "n1184",
+  "selector": "div.rightPanel-container",
+  "tag": "root"
+}

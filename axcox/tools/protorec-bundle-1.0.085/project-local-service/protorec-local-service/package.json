@@ -1,0 +1,21 @@
+{
+  "name": "proto-capture-restore-local-service",
+  "version": "1.0.85",
+  "private": true,
+  "description": "Local service for ProtoRec Chrome extension",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js"
+  },
+  "dependencies": {
+    "axios": "^1.14.0",
+    "cheerio": "^1.2.0",
+    "cors": "^2.8.6",
+    "esbuild": "^0.25.3",
+    "express": "^4.22.1",
+    "fs-extra": "^11.3.4",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
+  }
+}

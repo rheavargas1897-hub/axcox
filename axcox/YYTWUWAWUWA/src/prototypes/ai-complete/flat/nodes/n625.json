@@ -1,0 +1,18 @@
+{
+  "bbox": {
+    "height": 50,
+    "left": 54,
+    "top": 0,
+    "width": 50
+  },
+  "children": [
+    "n624"
+  ],
+  "height": "22.998px",
+  "nodeId": "n625",
+  "originalClass": "cell el-tooltip",
+  "selector": "#hamburger-container",
+  "styleId": "style_133",
+  "tag": "div",
+  "width": "110px"
+}

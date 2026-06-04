@@ -1,0 +1,16 @@
+{
+  "bbox": {
+    "height": 56,
+    "left": 0,
+    "top": 610,
+    "width": 53
+  },
+  "height": "22.998px",
+  "nodeId": "n410",
+  "originalClass": "cell",
+  "selector": "ul.el-menu--collapse.el-menu > div:nth-of-type(72) > div > li.el-submenu > div.el-submenu__title:nth-of-type(1)",
+  "styleId": "style_120",
+  "tag": "div",
+  "text": "联系人",
+  "width": "100px"
+}

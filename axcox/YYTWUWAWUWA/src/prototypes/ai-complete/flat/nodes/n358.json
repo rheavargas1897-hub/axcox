@@ -1,0 +1,15 @@
+{
+  "_innerHTML": "<svg data-v-60e7c24b=\"\" data-v-166b75c5=\"\" aria-hidden=\"true\" class=\"svg-icon\" style=\"font-size: 24px; margin-right: 5px;\"><use data-v-60e7c24b=\"\" xlink:href=\"#icon-任务单\"></use></svg> 任务单管理 <div data-v-166b75c5=\"\" style=\"float: right;\"><div data-v-166b75c5=\"\" class=\"el-dropdown\"><button data-v-166b75c5=\"\" type=\"button\" class=\"el-button el-button--primary el-button--small is-plain el-dropdown-selfdefine\" aria-haspopup=\"list\" aria-controls=\"dropdown-menu-2043\" role=\"button\" tabindex=\"0\"><!----><!----><span> 报单导出<i data-v-166b75c5=\"\" class=\"el-icon-arrow-down el-icon--right\"></i></span></button><ul data-v-166b75c5=\"\" class=\"el-dropdown-menu el-popper\" id=\"dropdown-menu-2043\" style=\"display: none;\"><li data-v-166b75c5=\"\" tabindex=\"-1\" class=\"el-dropdown-menu__item\"><!---->产品明细导出</li><li data-v-166b75c5=\"\" tabindex=\"-1\" class=\"el-dropdown-menu__item\"><!---->财务导出</li><li data-v-166b75c5=\"\" tabindex=\"-1\" class=\"el-dropdown-menu__item\"><!---->导出</li></ul></div><button data-v-166b75c5=\"\" type=\"button\" class=\"el-button el-tooltip el-button--info el-button--small is-plain\" aria-describedby=\"el-tooltip-7418\" tabindex=\"0\"><!----><i class=\"el-icon-setting\"></i><span>筛选</span></button></div>",
+  "children": [
+    "n349",
+    "n357"
+  ],
+  "height": "45px",
+  "nodeId": "n358",
+  "originalClass": "head",
+  "selector": "ul.el-menu--collapse.el-menu > div:nth-of-type(70) > div > li.el-submenu > div.el-menu--vertical:nth-of-type(2) > ul.el-menu.el-menu--popup > div.nest-menu:nth-of-type(1)",
+  "styleId": "style_111",
+  "tag": "div",
+  "text": "任务单管理",
+  "width": "1711.26px"
+}

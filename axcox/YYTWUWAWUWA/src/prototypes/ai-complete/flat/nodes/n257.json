@@ -1,0 +1,13 @@
+{
+  "children": [
+    "n249",
+    "n256"
+  ],
+  "height": "31.2402px",
+  "nodeId": "n257",
+  "originalClass": "diplay-justify-spaceBetween",
+  "selector": "ul.el-menu--collapse.el-menu > div:nth-of-type(67) > div > li.el-submenu > div.el-menu--vertical:nth-of-type(2) > ul.el-menu.el-menu--popup > div.nest-menu:nth-of-type(4) > div > a > li.el-menu-item > span",
+  "styleId": "style_75",
+  "tag": "div",
+  "width": "1711.26px"
+}

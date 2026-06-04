@@ -1,0 +1,17 @@
+{
+  "_innerHTML": "<i data-v-166b75c5=\"\" class=\"el-icon-s-custom\"></i>客服2",
+  "bbox": {
+    "height": 20,
+    "left": 1415,
+    "top": 227,
+    "width": 25
+  },
+  "children": [
+    "n823"
+  ],
+  "nodeId": "n824",
+  "selector": "div.el-input.el-input--medium > span.el-input__suffix > span.el-input__suffix-inner",
+  "styleId": "style_148",
+  "tag": "span",
+  "text": "客服2"
+}

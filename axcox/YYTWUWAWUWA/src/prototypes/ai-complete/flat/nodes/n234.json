@@ -1,0 +1,12 @@
+{
+  "children": [
+    "n233"
+  ],
+  "height": "50px",
+  "nodeId": "n234",
+  "originalClass": "right-menu",
+  "selector": "ul.el-menu--collapse.el-menu > div:nth-of-type(67) > div > li.el-submenu > div.el-menu--vertical:nth-of-type(2) > ul.el-menu.el-menu--popup > div.nest-menu:nth-of-type(2)",
+  "styleId": "style_56",
+  "tag": "div",
+  "width": "85.9961px"
+}

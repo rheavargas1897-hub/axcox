@@ -1,0 +1,12 @@
+{
+  "children": [
+    "n1101"
+  ],
+  "height": "22.998px",
+  "nodeId": "n1102",
+  "originalClass": "cell el-tooltip",
+  "selector": "form.el-form.el-form--inline > div.el-row:nth-of-type(3) > div.col-5.el-col:nth-of-type(3) > div.el-form-item.form-margin-r0 > div.el-form-item__content",
+  "styleId": "style_133",
+  "tag": "div",
+  "width": "110px"
+}

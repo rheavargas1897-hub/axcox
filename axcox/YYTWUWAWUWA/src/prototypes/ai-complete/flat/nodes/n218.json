@@ -1,0 +1,15 @@
+{
+  "bbox": {
+    "height": 56,
+    "left": 0,
+    "top": 330,
+    "width": 53
+  },
+  "height": "0px",
+  "nodeId": "n218",
+  "originalClass": "el-scrollbar__thumb",
+  "selector": "ul.el-menu--collapse.el-menu > div:nth-of-type(67)",
+  "styleId": "style_42",
+  "tag": "div",
+  "width": "5.99609px"
+}

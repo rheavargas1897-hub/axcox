@@ -19,6 +19,9 @@
  *   跳过构建校验：
  *   node scripts/check-app-ready.mjs --skip-build /prototypes/ref-app-home
  *
+ *   跳过类型校验（用于只验证页面/服务器/WebSocket）：
+ *   node scripts/check-app-ready.mjs --skip-typecheck --skip-build /prototypes/ref-app-home
+ *
  * 输出（JSON）：
  * {
  *   status: "READY" | "ERROR" | "TIMEOUT",
@@ -44,6 +47,7 @@ import process from 'node:process'
 import fs from 'node:fs'
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
+import { WebSocket } from 'ws'
 import { decodeOutput, getPreferredNpmCommand, getPreferredNpxCommand } from './utils/command-runtime.mjs'
 
 const __filename = fileURLToPath(import.meta.url)
@@ -54,6 +58,7 @@ const APP_ROOT = path.resolve(__dirname, '..')
 // 解析命令行参数
 const args = process.argv.slice(2);
 const skipBuild = args.includes('--skip-build');
+const skipTypecheck = args.includes('--skip-typecheck');
 const pagePath = args.find(arg => !arg.startsWith('--')) || '/';
 
 const CONFIG = {
@@ -63,11 +68,16 @@ const CONFIG = {
   pollIntervalMs: 500,              // 页面轮询间隔
   stableCheckMs: 1000,              // 错误稳定判断时间
   timeoutMs: 30_000,                // 总超时
-  skipBuild                         // 是否跳过构建校验
+  serverInfoWaitMs: 10_000,         // 等待开发服务器端口信息生成
+  serverInfoPollIntervalMs: 500,    // 端口信息轮询间隔
+  serverHealthTimeoutMs: 1200,      // /api/health 验活超时
+  websocketTimeoutMs: 1500,         // /ws 握手与 ping/pong 超时
+  skipBuild,                        // 是否跳过构建校验
+  skipTypecheck                     // 是否跳过类型校验
 }
 
 /* ================= 工具函数 ================= */
-function jsonExit(payload, code = 0) {
+export function jsonExit(payload, code = 0) {
   process.stdout.write(JSON.stringify(payload, null, 2))
   process.exit(code)
 }
@@ -110,7 +120,7 @@ async function checkPageForErrors(url) {
   }
 }
 
-async function isServerAlive(url) {
+export async function isServerAlive(url) {
   try {
     const res = await fetch(url, { method: 'GET' })
     return res.ok
@@ -119,14 +129,16 @@ async function isServerAlive(url) {
   }
 }
 
-/**
- * 读取开发服务器信息
- * 优先从 .axhub/make/.dev-server-info.json 读取实际运行的端口
- */
-function getServerInfo() {
+function normalizeProjectRoot(value) {
+  if (typeof value !== 'string' || !value.trim()) return null
+  return path.resolve(value)
+}
+
+function readServerInfoFile(options = {}) {
+  const devServerInfoPath = options.devServerInfoPath || CONFIG.devServerInfoPath
   try {
-    if (fs.existsSync(CONFIG.devServerInfoPath)) {
-      const info = JSON.parse(fs.readFileSync(CONFIG.devServerInfoPath, 'utf8'))
+    if (fs.existsSync(devServerInfoPath)) {
+      const info = JSON.parse(fs.readFileSync(devServerInfoPath, 'utf8'))
       return {
         port: info.port,
         host: info.host || 'localhost',
@@ -145,7 +157,7 @@ function getServerInfo() {
  * 生成服务器首页 URL
  * 使用 localhost 而不是 0.0.0.0，因为浏览器无法访问 0.0.0.0
  */
-function getHomeUrl(serverInfo) {
+export function getHomeUrl(serverInfo) {
   // 如果 host 是 0.0.0.0，使用 localhost 替代
   const host = serverInfo.host === '0.0.0.0' ? 'localhost' : serverInfo.host
   return `http://${host}:${serverInfo.port}`
@@ -155,20 +167,172 @@ function getHomeUrl(serverInfo) {
  * 获取可访问的 host
  * 将 0.0.0.0 转换为 localhost，因为浏览器无法直接访问 0.0.0.0
  */
-function getAccessibleHost(serverInfo) {
+export function getAccessibleHost(serverInfo) {
   return serverInfo.host === '0.0.0.0' ? 'localhost' : serverInfo.host
 }
 
-function getTargetUrl(serverInfo, targetPath) {
+export function getTargetUrl(serverInfo, targetPath) {
   const host = getAccessibleHost(serverInfo)
   return `http://${host}:${serverInfo.port}${targetPath}`
 }
 
-function getEntryHtmlPath(targetPath) {
+export function getEntryHtmlPath(targetPath) {
   const normalized = targetPath.startsWith('/') ? targetPath : `/${targetPath}`
   if (normalized.endsWith('.html')) return normalized
   if (normalized.endsWith('/')) return `${normalized}index.html`
   return `${normalized}/index.html`
+}
+
+async function fetchJsonWithTimeout(url, timeoutMs) {
+  const controller = new AbortController()
+  const timeout = setTimeout(() => controller.abort(), timeoutMs)
+  try {
+    const res = await fetch(url, {
+      method: 'GET',
+      headers: { accept: 'application/json' },
+      signal: controller.signal
+    })
+    if (!res.ok) {
+      return { ok: false, reason: `health returned ${res.status}` }
+    }
+    return { ok: true, body: await res.json() }
+  } catch (err) {
+    return { ok: false, reason: err?.name === 'AbortError' ? 'health timed out' : err?.message || String(err) }
+  } finally {
+    clearTimeout(timeout)
+  }
+}
+
+export async function validateRuntimeServerInfo(serverInfo, options = {}) {
+  if (!serverInfo) {
+    return { ok: false, reason: 'missing server info' }
+  }
+
+  const timeoutMs = options.timeoutMs ?? CONFIG.serverHealthTimeoutMs
+  const expectedProjectRoot = normalizeProjectRoot(options.projectRoot || APP_ROOT)
+  const healthUrl = `${getHomeUrl(serverInfo)}/api/health`
+  const health = await fetchJsonWithTimeout(healthUrl, timeoutMs)
+  if (!health.ok) {
+    return { ok: false, reason: health.reason }
+  }
+
+  const payload = health.body
+  const role = payload?.role
+  const healthProjectRoot = normalizeProjectRoot(payload?.projectRoot || payload?.server?.projectRoot)
+  if (role !== 'runtime') {
+    return { ok: false, reason: `health role is ${role || 'missing'}` }
+  }
+  if (!healthProjectRoot || healthProjectRoot !== expectedProjectRoot) {
+    return { ok: false, reason: 'health project root mismatch' }
+  }
+
+  return { ok: true, health: payload }
+}
+
+/**
+ * 读取并验证开发服务器信息。
+ * 只有 .dev-server-info.json 指向仍存活、且属于当前项目的 runtime 服务时才复用。
+ */
+export async function getServerInfo(options = {}) {
+  const info = readServerInfoFile(options)
+  if (!info || options.validate === false) return info
+
+  const validation = await validateRuntimeServerInfo(info, {
+    projectRoot: options.projectRoot,
+    timeoutMs: options.timeoutMs
+  })
+  if (validation.ok) return info
+
+  const targetLogs = options.logs || logs
+  targetLogs.push(`Ignoring stale dev server info: ${validation.reason}`)
+  return null
+}
+
+export async function waitForServerInfo(options = {}) {
+  const timeoutMs = options.timeoutMs ?? CONFIG.serverInfoWaitMs
+  const pollIntervalMs = options.pollIntervalMs ?? CONFIG.serverInfoPollIntervalMs
+  const startedAt = Date.now()
+
+  while (Date.now() - startedAt < timeoutMs) {
+    const info = await getServerInfo(options)
+    if (info) return info
+    await sleep(pollIntervalMs)
+  }
+
+  return null
+}
+
+function waitForSocketMessage(ws, expectedType, timeoutMs) {
+  return new Promise((resolve, reject) => {
+    const timeout = setTimeout(() => {
+      cleanup()
+      reject(new Error(`Timed out waiting for WebSocket ${expectedType}`))
+    }, timeoutMs)
+
+    const onMessage = (raw) => {
+      let payload
+      try {
+        payload = JSON.parse(String(raw))
+      } catch {
+        cleanup()
+        reject(new Error('WebSocket returned invalid JSON'))
+        return
+      }
+
+      if (payload?.type === expectedType) {
+        cleanup()
+        resolve(payload)
+      }
+    }
+
+    const onError = (err) => {
+      cleanup()
+      reject(err)
+    }
+
+    const onClose = () => {
+      cleanup()
+      reject(new Error('WebSocket closed before readiness check completed'))
+    }
+
+    const cleanup = () => {
+      clearTimeout(timeout)
+      ws.off('message', onMessage)
+      ws.off('error', onError)
+      ws.off('close', onClose)
+    }
+
+    ws.on('message', onMessage)
+    ws.on('error', onError)
+    ws.on('close', onClose)
+  })
+}
+
+export async function checkWebSocketReady(serverInfo, options = {}) {
+  const timeoutMs = options.timeoutMs ?? CONFIG.websocketTimeoutMs
+  const WebSocketClass = options.WebSocketClass || WebSocket
+  const host = getAccessibleHost(serverInfo)
+  const wsUrl = `ws://${host}:${serverInfo.port}/ws?client=check-app-ready`
+  let ws
+
+  try {
+    ws = new WebSocketClass(wsUrl)
+    const connected = await waitForSocketMessage(ws, 'connected', timeoutMs)
+    const pongPromise = waitForSocketMessage(ws, 'pong', timeoutMs)
+    ws.send(JSON.stringify({ type: 'ping' }))
+    const pong = await pongPromise
+    return { ok: true, url: wsUrl, connected, pong }
+  } catch (err) {
+    return {
+      ok: false,
+      url: wsUrl,
+      error: err?.message || String(err)
+    }
+  } finally {
+    if (ws && ws.readyState === WebSocketClass.OPEN) {
+      ws.close()
+    }
+  }
 }
 
 /* ================= 全局状态 ================= */
@@ -688,7 +852,7 @@ function getEntryKeyFromPath(pagePath) {
 async function main() {
   try {
     // 获取服务器信息
-    const serverInfo = getServerInfo()
+    const serverInfo = await getServerInfo()
 
     // 如果没有端口信息，等待服务器启动
     if (!serverInfo) {
@@ -697,15 +861,7 @@ async function main() {
       const viteProcess = startOrAttachVite()
 
       // 等待 .axhub/make/.dev-server-info.json 文件生成
-      const maxWait = 10000 // 10秒
-      const startTime = Date.now()
-      let newServerInfo = null
-
-      while (Date.now() - startTime < maxWait) {
-        await new Promise(resolve => setTimeout(resolve, 500))
-        newServerInfo = getServerInfo()
-        if (newServerInfo) break
-      }
+      const newServerInfo = await waitForServerInfo()
 
       if (!newServerInfo) {
         return jsonExit(addUrls({
@@ -738,7 +894,7 @@ async function main() {
       await continueWithServerInfo(serverInfo, pageUrl, null)
     }
   } catch (err) {
-    const serverInfo = getServerInfo()
+    const serverInfo = await getServerInfo({ validate: false })
     jsonExit(addUrls({
       status: 'ERROR',
       phase: 'server',
@@ -767,20 +923,31 @@ async function continueWithServerInfo(serverInfo, pageUrl, viteProcess) {
       }, serverInfo), 1)
     }
 
-    // 步骤 2: 执行 typecheck 检查
-    const typeCheckResult = await runTypeCheck()
-    if (typeCheckResult.status === 'FAILED') {
-      return jsonExit(addUrls({
-        status: 'ERROR',
-        phase: 'typecheck',
-        message: typeCheckResult.message,
-        url: pageUrl,
-        errors: typeCheckResult.errors,
-        logs,
-        lintCheck: lintResult,
-        typeCheck: typeCheckResult,
-        checks: buildChecksSummary({ lintResult, typeCheckResult })
-      }, serverInfo), 1)
+    // 步骤 2: 执行 typecheck 检查（除非指定 --skip-typecheck）
+    let typeCheckResult = null
+    if (!CONFIG.skipTypecheck) {
+      typeCheckResult = await runTypeCheck()
+      if (typeCheckResult.status === 'FAILED') {
+        return jsonExit(addUrls({
+          status: 'ERROR',
+          phase: 'typecheck',
+          message: typeCheckResult.message,
+          url: pageUrl,
+          errors: typeCheckResult.errors,
+          logs,
+          lintCheck: lintResult,
+          typeCheck: typeCheckResult,
+          checks: buildChecksSummary({ lintResult, typeCheckResult })
+        }, serverInfo), 1)
+      }
+    } else {
+      logs.push('Typecheck skipped (--skip-typecheck flag)')
+      typeCheckResult = {
+        status: 'SKIPPED',
+        message: 'Typecheck skipped (--skip-typecheck flag)',
+        errors: [],
+        logs: []
+      }
     }
 
     // 步骤 3: 执行构建校验（除非指定 --skip-build）
@@ -816,39 +983,81 @@ async function continueWithServerInfo(serverInfo, pageUrl, viteProcess) {
     }
 
     // 步骤 4: 开发服务器校验
-    const accessibleHost = getAccessibleHost(serverInfo)
+    let activeServerInfo = serverInfo
+    let activePageUrl = pageUrl
+    const accessibleHost = getAccessibleHost(activeServerInfo)
 
     // 检查服务器是否已经在运行
-    const serverAlreadyRunning = await isServerAlive(`http://${accessibleHost}:${serverInfo.port}`)
+    const serverAlreadyRunning = await isServerAlive(`http://${accessibleHost}:${activeServerInfo.port}`)
 
     let viteChild = viteProcess
     if (!serverAlreadyRunning && !viteChild) {
       logs.push('Server not running, starting Vite...')
       viteChild = startOrAttachVite()
+      const refreshedServerInfo = await waitForServerInfo()
+      if (!refreshedServerInfo) {
+        if (viteChild) viteChild.kill()
+        return jsonExit(addUrls({
+          status: 'ERROR',
+          phase: 'server',
+          message: 'Server failed to start - no fresh port information available',
+          url: CONFIG.pagePath,
+          errors: ['Server did not write reachable port information within timeout'],
+          logs,
+          buildCheck: buildResult,
+          lintCheck: lintResult,
+          typeCheck: typeCheckResult,
+          checks: buildChecksSummary({ lintResult, typeCheckResult, buildResult })
+        }, null), 1)
+      }
+      activeServerInfo = refreshedServerInfo
+      activePageUrl = getTargetUrl(activeServerInfo, CONFIG.pagePath)
+      logs.push(`Refreshed target URL: ${activePageUrl}`)
+      logs.push(`Refreshed server info: port=${activeServerInfo.port}, host=${activeServerInfo.host}`)
     } else {
       logs.push('Server already running, skipping start')
     }
 
     // 等待页面可访问
-    const pageReachable = await waitForPage(pageUrl)
+    const pageReachable = await waitForPage(activePageUrl)
     if (!pageReachable) {
       if (viteChild) viteChild.kill()
       return jsonExit(addUrls({
         status: 'TIMEOUT',
         phase: 'page',
         message: 'Page never became reachable',
-        url: pageUrl,
+        url: activePageUrl,
         errors,
         logs,
         buildCheck: buildResult,
         lintCheck: lintResult,
         typeCheck: typeCheckResult,
         checks: buildChecksSummary({ lintResult, typeCheckResult, buildResult })
-      }, serverInfo), 1)
+      }, activeServerInfo), 1)
     }
 
+    const websocketResult = await checkWebSocketReady(activeServerInfo)
+    logs.push(`WebSocket readiness check: ${websocketResult.url}`)
+    if (!websocketResult.ok) {
+      if (viteChild) viteChild.kill()
+      return jsonExit(addUrls({
+        status: 'ERROR',
+        phase: 'websocket',
+        message: 'Make WebSocket service is not ready',
+        url: activePageUrl,
+        errors: [websocketResult.error],
+        logs,
+        buildCheck: buildResult,
+        lintCheck: lintResult,
+        typeCheck: typeCheckResult,
+        checks: buildChecksSummary({ lintResult, typeCheckResult, buildResult }),
+        websocketUrl: websocketResult.url
+      }, activeServerInfo), 1)
+    }
+    logs.push('WebSocket readiness confirmed: connected + pong')
+
     // 等待稳定状态
-    const result = await waitForStable(pageUrl)
+    const result = await waitForStable(activePageUrl)
 
     // 清理进程
     if (viteChild) viteChild.kill()
@@ -862,7 +1071,7 @@ async function continueWithServerInfo(serverInfo, pageUrl, viteProcess) {
       checks: buildChecksSummary({ lintResult, typeCheckResult, buildResult })
     }
 
-    jsonExit(addUrls(finalResult, serverInfo), result.status === 'READY' ? 0 : 1)
+    jsonExit(addUrls(finalResult, activeServerInfo), result.status === 'READY' ? 0 : 1)
   } catch (err) {
     jsonExit(addUrls({
       status: 'ERROR',
@@ -875,4 +1084,6 @@ async function continueWithServerInfo(serverInfo, pageUrl, viteProcess) {
   }
 }
 
-main()
+if (process.argv[1] && path.resolve(process.argv[1]) === __filename) {
+  main()
+}

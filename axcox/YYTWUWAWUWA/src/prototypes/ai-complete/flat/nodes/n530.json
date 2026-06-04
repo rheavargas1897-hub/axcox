@@ -1,0 +1,12 @@
+{
+  "children": [
+    "n529"
+  ],
+  "height": "22.998px",
+  "nodeId": "n530",
+  "originalClass": "cell",
+  "selector": "ul.el-menu--collapse.el-menu > div:nth-of-type(74) > div > li.el-submenu > div.el-menu--vertical:nth-of-type(2) > ul.el-menu.el-menu--popup > div.nest-menu:nth-of-type(11)",
+  "styleId": "style_129",
+  "tag": "div",
+  "width": "50px"
+}

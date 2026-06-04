@@ -1,0 +1,16 @@
+{
+  "bbox": {
+    "height": 56,
+    "left": 0,
+    "top": 610,
+    "width": 53
+  },
+  "height": "22.998px",
+  "nodeId": "n406",
+  "originalClass": "cell",
+  "selector": "ul.el-menu--collapse.el-menu > div:nth-of-type(72) > div",
+  "styleId": "style_120",
+  "tag": "div",
+  "text": "所属公司",
+  "width": "180px"
+}

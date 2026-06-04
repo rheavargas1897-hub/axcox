@@ -1,0 +1,12 @@
+{
+  "children": [
+    "n619"
+  ],
+  "height": "50.625px",
+  "nodeId": "n620",
+  "originalClass": "el-table_1_column_7 el-table__cell",
+  "selector": "div.el-scrollbar.theme-light > div.el-scrollbar__bar.is-horizontal:nth-of-type(2) > div.el-scrollbar__thumb",
+  "styleId": "style_134",
+  "tag": "td",
+  "width": "110px"
+}

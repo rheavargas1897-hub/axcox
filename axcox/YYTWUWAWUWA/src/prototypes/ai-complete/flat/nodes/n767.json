@@ -1,0 +1,13 @@
+{
+  "bbox": {
+    "height": 25,
+    "left": 1557,
+    "top": 163,
+    "width": 23
+  },
+  "nodeId": "n767",
+  "selector": "form.el-form.el-form--inline > div.el-row:nth-of-type(1) > div.col-5.el-col:nth-of-type(5) > div.el-form-item.form-margin-r0 > div.el-form-item__content > div.el-date-editor.el-range-editor > i.el-input__icon.el-range__icon:nth-of-type(1)",
+  "styleId": "style_148",
+  "tag": "span",
+  "text": "广东羊城之旅旅游运输有限公司"
+}

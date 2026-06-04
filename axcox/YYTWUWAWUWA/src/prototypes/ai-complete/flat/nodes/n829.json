@@ -1,0 +1,18 @@
+{
+  "bbox": {
+    "height": 36,
+    "left": 1209,
+    "top": 219,
+    "width": 236
+  },
+  "children": [
+    "n828"
+  ],
+  "height": "50.625px",
+  "nodeId": "n829",
+  "originalClass": "el-table_1_column_8 el-table__cell",
+  "selector": "div.el-input.el-input--medium > input.el-input__inner",
+  "styleId": "style_134",
+  "tag": "td",
+  "width": "110px"
+}

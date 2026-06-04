@@ -1,0 +1,9 @@
+{
+  "height": "20px",
+  "nodeId": "n28",
+  "originalClass": "el-switch__core",
+  "selector": "div.el-color-predefine__colors > div.el-color-predefine__color-selector:nth-of-type(1) > div",
+  "styleId": "style_20",
+  "tag": "span",
+  "width": "40px"
+}

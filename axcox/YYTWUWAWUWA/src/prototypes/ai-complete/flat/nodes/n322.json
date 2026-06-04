@@ -1,0 +1,18 @@
+{
+  "bbox": {
+    "height": 12,
+    "left": 21,
+    "top": 463,
+    "width": 12
+  },
+  "children": [
+    "n321"
+  ],
+  "height": "40.625px",
+  "nodeId": "n322",
+  "originalClass": "el-form-item__content",
+  "selector": "ul.el-menu--collapse.el-menu > div:nth-of-type(69) > div > li.el-submenu > div.el-submenu__title:nth-of-type(1) > i.el-submenu__icon-arrow.el-icon-arrow-right",
+  "styleId": "style_79",
+  "tag": "div",
+  "width": "236.143px"
+}

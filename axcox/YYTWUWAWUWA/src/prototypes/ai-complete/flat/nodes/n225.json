@@ -1,0 +1,10 @@
+{
+  "height": "50px",
+  "id": "breadcrumb-container",
+  "nodeId": "n225",
+  "originalClass": "el-breadcrumb app-breadcrumb breadcrumb-container",
+  "selector": "ul.el-menu--collapse.el-menu > div:nth-of-type(67) > div > li.el-submenu > div.el-menu--vertical:nth-of-type(2) > ul.el-menu.el-menu--popup > div.nest-menu:nth-of-type(1)",
+  "styleId": "style_47",
+  "tag": "div",
+  "width": "109.004px"
+}

@@ -1,0 +1,10 @@
+{
+  "height": "40px",
+  "nodeId": "n325",
+  "originalClass": "el-form-item__label",
+  "selector": "ul.el-menu--collapse.el-menu > div:nth-of-type(69) > div > li.el-submenu > div.el-menu--vertical:nth-of-type(2) > ul.el-menu.el-menu--popup > div.nest-menu:nth-of-type(2) > div > a",
+  "styleId": "style_76",
+  "tag": "label",
+  "text": "所属公司",
+  "width": "100px"
+}

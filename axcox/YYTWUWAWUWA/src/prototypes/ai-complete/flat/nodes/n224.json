@@ -1,0 +1,13 @@
+{
+  "children": [
+    "n223"
+  ],
+  "height": "50px",
+  "id": "hamburger-container",
+  "nodeId": "n224",
+  "originalClass": "hamburger-container",
+  "selector": "ul.el-menu--collapse.el-menu > div:nth-of-type(67) > div > li.el-submenu > div.el-menu--vertical:nth-of-type(2)",
+  "styleId": "style_46",
+  "tag": "div",
+  "width": "50px"
+}

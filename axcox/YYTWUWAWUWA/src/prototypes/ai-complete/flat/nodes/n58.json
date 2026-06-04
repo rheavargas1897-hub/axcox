@@ -1,0 +1,16 @@
+{
+  "bbox": {
+    "height": 20,
+    "left": 1854,
+    "top": 317,
+    "width": 111
+  },
+  "height": "25.9961px",
+  "nodeId": "n58",
+  "originalClass": "sidebar-logo",
+  "selector": "div.drawer-container > div > div.drawer-item:nth-of-type(4) > span",
+  "src": "assets/images/wcAsfXfPHQujpAAAAAASUVORK5CYII.png",
+  "styleId": "style_30",
+  "tag": "img",
+  "width": "25.9961px"
+}

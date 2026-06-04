@@ -1,0 +1,15 @@
+{
+  "custom": {
+    "border": "0px none rgb(0, 0, 0)",
+    "borderColor": "rgb(0, 0, 0)",
+    "color": "rgb(0, 0, 0)",
+    "fontFamily": "element-icons",
+    "fontSize": "16px",
+    "minHeight": "0px",
+    "minWidth": "0px",
+    "textAlign": "start",
+    "textOverflow": "clip"
+  },
+  "styleId": "style_49",
+  "tw": "inline-block static font-normal leading-none border-0 visible cursor-pointer m-0 p-0 overflow-visible"
+}

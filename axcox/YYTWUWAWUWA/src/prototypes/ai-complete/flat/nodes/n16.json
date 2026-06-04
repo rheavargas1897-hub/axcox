@@ -1,0 +1,18 @@
+{
+  "bbox": {
+    "height": 26,
+    "left": 2032,
+    "top": 141,
+    "width": 26
+  },
+  "children": [
+    "n15"
+  ],
+  "height": "25.9961px",
+  "nodeId": "n16",
+  "originalClass": "theme-picker el-color-picker",
+  "selector": "div.el-color-picker__trigger",
+  "styleId": "style_13",
+  "tag": "div",
+  "width": "25.9961px"
+}

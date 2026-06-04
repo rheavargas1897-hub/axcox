@@ -1,0 +1,13 @@
+{
+  "children": [
+    "n661",
+    "n662"
+  ],
+  "height": "16.123px",
+  "nodeId": "n663",
+  "originalClass": "el-checkbox__input",
+  "selector": "i.el-icon-refresh-right",
+  "styleId": "style_116",
+  "tag": "span",
+  "width": "13.9941px"
+}

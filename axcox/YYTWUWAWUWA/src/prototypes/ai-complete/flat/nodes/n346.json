@@ -1,0 +1,19 @@
+{
+  "bbox": {
+    "height": 12,
+    "left": 21,
+    "top": 407,
+    "width": 12
+  },
+  "children": [
+    "n301",
+    "n345"
+  ],
+  "height": "125.234px",
+  "nodeId": "n346",
+  "originalClass": "el-form el-form--inline",
+  "selector": "ul.el-menu--collapse.el-menu > div:nth-of-type(68) > div > li.el-submenu > div.el-submenu__title:nth-of-type(1) > i.el-submenu__icon-arrow.el-icon-arrow-right",
+  "styleId": "style_100",
+  "tag": "form",
+  "width": "1711.26px"
+}

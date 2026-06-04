@@ -1,0 +1,584 @@
+{
+  "links": [
+    {
+      "href": "https://www.uukache.com/",
+      "selector": "a.sidebar-logo-link.router-link-active",
+      "type": "a",
+      "visible": true
+    },
+    {
+      "href": "https://www.uukache.com/workbench/index",
+      "selector": "ul.el-menu--collapse.el-menu > div:nth-of-type(61) > div > a",
+      "type": "a",
+      "visible": true
+    },
+    {
+      "href": "https://www.uukache.com/index",
+      "selector": "ul.el-menu--collapse.el-menu > div:nth-of-type(62) > div > a",
+      "type": "a",
+      "visible": true
+    },
+    {
+      "href": "https://www.uukache.com/annualFeeExpireNotif/index",
+      "selector": "ul.el-menu--collapse.el-menu > div:nth-of-type(63) > div > a",
+      "type": "a",
+      "visible": true
+    },
+    {
+      "href": "https://www.uukache.com/order/info",
+      "selector": "ul.el-menu--collapse.el-menu > div:nth-of-type(64) > div > li.el-submenu > div.el-menu--vertical:nth-of-type(2) > ul.el-menu.el-menu--popup > div.nest-menu:nth-of-type(1) > div > a",
+      "text": "销售单管理",
+      "type": "a",
+      "visible": false
+    },
+    {
+      "href": "https://www.uukache.com/order/afterinfo",
+      "selector": "ul.el-menu--collapse.el-menu > div:nth-of-type(64) > div > li.el-submenu > div.el-menu--vertical:nth-of-type(2) > ul.el-menu.el-menu--popup > div.nest-menu:nth-of-type(3) > div > a",
+      "text": "售后单管理",
+      "type": "a",
+      "visible": false
+    },
+    {
+      "href": "https://www.uukache.com/order/monitor",
+      "selector": "ul.el-menu--collapse.el-menu > div:nth-of-type(64) > div > li.el-submenu > div.el-menu--vertical:nth-of-type(2) > ul.el-menu.el-menu--popup > div.nest-menu:nth-of-type(4) > div > a",
+      "text": "监控订单管理",
+      "type": "a",
+      "visible": false
+    },
+    {
+      "href": "https://www.uukache.com/order/license",
+      "selector": "ul.el-menu--collapse.el-menu > div:nth-of-type(64) > div > li.el-submenu > div.el-menu--vertical:nth-of-type(2) > ul.el-menu.el-menu--popup > div.nest-menu:nth-of-type(5) > div > a",
+      "text": "营运相片1",
+      "type": "a",
+      "visible": false
+    },
+    {
+      "href": "https://www.uukache.com/order/certificate",
+      "selector": "ul.el-menu--collapse.el-menu > div:nth-of-type(64) > div > li.el-submenu > div.el-menu--vertical:nth-of-type(2) > ul.el-menu.el-menu--popup > div.nest-menu:nth-of-type(6) > div > a",
+      "text": "从业证订单",
+      "type": "a",
+      "visible": false
+    },
+    {
+      "href": "https://www.uukache.com/order/workStatistics",
+      "selector": "ul.el-menu--collapse.el-menu > div:nth-of-type(64) > div > li.el-submenu > div.el-menu--vertical:nth-of-type(2) > ul.el-menu.el-menu--popup > div.nest-menu:nth-of-type(8) > div > a",
+      "text": "任务进度",
+      "type": "a",
+      "visible": false
+    },
+    {
+      "href": "https://www.uukache.com/service/index",
+      "selector": "ul.el-menu--collapse.el-menu > div:nth-of-type(66) > div > a",
+      "type": "a",
+      "visible": true
+    },
+    {
+      "href": "https://www.uukache.com/stock/purchaseOrder",
+      "selector": "ul.el-menu--collapse.el-menu > div:nth-of-type(67) > div > li.el-submenu > div.el-menu--vertical:nth-of-type(2) > ul.el-menu.el-menu--popup > div.nest-menu:nth-of-type(1) > div > a",
+      "text": "采购单",
+      "type": "a",
+      "visible": false
+    },
+    {
+      "href": "https://www.uukache.com/stock/actual",
+      "selector": "ul.el-menu--collapse.el-menu > div:nth-of-type(67) > div > li.el-submenu > div.el-menu--vertical:nth-of-type(2) > ul.el-menu.el-menu--popup > div.nest-menu:nth-of-type(2) > div > a",
+      "text": "库存统计",
+      "type": "a",
+      "visible": false
+    },
+    {
+      "href": "https://www.uukache.com/stock/inventoryControl",
+      "selector": "ul.el-menu--collapse.el-menu > div:nth-of-type(67) > div > li.el-submenu > div.el-menu--vertical:nth-of-type(2) > ul.el-menu.el-menu--popup > div.nest-menu:nth-of-type(3) > div > a",
+      "text": "出入库管理",
+      "type": "a",
+      "visible": false
+    },
+    {
+      "href": "https://www.uukache.com/stock/testQquipment",
+      "selector": "ul.el-menu--collapse.el-menu > div:nth-of-type(67) > div > li.el-submenu > div.el-menu--vertical:nth-of-type(2) > ul.el-menu.el-menu--popup > div.nest-menu:nth-of-type(4) > div > a",
+      "text": "设备检测",
+      "type": "a",
+      "visible": false
+    },
+    {
+      "href": "https://www.uukache.com/finance/receipt",
+      "selector": "ul.el-menu--collapse.el-menu > div:nth-of-type(68) > div > li.el-submenu > div.el-menu--vertical:nth-of-type(2) > ul.el-menu.el-menu--popup > div.nest-menu:nth-of-type(1) > div > a",
+      "text": "收款单管理",
+      "type": "a",
+      "visible": false
+    },
+    {
+      "href": "https://www.uukache.com/finance/fluctuation",
+      "selector": "ul.el-menu--collapse.el-menu > div:nth-of-type(68) > div > li.el-submenu > div.el-menu--vertical:nth-of-type(2) > ul.el-menu.el-menu--popup > div.nest-menu:nth-of-type(2) > div > a",
+      "text": "调整单管理",
+      "type": "a",
+      "visible": false
+    },
+    {
+      "href": "https://www.uukache.com/finance/payment",
+      "selector": "ul.el-menu--collapse.el-menu > div:nth-of-type(68) > div > li.el-submenu > div.el-menu--vertical:nth-of-type(2) > ul.el-menu.el-menu--popup > div.nest-menu:nth-of-type(3) > div > a",
+      "text": "退付款单管理",
+      "type": "a",
+      "visible": false
+    },
+    {
+      "href": "https://www.uukache.com/finance/coupon",
+      "selector": "ul.el-menu--collapse.el-menu > div:nth-of-type(68) > div > li.el-submenu > div.el-menu--vertical:nth-of-type(2) > ul.el-menu.el-menu--popup > div.nest-menu:nth-of-type(4) > div > a",
+      "text": "优惠卷管理",
+      "type": "a",
+      "visible": false
+    },
+    {
+      "href": "https://www.uukache.com/finance/balance",
+      "selector": "ul.el-menu--collapse.el-menu > div:nth-of-type(68) > div > li.el-submenu > div.el-menu--vertical:nth-of-type(2) > ul.el-menu.el-menu--popup > div.nest-menu:nth-of-type(5) > div > a",
+      "text": "余额管理",
+      "type": "a",
+      "visible": false
+    },
+    {
+      "href": "https://www.uukache.com/finance/price",
+      "selector": "ul.el-menu--collapse.el-menu > div:nth-of-type(68) > div > li.el-submenu > div.el-menu--vertical:nth-of-type(2) > ul.el-menu.el-menu--popup > div.nest-menu:nth-of-type(7) > div > a",
+      "text": "产品价格管理",
+      "type": "a",
+      "visible": false
+    },
+    {
+      "href": "https://www.uukache.com/finance/account",
+      "selector": "ul.el-menu--collapse.el-menu > div:nth-of-type(68) > div > li.el-submenu > div.el-menu--vertical:nth-of-type(2) > ul.el-menu.el-menu--popup > div.nest-menu:nth-of-type(8) > div > a",
+      "text": "资金账户管理",
+      "type": "a",
+      "visible": false
+    },
+    {
+      "href": "https://www.uukache.com/finance/contract",
+      "selector": "ul.el-menu--collapse.el-menu > div:nth-of-type(68) > div > li.el-submenu > div.el-menu--vertical:nth-of-type(2) > ul.el-menu.el-menu--popup > div.nest-menu:nth-of-type(9) > div > a",
+      "text": "合同管理",
+      "type": "a",
+      "visible": false
+    },
+    {
+      "href": "https://www.uukache.com/finance/project",
+      "selector": "ul.el-menu--collapse.el-menu > div:nth-of-type(68) > div > li.el-submenu > div.el-menu--vertical:nth-of-type(2) > ul.el-menu.el-menu--popup > div.nest-menu:nth-of-type(10) > div > a",
+      "text": "提成方案配置",
+      "type": "a",
+      "visible": false
+    },
+    {
+      "href": "https://www.uukache.com/finance/baddebt",
+      "selector": "ul.el-menu--collapse.el-menu > div:nth-of-type(68) > div > li.el-submenu > div.el-menu--vertical:nth-of-type(2) > ul.el-menu.el-menu--popup > div.nest-menu:nth-of-type(11) > div > a",
+      "text": "坏账单管理",
+      "type": "a",
+      "visible": false
+    },
+    {
+      "href": "https://www.uukache.com/carmanage/car",
+      "selector": "ul.el-menu--collapse.el-menu > div:nth-of-type(69) > div > li.el-submenu > div.el-menu--vertical:nth-of-type(2) > ul.el-menu.el-menu--popup > div.nest-menu:nth-of-type(1) > div > a",
+      "text": "车辆管理",
+      "type": "a",
+      "visible": false
+    },
+    {
+      "href": "https://www.uukache.com/carmanage/logOutCar",
+      "selector": "ul.el-menu--collapse.el-menu > div:nth-of-type(69) > div > li.el-submenu > div.el-menu--vertical:nth-of-type(2) > ul.el-menu.el-menu--popup > div.nest-menu:nth-of-type(2) > div > a",
+      "text": "注销车辆管理",
+      "type": "a",
+      "visible": false
+    },
+    {
+      "href": "https://www.uukache.com/carmanage/carCheck",
+      "selector": "ul.el-menu--collapse.el-menu > div:nth-of-type(69) > div > li.el-submenu > div.el-menu--vertical:nth-of-type(2) > ul.el-menu.el-menu--popup > div.nest-menu:nth-of-type(3) > div > a",
+      "text": "车辆整改99+",
+      "type": "a",
+      "visible": false
+    },
+    {
+      "href": "https://www.uukache.com/carmanage/chelian",
+      "selector": "ul.el-menu--collapse.el-menu > div:nth-of-type(69) > div > li.el-submenu > div.el-menu--vertical:nth-of-type(2) > ul.el-menu.el-menu--popup > div.nest-menu:nth-of-type(4) > div > a",
+      "text": "车联车辆",
+      "type": "a",
+      "visible": false
+    },
+    {
+      "href": "https://www.uukache.com/operating/banner",
+      "selector": "ul.el-menu--collapse.el-menu > div:nth-of-type(70) > div > li.el-submenu > div.el-menu--vertical:nth-of-type(2) > ul.el-menu.el-menu--popup > div.nest-menu:nth-of-type(1) > div > a",
+      "text": "banner图",
+      "type": "a",
+      "visible": false
+    },
+    {
+      "href": "https://www.uukache.com/operating/article",
+      "selector": "ul.el-menu--collapse.el-menu > div:nth-of-type(70) > div > li.el-submenu > div.el-menu--vertical:nth-of-type(2) > ul.el-menu.el-menu--popup > div.nest-menu:nth-of-type(2) > div > a",
+      "text": "文章",
+      "type": "a",
+      "visible": false
+    },
+    {
+      "href": "https://www.uukache.com/operating/help",
+      "selector": "ul.el-menu--collapse.el-menu > div:nth-of-type(70) > div > li.el-submenu > div.el-menu--vertical:nth-of-type(2) > ul.el-menu.el-menu--popup > div.nest-menu:nth-of-type(3) > div > a",
+      "text": "帮助中心",
+      "type": "a",
+      "visible": false
+    },
+    {
+      "href": "https://www.uukache.com/bj/paper",
+      "selector": "ul.el-menu--collapse.el-menu > div:nth-of-type(71) > div > li.el-submenu > div.el-menu--vertical:nth-of-type(2) > ul.el-menu.el-menu--popup > div.nest-menu:nth-of-type(1) > div > a",
+      "text": "监控台账",
+      "type": "a",
+      "visible": false
+    },
+    {
+      "href": "https://www.uukache.com/bj/spotCheckVehicle",
+      "selector": "ul.el-menu--collapse.el-menu > div:nth-of-type(71) > div > li.el-submenu > div.el-menu--vertical:nth-of-type(2) > ul.el-menu.el-menu--popup > div.nest-menu:nth-of-type(2) > div > a",
+      "text": "台账车辆抽查",
+      "type": "a",
+      "visible": false
+    },
+    {
+      "href": "https://www.uukache.com/bj/alrmManage",
+      "selector": "ul.el-menu--collapse.el-menu > div:nth-of-type(71) > div > li.el-submenu > div.el-menu--vertical:nth-of-type(2) > ul.el-menu.el-menu--popup > div.nest-menu:nth-of-type(3) > div > a",
+      "text": "报警信息",
+      "type": "a",
+      "visible": false
+    },
+    {
+      "href": "https://www.uukache.com/bj/alarmStatistics",
+      "selector": "ul.el-menu--collapse.el-menu > div:nth-of-type(71) > div > li.el-submenu > div.el-menu--vertical:nth-of-type(2) > ul.el-menu.el-menu--popup > div.nest-menu:nth-of-type(4) > div > a",
+      "text": "监控报警统计",
+      "type": "a",
+      "visible": false
+    },
+    {
+      "href": "https://www.uukache.com/bj/calEhicleManagement",
+      "selector": "ul.el-menu--collapse.el-menu > div:nth-of-type(71) > div > li.el-submenu > div.el-menu--vertical:nth-of-type(2) > ul.el-menu.el-menu--popup > div.nest-menu:nth-of-type(5) > div > a",
+      "text": "车辆审核",
+      "type": "a",
+      "visible": false
+    },
+    {
+      "href": "https://www.uukache.com/bj/devHitchList",
+      "selector": "ul.el-menu--collapse.el-menu > div:nth-of-type(71) > div > li.el-submenu > div.el-menu--vertical:nth-of-type(2) > ul.el-menu.el-menu--popup > div.nest-menu:nth-of-type(6) > div > a",
+      "text": "屏蔽信号管理",
+      "type": "a",
+      "visible": false
+    },
+    {
+      "href": "https://www.uukache.com/bj/spotCheckNotification",
+      "selector": "ul.el-menu--collapse.el-menu > div:nth-of-type(71) > div > li.el-submenu > div.el-menu--vertical:nth-of-type(2) > ul.el-menu.el-menu--popup > div.nest-menu:nth-of-type(7) > div > a",
+      "text": "抽查通报",
+      "type": "a",
+      "visible": false
+    },
+    {
+      "href": "https://www.uukache.com/bj/monitorcheck",
+      "selector": "ul.el-menu--collapse.el-menu > div:nth-of-type(71) > div > li.el-submenu > div.el-menu--vertical:nth-of-type(2) > ul.el-menu.el-menu--popup > div.nest-menu:nth-of-type(8) > div > a",
+      "text": "监控车辆排查",
+      "type": "a",
+      "visible": false
+    },
+    {
+      "href": "https://www.uukache.com/bill/commissiondetails",
+      "selector": "ul.el-menu--collapse.el-menu > div:nth-of-type(72) > div > li.el-submenu > div.el-menu--vertical:nth-of-type(2) > ul.el-menu.el-menu--popup > div.nest-menu:nth-of-type(1) > div > a",
+      "text": "收款提成明细",
+      "type": "a",
+      "visible": false
+    },
+    {
+      "href": "https://www.uukache.com/bill/workdetails",
+      "selector": "ul.el-menu--collapse.el-menu > div:nth-of-type(72) > div > li.el-submenu > div.el-menu--vertical:nth-of-type(2) > ul.el-menu.el-menu--popup > div.nest-menu:nth-of-type(3) > div > a",
+      "text": "任务提成明细",
+      "type": "a",
+      "visible": false
+    },
+    {
+      "href": "https://www.uukache.com/bill/commissionstatistics",
+      "selector": "ul.el-menu--collapse.el-menu > div:nth-of-type(72) > div > li.el-submenu > div.el-menu--vertical:nth-of-type(2) > ul.el-menu.el-menu--popup > div.nest-menu:nth-of-type(4) > div > a",
+      "text": "提成统计报表",
+      "type": "a",
+      "visible": false
+    },
+    {
+      "href": "https://www.uukache.com/bill/staff",
+      "selector": "ul.el-menu--collapse.el-menu > div:nth-of-type(72) > div > li.el-submenu > div.el-menu--vertical:nth-of-type(2) > ul.el-menu.el-menu--popup > div.nest-menu:nth-of-type(5) > div > a",
+      "text": "提成明细按人",
+      "type": "a",
+      "visible": false
+    },
+    {
+      "href": "https://www.uukache.com/bill/companysheet",
+      "selector": "ul.el-menu--collapse.el-menu > div:nth-of-type(72) > div > li.el-submenu > div.el-menu--vertical:nth-of-type(2) > ul.el-menu.el-menu--popup > div.nest-menu:nth-of-type(10) > div > a",
+      "text": "客户账单汇总",
+      "type": "a",
+      "visible": false
+    },
+    {
+      "href": "https://www.uukache.com/market/market",
+      "selector": "ul.el-menu--collapse.el-menu > div:nth-of-type(73) > div > li.el-submenu > div.el-menu--vertical:nth-of-type(2) > ul.el-menu.el-menu--popup > div.nest-menu:nth-of-type(1) > div > a",
+      "text": "上架商品",
+      "type": "a",
+      "visible": false
+    },
+    {
+      "href": "https://www.uukache.com/market/deliverGoods",
+      "selector": "ul.el-menu--collapse.el-menu > div:nth-of-type(73) > div > li.el-submenu > div.el-menu--vertical:nth-of-type(2) > ul.el-menu.el-menu--popup > div.nest-menu:nth-of-type(2) > div > a",
+      "text": "发货模板管理",
+      "type": "a",
+      "visible": false
+    },
+    {
+      "href": "https://www.uukache.com/market/classification",
+      "selector": "ul.el-menu--collapse.el-menu > div:nth-of-type(73) > div > li.el-submenu > div.el-menu--vertical:nth-of-type(2) > ul.el-menu.el-menu--popup > div.nest-menu:nth-of-type(3) > div > a",
+      "text": "商品分类管理",
+      "type": "a",
+      "visible": false
+    },
+    {
+      "href": "https://www.uukache.com/market/activity",
+      "selector": "ul.el-menu--collapse.el-menu > div:nth-of-type(73) > div > li.el-submenu > div.el-menu--vertical:nth-of-type(2) > ul.el-menu.el-menu--popup > div.nest-menu:nth-of-type(4) > div > a",
+      "text": "活动管理",
+      "type": "a",
+      "visible": false
+    },
+    {
+      "href": "https://www.uukache.com/market/productProperties",
+      "selector": "ul.el-menu--collapse.el-menu > div:nth-of-type(73) > div > li.el-submenu > div.el-menu--vertical:nth-of-type(2) > ul.el-menu.el-menu--popup > div.nest-menu:nth-of-type(5) > div > a",
+      "text": "商品属性管理",
+      "type": "a",
+      "visible": false
+    },
+    {
+      "href": "https://www.uukache.com/system/classes",
+      "selector": "ul.el-menu--collapse.el-menu > div:nth-of-type(74) > div > li.el-submenu > div.el-menu--vertical:nth-of-type(2) > ul.el-menu.el-menu--popup > div.nest-menu:nth-of-type(1) > div > a",
+      "text": "监控排班",
+      "type": "a",
+      "visible": false
+    },
+    {
+      "href": "https://www.uukache.com/system/company",
+      "selector": "ul.el-menu--collapse.el-menu > div:nth-of-type(74) > div > li.el-submenu > div.el-menu--vertical:nth-of-type(2) > ul.el-menu.el-menu--popup > div.nest-menu:nth-of-type(2) > div > a",
+      "text": "公司管理",
+      "type": "a",
+      "visible": false
+    },
+    {
+      "href": "https://www.uukache.com/system/fleet",
+      "selector": "ul.el-menu--collapse.el-menu > div:nth-of-type(74) > div > li.el-submenu > div.el-menu--vertical:nth-of-type(2) > ul.el-menu.el-menu--popup > div.nest-menu:nth-of-type(3) > div > a",
+      "text": "车队管理",
+      "type": "a",
+      "visible": false
+    },
+    {
+      "href": "https://www.uukache.com/system/group",
+      "selector": "ul.el-menu--collapse.el-menu > div:nth-of-type(74) > div > li.el-submenu > div.el-menu--vertical:nth-of-type(2) > ul.el-menu.el-menu--popup > div.nest-menu:nth-of-type(4) > div > a",
+      "text": "销售分组管理",
+      "type": "a",
+      "visible": false
+    },
+    {
+      "href": "https://www.uukache.com/system/storehouse",
+      "selector": "ul.el-menu--collapse.el-menu > div:nth-of-type(74) > div > li.el-submenu > div.el-menu--vertical:nth-of-type(2) > ul.el-menu.el-menu--popup > div.nest-menu:nth-of-type(5) > div > a",
+      "text": "仓库管理",
+      "type": "a",
+      "visible": false
+    },
+    {
+      "href": "https://www.uukache.com/system/config",
+      "selector": "ul.el-menu--collapse.el-menu > div:nth-of-type(74) > div > li.el-submenu > div.el-menu--vertical:nth-of-type(2) > ul.el-menu.el-menu--popup > div.nest-menu:nth-of-type(6) > div > a",
+      "text": "任务单配置",
+      "type": "a",
+      "visible": false
+    },
+    {
+      "href": "https://www.uukache.com/system/product",
+      "selector": "ul.el-menu--collapse.el-menu > div:nth-of-type(74) > div > li.el-submenu > div.el-menu--vertical:nth-of-type(2) > ul.el-menu.el-menu--popup > div.nest-menu:nth-of-type(8) > div > a",
+      "text": "产品管理",
+      "type": "a",
+      "visible": false
+    },
+    {
+      "href": "https://www.uukache.com/system/user",
+      "selector": "ul.el-menu--collapse.el-menu > div:nth-of-type(74) > div > li.el-submenu > div.el-menu--vertical:nth-of-type(2) > ul.el-menu.el-menu--popup > div.nest-menu:nth-of-type(10) > div > a",
+      "text": "用户管理",
+      "type": "a",
+      "visible": false
+    },
+    {
+      "href": "https://www.uukache.com/system/role",
+      "selector": "ul.el-menu--collapse.el-menu > div:nth-of-type(74) > div > li.el-submenu > div.el-menu--vertical:nth-of-type(2) > ul.el-menu.el-menu--popup > div.nest-menu:nth-of-type(11) > div > a",
+      "text": "角色管理",
+      "type": "a",
+      "visible": false
+    },
+    {
+      "href": "https://www.uukache.com/system/dept",
+      "selector": "ul.el-menu--collapse.el-menu > div:nth-of-type(74) > div > li.el-submenu > div.el-menu--vertical:nth-of-type(2) > ul.el-menu.el-menu--popup > div.nest-menu:nth-of-type(12) > div > a",
+      "text": "部门管理",
+      "type": "a",
+      "visible": false
+    },
+    {
+      "href": "https://www.uukache.com/system/post",
+      "selector": "ul.el-menu--collapse.el-menu > div:nth-of-type(74) > div > li.el-submenu > div.el-menu--vertical:nth-of-type(2) > ul.el-menu.el-menu--popup > div.nest-menu:nth-of-type(13) > div > a",
+      "text": "岗位管理",
+      "type": "a",
+      "visible": false
+    },
+    {
+      "href": "https://www.uukache.com/system/notice",
+      "selector": "ul.el-menu--collapse.el-menu > div:nth-of-type(74) > div > li.el-submenu > div.el-menu--vertical:nth-of-type(2) > ul.el-menu.el-menu--popup > div.nest-menu:nth-of-type(14) > div > a",
+      "text": "通知公告",
+      "type": "a",
+      "visible": false
+    },
+    {
+      "href": "https://www.uukache.com/system/versionManagement",
+      "selector": "ul.el-menu--collapse.el-menu > div:nth-of-type(74) > div > li.el-submenu > div.el-menu--vertical:nth-of-type(2) > ul.el-menu.el-menu--popup > div.nest-menu:nth-of-type(15) > div > a",
+      "text": "APP版本管理",
+      "type": "a",
+      "visible": false
+    },
+    {
+      "href": "https://www.uukache.com/tool/menu",
+      "selector": "ul.el-menu--collapse.el-menu > div:nth-of-type(75) > div > li.el-submenu > div.el-menu--vertical:nth-of-type(2) > ul.el-menu.el-menu--popup > div.nest-menu:nth-of-type(2) > div > a",
+      "text": "菜单管理",
+      "type": "a",
+      "visible": false
+    },
+    {
+      "href": "https://www.uukache.com/tool/dict",
+      "selector": "ul.el-menu--collapse.el-menu > div:nth-of-type(75) > div > li.el-submenu > div.el-menu--vertical:nth-of-type(2) > ul.el-menu.el-menu--popup > div.nest-menu:nth-of-type(3) > div > a",
+      "text": "字典管理",
+      "type": "a",
+      "visible": false
+    },
+    {
+      "href": "https://www.uukache.com/tool/config",
+      "selector": "ul.el-menu--collapse.el-menu > div:nth-of-type(75) > div > li.el-submenu > div.el-menu--vertical:nth-of-type(2) > ul.el-menu.el-menu--popup > div.nest-menu:nth-of-type(4) > div > a",
+      "text": "参数设置",
+      "type": "a",
+      "visible": false
+    },
+    {
+      "href": "https://www.uukache.com/tool/approvalapply",
+      "selector": "ul.el-menu--collapse.el-menu > div:nth-of-type(75) > div > li.el-submenu > div.el-menu--vertical:nth-of-type(2) > ul.el-menu.el-menu--popup > div.nest-menu:nth-of-type(5) > div > a",
+      "text": "业务审批申请",
+      "type": "a",
+      "visible": false
+    },
+    {
+      "href": "https://www.uukache.com/tool/approvaltype",
+      "selector": "ul.el-menu--collapse.el-menu > div:nth-of-type(75) > div > li.el-submenu > div.el-menu--vertical:nth-of-type(2) > ul.el-menu.el-menu--popup > div.nest-menu:nth-of-type(6) > div > a",
+      "text": "审批申请类型",
+      "type": "a",
+      "visible": false
+    },
+    {
+      "href": "https://www.uukache.com/monitor/list",
+      "selector": "ul.el-menu--collapse.el-menu > div:nth-of-type(76) > div > li.el-submenu > div.el-menu--vertical:nth-of-type(2) > ul.el-menu.el-menu--popup > div.nest-menu:nth-of-type(3) > div > a",
+      "text": "IP白名单",
+      "type": "a",
+      "visible": false
+    },
+    {
+      "href": "https://www.uukache.com/monitor/job",
+      "selector": "ul.el-menu--collapse.el-menu > div:nth-of-type(76) > div > li.el-submenu > div.el-menu--vertical:nth-of-type(2) > ul.el-menu.el-menu--popup > div.nest-menu:nth-of-type(5) > div > a",
+      "text": "定时任务",
+      "type": "a",
+      "visible": false
+    },
+    {
+      "href": "https://www.uukache.com/monitor/operlog",
+      "selector": "ul.el-menu--collapse.el-menu > div:nth-of-type(76) > div > li.el-submenu > div.el-menu--vertical:nth-of-type(2) > ul.el-menu.el-menu--popup > div.nest-menu:nth-of-type(7) > div > a",
+      "text": "操作日志",
+      "type": "a",
+      "visible": false
+    },
+    {
+      "href": "https://www.uukache.com/user/profile",
+      "selector": "div.avatar-container.right-menu-item > ul.el-dropdown-menu.el-popper > a",
+      "text": "个人中心",
+      "type": "a",
+      "visible": false
+    },
+    {
+      "selector": "button.el-button.el-color-dropdown__link-btn",
+      "text": "清空",
+      "type": "button",
+      "visible": false
+    },
+    {
+      "selector": "button.el-button.el-color-dropdown__btn",
+      "text": "确定",
+      "type": "button",
+      "visible": false
+    },
+    {
+      "selector": "div.drawer-container > div > button.el-button.el-button--primary:nth-of-type(1)",
+      "text": "保存配置",
+      "type": "button",
+      "visible": true
+    },
+    {
+      "selector": "div.drawer-container > div > button.el-button.el-button--default:nth-of-type(2)",
+      "text": "重置配置",
+      "type": "button",
+      "visible": true
+    },
+    {
+      "selector": "div.diplay-justify-spaceBetween > div > button.el-button.el-button--primary:nth-of-type(1)",
+      "text": "搜索",
+      "type": "button",
+      "visible": true
+    },
+    {
+      "selector": "div.diplay-justify-spaceBetween > div > button.el-button.el-button--default:nth-of-type(2)",
+      "text": "重置",
+      "type": "button",
+      "visible": true
+    },
+    {
+      "selector": "div.head > div > div.el-dropdown > button.el-button.el-button--primary",
+      "text": "报单导出",
+      "type": "button",
+      "visible": true
+    },
+    {
+      "selector": "button.el-button.el-tooltip",
+      "text": "筛选",
+      "type": "button",
+      "visible": true
+    },
+    {
+      "selector": "div.app-container > div.el-drawer__wrapper:nth-of-type(3) > div.el-drawer__container > div.el-drawer.rtl > header.el-drawer__header > button.el-drawer__close-btn",
+      "text": "close drawer",
+      "type": "button",
+      "visible": false
+    },
+    {
+      "selector": "div.app-container > div.el-drawer__wrapper:nth-of-type(4) > div.el-drawer__container > div.el-drawer.rtl > header.el-drawer__header > button.el-drawer__close-btn",
+      "text": "close drawer",
+      "type": "button",
+      "visible": false
+    },
+    {
+      "selector": "div.app-container > div.el-drawer__wrapper:nth-of-type(5) > div.el-drawer__container > div.el-drawer.rtl > header.el-drawer__header > button.el-drawer__close-btn",
+      "text": "close drawer",
+      "type": "button",
+      "visible": false
+    },
+    {
+      "selector": "div.el-breadcrumb.app-breadcrumb > span > span.el-breadcrumb__item:nth-of-type(1) > span.el-breadcrumb__inner:nth-of-type(1)",
+      "text": "首页",
+      "type": "a",
+      "visible": true
+    },
+    {
+      "selector": "div.el-breadcrumb.app-breadcrumb > span > span.el-breadcrumb__item:nth-of-type(2) > span.el-breadcrumb__inner:nth-of-type(1)",
+      "text": "任务管理",
+      "type": "a",
+      "visible": true
+    }
+  ],
+  "pageTitle": "任务管理",
+  "pageUrl": "https://www.uukache.com/task/index",
+  "totalLinks": 85
+}

@@ -1,0 +1,10 @@
+{
+  "height": "40.625px",
+  "nodeId": "n308",
+  "originalClass": "el-form-item__label",
+  "selector": "ul.el-menu--collapse.el-menu > div:nth-of-type(68) > div > li.el-submenu > div.el-menu--vertical:nth-of-type(2) > ul.el-menu.el-menu--popup > div.nest-menu:nth-of-type(11) > div > a > li.el-menu-item",
+  "styleId": "style_76",
+  "tag": "label",
+  "text": "关联单据号",
+  "width": "100px"
+}

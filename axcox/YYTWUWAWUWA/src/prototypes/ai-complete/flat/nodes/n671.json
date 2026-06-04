@@ -1,0 +1,12 @@
+{
+  "children": [
+    "n670"
+  ],
+  "height": "30px",
+  "nodeId": "n671",
+  "originalClass": "gray",
+  "selector": "ul.contextmenu > li:nth-of-type(5)",
+  "styleId": "style_145",
+  "tag": "div",
+  "width": "80px"
+}

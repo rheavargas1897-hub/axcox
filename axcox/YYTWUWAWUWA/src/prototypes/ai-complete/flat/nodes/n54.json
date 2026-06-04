@@ -1,0 +1,18 @@
+{
+  "bbox": {
+    "height": 542,
+    "left": 1854,
+    "top": 24,
+    "width": 212
+  },
+  "children": [
+    "n53"
+  ],
+  "height": "589.756px",
+  "nodeId": "n54",
+  "originalClass": "drawer-container",
+  "selector": "div.drawer-container > div",
+  "styleId": "style_27",
+  "tag": "div",
+  "width": "260px"
+}

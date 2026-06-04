@@ -1,0 +1,12 @@
+{
+  "children": [
+    "n384"
+  ],
+  "height": "22.998px",
+  "nodeId": "n385",
+  "originalClass": "el-checkbox",
+  "selector": "ul.el-menu--collapse.el-menu > div:nth-of-type(71) > div > li.el-submenu > div.el-menu--vertical:nth-of-type(2) > ul.el-menu.el-menu--popup > div.nest-menu:nth-of-type(4) > div",
+  "styleId": "style_117",
+  "tag": "label",
+  "width": "13.9941px"
+}
